@@ -41,6 +41,6 @@ class HypeMachineAPITests: XCTestCase {
         let tracks = HypeMachineAPI.Track.collection(response: NSHTTPURLResponse(), representation: jsonResult)
         
         XCTAssertNotNil(tracks)
-        XCTAssert(tracks!.count == 5)
+        XCTAssert(tracks!.count == 3)
     }
 }

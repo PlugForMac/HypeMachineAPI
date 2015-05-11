@@ -6,9 +6,8 @@ import HypeMachineAPI
 // Allow network requests to complete
 XCPSetExecutionShouldContinueIndefinitely()
 
-var a = "asdf"
-
-Alamofire.request(HypeMachineAPI.Router.Tracks.Index)
+Alamofire.request(HypeMachineAPI.Router.Tracks.Popular(nil))
     .responseCollection { (request, response, tracks: [HypeMachineAPI.Track]?, error) in
-        println(tracks)
+        println(tracks![0].title)
+        println(error)
     }

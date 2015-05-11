@@ -12,14 +12,17 @@ import Alamofire
 extension Router {
     public enum Tracks: URLRequestConvertible {
         
-        case Index
+        case Index([String: AnyObject]?)
         case Show(String)
+        case Popular([String: AnyObject]?)
         
         var method: Alamofire.Method {
             switch self {
             case .Index:
                 return .GET
             case .Show:
+                return .GET
+            case .Popular:
                 return .GET
             }
         }
@@ -30,6 +33,8 @@ extension Router {
                 return "/tracks"
             case .Show(let id):
                 return "/tracks/\(id)"
+            case .Popular:
+                return "/popular"
             }
         }
         
@@ -41,10 +46,12 @@ extension Router {
             mutableURLRequest.HTTPMethod = method.rawValue
             
             switch self {
-            case .Index:
-                return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: nil).0
+            case .Index(let params):
+                return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: params).0
             case .Show:
                 return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: nil).0
+            case .Popular(let params):
+                return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: params).0
             }
         }
     }
