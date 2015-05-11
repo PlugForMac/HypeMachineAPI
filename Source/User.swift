@@ -8,16 +8,20 @@
 
 import Cocoa
 
-public class Friend: NSObject {
-    let username: String
-    let fullName: String
-    let avatarURL: NSURL?
-    let favoritesCount: Int
-    let favoritesCountNum: NSNumber
-    let followersCount: Int
-    let followersCountNum: NSNumber
-    let followingCount: Int
-    let followingCountNum: NSNumber
+public final class User: NSObject, ResponseObjectSerializable, ResponseCollectionSerializable {
+    public let username: String
+    public let fullName: String
+    public let avatarURL: NSURL?
+    public let favoritesCount: Int
+    public let favoritesCountNum: NSNumber
+    public let followersCount: Int
+    public let followersCountNum: NSNumber
+    public let followingCount: Int
+    public let followingCountNum: NSNumber
+    
+    override public var description: String {
+        return "<User - username: \(username), fullName: \(fullName)>"
+    }
     
     public required init?(response: NSHTTPURLResponse, representation: AnyObject) {
         self.username = representation.valueForKeyPath("username") as! String
@@ -40,6 +44,22 @@ public class Friend: NSObject {
         self.followersCountNum = NSNumber(integer: followersCount)
 
         self.followingCount = favoritesCountInfo.valueForKeyPath("user") as? Int ?? 0
-        followingCountNum = NSNumber(integer: followingCount)
+        self.followingCountNum = NSNumber(integer: followingCount)
+    }
+    
+    public class func collection(#response: NSHTTPURLResponse, representation: AnyObject) -> [User]? {
+        var users = [User]()
+        
+        if let collectionJSON = representation as? [NSDictionary] {
+            for recordJSON in collectionJSON {
+                if let user = User(response: response, representation: recordJSON) {
+                    users.append(user)
+                }
+            }
+        } else {
+            return nil
+        }
+        
+        return users
     }
 }

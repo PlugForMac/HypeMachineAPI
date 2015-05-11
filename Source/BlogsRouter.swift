@@ -1,8 +1,8 @@
 //
-//  TracksRouter.swift
+//  BlogsRouter.swift
 //  HypeMachineAPI
 //
-//  Created by Alex Marchant on 5/10/15.
+//  Created by Alex Marchant on 5/11/15.
 //  Copyright (c) 2015 Plug. All rights reserved.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 import Alamofire
 
 extension Router {
-    public enum Tracks: URLRequestConvertible {
+    public enum Blogs: URLRequestConvertible {
         
         case Index([String: AnyObject]?)
         case Show(String)
-        case Popular([String: AnyObject]?)
+        case ShowTracks(String, [String: AnyObject]?)
         
         var method: Alamofire.Method {
             switch self {
@@ -22,7 +22,7 @@ extension Router {
                 return .GET
             case .Show:
                 return .GET
-            case .Popular:
+            case .ShowTracks:
                 return .GET
             }
         }
@@ -30,11 +30,11 @@ extension Router {
         var path: String {
             switch self {
             case .Index:
-                return "/tracks"
+                return "/blogs"
             case .Show(let id):
-                return "/tracks/\(id)"
-            case .Popular:
-                return "/popular"
+                return "/blogs/\(id)"
+            case .ShowTracks(let id, _):
+                return "/blogs/\(id)/tracks"
             }
         }
         
@@ -48,7 +48,7 @@ extension Router {
                 return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: params).0
             case .Show:
                 return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: nil).0
-            case .Popular(let params):
+            case .ShowTracks(_, let params):
                 return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: params).0
             }
         }

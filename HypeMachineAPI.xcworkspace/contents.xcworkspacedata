@@ -5,9 +5,6 @@
       location = "group:HypeMachineAPI.xcodeproj">
    </FileRef>
    <FileRef
-      location = "group:Carthage/Checkouts/Alamofire/Alamofire.xcodeproj">
-   </FileRef>
-   <FileRef
       location = "group:HypeMachineAPI.playground">
    </FileRef>
 </Workspace>

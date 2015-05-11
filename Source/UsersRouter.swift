@@ -1,8 +1,8 @@
 //
-//  TracksRouter.swift
+//  UsersRouter.swift
 //  HypeMachineAPI
 //
-//  Created by Alex Marchant on 5/10/15.
+//  Created by Alex Marchant on 5/11/15.
 //  Copyright (c) 2015 Plug. All rights reserved.
 //
 
@@ -10,31 +10,31 @@ import Foundation
 import Alamofire
 
 extension Router {
-    public enum Tracks: URLRequestConvertible {
+    public enum Users: URLRequestConvertible {
         
-        case Index([String: AnyObject]?)
         case Show(String)
-        case Popular([String: AnyObject]?)
+        case ShowFavorites(String, [String: AnyObject]?)
+        case ShowFriends(String)
         
         var method: Alamofire.Method {
             switch self {
-            case .Index:
-                return .GET
             case .Show:
                 return .GET
-            case .Popular:
+            case .ShowFavorites:
+                return .GET
+            case .ShowFriends:
                 return .GET
             }
         }
         
         var path: String {
             switch self {
-            case .Index:
-                return "/tracks"
-            case .Show(let id):
-                return "/tracks/\(id)"
-            case .Popular:
-                return "/popular"
+            case .Show(let username):
+                return "/users/\(username)"
+            case .ShowFavorites(let username, _):
+                return "/users/\(username)/favorites"
+            case .ShowFriends(let username):
+                return "/users/\(username)/friends"
             }
         }
         
@@ -44,12 +44,12 @@ extension Router {
             mutableURLRequest.HTTPMethod = method.rawValue
             
             switch self {
-            case .Index(let params):
-                return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: params).0
             case .Show:
                 return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: nil).0
-            case .Popular(let params):
+            case .ShowFavorites(_, let params):
                 return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: params).0
+            case .ShowFriends:
+                return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: nil).0
             }
         }
     }

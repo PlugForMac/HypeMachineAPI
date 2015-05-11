@@ -8,21 +8,25 @@
 
 import Cocoa
 
-public class Blog: NSObject {
-    let id: String
-    let name: String
-    let url: NSURL
-    let followerCount: Int
-    let followerCountNum: NSNumber
-    let trackCount: Int
-    let trackCountNum: NSNumber
-    let imageURL: NSURL
-    let imageURLSmall: NSURL
-    let featured: Bool
-    let following: Bool
+public final class Blog: NSObject, ResponseObjectSerializable, ResponseCollectionSerializable {
+    public let id: String
+    public let name: String
+    public let url: NSURL
+    public let followerCount: Int
+    public let followerCountNum: NSNumber
+    public let trackCount: Int
+    public let trackCountNum: NSNumber
+    public let imageURL: NSURL
+    public let imageURLSmall: NSURL
+    public let featured: Bool
+    public let following: Bool
+    
+    override public var description: String {
+        return "<Blog - name: \(name)>"
+    }
     
     public required init?(response: NSHTTPURLResponse, representation: AnyObject) {
-        self.id = representation.valueForKeyPath("siteid") as! String
+        self.id = String(representation.valueForKeyPath("siteid") as! Int)
         self.name = representation.valueForKeyPath("sitename") as! String
         var urlString = (representation.valueForKeyPath("siteurl") as! String)
             .stringByReplacingOccurrencesOfString(" ", withString: "")
@@ -35,6 +39,22 @@ public class Blog: NSObject {
         self.imageURLSmall = NSURL(string: representation.valueForKeyPath("blog_image_small") as! String)!
         self.featured = representation.valueForKeyPath("ts_featured") is String
         self.following = representation.valueForKeyPath("ts_featured") is String
+    }
+    
+    public class func collection(#response: NSHTTPURLResponse, representation: AnyObject) -> [Blog]? {
+        var blogs = [Blog]()
+        
+        if let collectionJSON = representation as? [NSDictionary] {
+            for recordJSON in collectionJSON {
+                if let blog = Blog(response: response, representation: recordJSON) {
+                    blogs.append(blog)
+                }
+            }
+        } else {
+            return nil
+        }
+        
+        return blogs
     }
     
     public func imageURLForSize(size: ImageSize) -> NSURL {

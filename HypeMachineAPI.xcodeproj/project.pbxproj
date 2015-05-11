@@ -7,14 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA21C3C31B01078900C1EAA8 /* MiscRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21C3C21B01078900C1EAA8 /* MiscRouter.swift */; };
+		FA4D18ED1B0112C10043A040 /* Tags.json in Resources */ = {isa = PBXBuildFile; fileRef = FA4D18EB1B0112BA0043A040 /* Tags.json */; };
+		FA4D18EF1B0112F80043A040 /* TagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4D18EE1B0112F80043A040 /* TagTests.swift */; };
+		FA4D18F11B01132E0043A040 /* Tag.json in Resources */ = {isa = PBXBuildFile; fileRef = FA4D18F01B01132E0043A040 /* Tag.json */; };
+		FA4D18F31B0114730043A040 /* TagsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4D18F21B0114730043A040 /* TagsRouter.swift */; };
+		FA4D19001B0129CD0043A040 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5B33F21AFF5268009F2F95 /* Alamofire.framework */; };
+		FA4D19031B012B560043A040 /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA5B33F21AFF5268009F2F95 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		FA5B33DC1AFF4FF6009F2F95 /* HypeMachineAPI.h in Headers */ = {isa = PBXBuildFile; fileRef = FA5B33DB1AFF4FF6009F2F95 /* HypeMachineAPI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		FA5B33E21AFF4FF6009F2F95 /* HypeMachineAPI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5B33D61AFF4FF6009F2F95 /* HypeMachineAPI.framework */; };
-		FA5B33E91AFF4FF6009F2F95 /* HypeMachineAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B33E81AFF4FF6009F2F95 /* HypeMachineAPITests.swift */; };
 		FA5B33F31AFF5268009F2F95 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA5B33F21AFF5268009F2F95 /* Alamofire.framework */; };
 		FA5B33F51AFF5286009F2F95 /* HypeMachineAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B33F41AFF5286009F2F95 /* HypeMachineAPI.swift */; };
 		FA5B33F81AFF540F009F2F95 /* Blog.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B33F71AFF540F009F2F95 /* Blog.swift */; };
-		FA5B33FA1AFF5414009F2F95 /* Friend.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B33F91AFF5414009F2F95 /* Friend.swift */; };
-		FA5B33FC1AFF5419009F2F95 /* Genre.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B33FB1AFF5419009F2F95 /* Genre.swift */; };
+		FA5B33FA1AFF5414009F2F95 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B33F91AFF5414009F2F95 /* User.swift */; };
+		FA5B33FC1AFF5419009F2F95 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B33FB1AFF5419009F2F95 /* Tag.swift */; };
 		FA5B33FE1AFF541D009F2F95 /* Playlist.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B33FD1AFF541D009F2F95 /* Playlist.swift */; };
 		FA5B34011AFF5433009F2F95 /* PopularPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B34001AFF5433009F2F95 /* PopularPlaylist.swift */; };
 		FA5B34061AFF543B009F2F95 /* FavoritesPlaylist.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B34021AFF543B009F2F95 /* FavoritesPlaylist.swift */; };
@@ -28,6 +34,22 @@
 		FA5B34161B0045E8009F2F95 /* ResponseCollectionSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B34151B0045E8009F2F95 /* ResponseCollectionSerializable.swift */; };
 		FA5B341A1B008DC4009F2F95 /* Track.json in Resources */ = {isa = PBXBuildFile; fileRef = FA5B34181B008BA2009F2F95 /* Track.json */; };
 		FA5B341D1B009052009F2F95 /* Tracks.json in Resources */ = {isa = PBXBuildFile; fileRef = FA5B341B1B008F6A009F2F95 /* Tracks.json */; };
+		FA5B341F1B00F23B009F2F95 /* BlogsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B341E1B00F23B009F2F95 /* BlogsRouter.swift */; };
+		FA5B34211B00F345009F2F95 /* TrackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B34201B00F345009F2F95 /* TrackTests.swift */; };
+		FA5B34231B00F3AA009F2F95 /* BlogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B34221B00F3AA009F2F95 /* BlogTests.swift */; };
+		FA5B34271B00F558009F2F95 /* Fixtures.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B34251B00F42C009F2F95 /* Fixtures.swift */; };
+		FA5B34291B00F699009F2F95 /* Blogs.json in Resources */ = {isa = PBXBuildFile; fileRef = FA5B34281B00F699009F2F95 /* Blogs.json */; };
+		FA5B342B1B00F6C8009F2F95 /* Blog.json in Resources */ = {isa = PBXBuildFile; fileRef = FA5B342A1B00F6C8009F2F95 /* Blog.json */; };
+		FA5B342E1B00F86D009F2F95 /* ArtistsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B342C1B00F869009F2F95 /* ArtistsRouter.swift */; };
+		FA5B34301B00F934009F2F95 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B342F1B00F934009F2F95 /* Artist.swift */; };
+		FA5B34321B00FAC4009F2F95 /* ArtistTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B34311B00FAC4009F2F95 /* ArtistTests.swift */; };
+		FA5B34341B00FB25009F2F95 /* Artist.json in Resources */ = {isa = PBXBuildFile; fileRef = FA5B34331B00FB25009F2F95 /* Artist.json */; };
+		FA5B34361B00FB30009F2F95 /* Artists.json in Resources */ = {isa = PBXBuildFile; fileRef = FA5B34351B00FB30009F2F95 /* Artists.json */; };
+		FA5B34381B00FF11009F2F95 /* User.json in Resources */ = {isa = PBXBuildFile; fileRef = FA5B34371B00FF11009F2F95 /* User.json */; };
+		FA5B343A1B00FF2B009F2F95 /* Users.json in Resources */ = {isa = PBXBuildFile; fileRef = FA5B34391B00FF2B009F2F95 /* Users.json */; };
+		FA5B343C1B00FFAB009F2F95 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B343B1B00FFAB009F2F95 /* UserTests.swift */; };
+		FA5B34401B01024C009F2F95 /* MeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B343F1B01024C009F2F95 /* MeRouter.swift */; };
+		FA5B34411B010251009F2F95 /* UsersRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B343D1B010075009F2F95 /* UsersRouter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,18 +62,35 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		FA4D19021B012B440043A040 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				FA4D19031B012B560043A040 /* Alamofire.framework in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		FA21C3C21B01078900C1EAA8 /* MiscRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiscRouter.swift; sourceTree = "<group>"; };
+		FA4D18EB1B0112BA0043A040 /* Tags.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Tags.json; sourceTree = "<group>"; };
+		FA4D18EE1B0112F80043A040 /* TagTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTests.swift; sourceTree = "<group>"; };
+		FA4D18F01B01132E0043A040 /* Tag.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Tag.json; sourceTree = "<group>"; };
+		FA4D18F21B0114730043A040 /* TagsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagsRouter.swift; sourceTree = "<group>"; };
 		FA5B33D61AFF4FF6009F2F95 /* HypeMachineAPI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = HypeMachineAPI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA5B33DA1AFF4FF6009F2F95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA5B33DB1AFF4FF6009F2F95 /* HypeMachineAPI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HypeMachineAPI.h; sourceTree = "<group>"; };
 		FA5B33E11AFF4FF6009F2F95 /* HypeMachineAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HypeMachineAPITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA5B33E71AFF4FF6009F2F95 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FA5B33E81AFF4FF6009F2F95 /* HypeMachineAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HypeMachineAPITests.swift; sourceTree = "<group>"; };
 		FA5B33F21AFF5268009F2F95 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/Mac/Alamofire.framework; sourceTree = "<group>"; };
 		FA5B33F41AFF5286009F2F95 /* HypeMachineAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HypeMachineAPI.swift; sourceTree = "<group>"; };
 		FA5B33F71AFF540F009F2F95 /* Blog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Blog.swift; sourceTree = "<group>"; };
-		FA5B33F91AFF5414009F2F95 /* Friend.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Friend.swift; sourceTree = "<group>"; };
-		FA5B33FB1AFF5419009F2F95 /* Genre.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Genre.swift; sourceTree = "<group>"; };
+		FA5B33F91AFF5414009F2F95 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		FA5B33FB1AFF5419009F2F95 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tag.swift; sourceTree = "<group>"; };
 		FA5B33FD1AFF541D009F2F95 /* Playlist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Playlist.swift; sourceTree = "<group>"; };
 		FA5B34001AFF5433009F2F95 /* PopularPlaylist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PopularPlaylist.swift; sourceTree = "<group>"; };
 		FA5B34021AFF543B009F2F95 /* FavoritesPlaylist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesPlaylist.swift; sourceTree = "<group>"; };
@@ -65,6 +104,22 @@
 		FA5B34151B0045E8009F2F95 /* ResponseCollectionSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseCollectionSerializable.swift; sourceTree = "<group>"; };
 		FA5B34181B008BA2009F2F95 /* Track.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Track.json; sourceTree = "<group>"; };
 		FA5B341B1B008F6A009F2F95 /* Tracks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Tracks.json; sourceTree = "<group>"; };
+		FA5B341E1B00F23B009F2F95 /* BlogsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogsRouter.swift; sourceTree = "<group>"; };
+		FA5B34201B00F345009F2F95 /* TrackTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackTests.swift; sourceTree = "<group>"; };
+		FA5B34221B00F3AA009F2F95 /* BlogTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogTests.swift; sourceTree = "<group>"; };
+		FA5B34251B00F42C009F2F95 /* Fixtures.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fixtures.swift; sourceTree = "<group>"; };
+		FA5B34281B00F699009F2F95 /* Blogs.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Blogs.json; sourceTree = "<group>"; };
+		FA5B342A1B00F6C8009F2F95 /* Blog.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Blog.json; sourceTree = "<group>"; };
+		FA5B342C1B00F869009F2F95 /* ArtistsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistsRouter.swift; sourceTree = "<group>"; };
+		FA5B342F1B00F934009F2F95 /* Artist.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
+		FA5B34311B00FAC4009F2F95 /* ArtistTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArtistTests.swift; sourceTree = "<group>"; };
+		FA5B34331B00FB25009F2F95 /* Artist.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Artist.json; sourceTree = "<group>"; };
+		FA5B34351B00FB30009F2F95 /* Artists.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Artists.json; sourceTree = "<group>"; };
+		FA5B34371B00FF11009F2F95 /* User.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = User.json; sourceTree = "<group>"; };
+		FA5B34391B00FF2B009F2F95 /* Users.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Users.json; sourceTree = "<group>"; };
+		FA5B343B1B00FFAB009F2F95 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
+		FA5B343D1B010075009F2F95 /* UsersRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersRouter.swift; sourceTree = "<group>"; };
+		FA5B343F1B01024C009F2F95 /* MeRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeRouter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,19 +136,40 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA5B33E21AFF4FF6009F2F95 /* HypeMachineAPI.framework in Frameworks */,
+				FA4D19001B0129CD0043A040 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		FA5B33CC1AFF4FF6009F2F95 = {
+		FA4D18F41B0115830043A040 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FA5B34221B00F3AA009F2F95 /* BlogTests.swift */,
+				FA5B34201B00F345009F2F95 /* TrackTests.swift */,
+				FA5B34311B00FAC4009F2F95 /* ArtistTests.swift */,
+				FA4D18EE1B0112F80043A040 /* TagTests.swift */,
+				FA5B343B1B00FFAB009F2F95 /* UserTests.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		FA4D18FF1B0129C20043A040 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 				FA5B33F21AFF5268009F2F95 /* Alamofire.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FA5B33CC1AFF4FF6009F2F95 = {
+			isa = PBXGroup;
+			children = (
 				FA5B33D81AFF4FF6009F2F95 /* Source */,
 				FA5B33E51AFF4FF6009F2F95 /* Tests */,
 				FA5B33D71AFF4FF6009F2F95 /* Products */,
+				FA4D18FF1B0129C20043A040 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,7 +206,8 @@
 		FA5B33E51AFF4FF6009F2F95 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				FA5B33E81AFF4FF6009F2F95 /* HypeMachineAPITests.swift */,
+				FA4D18F41B0115830043A040 /* Models */,
+				FA5B34241B00F404009F2F95 /* Helpers */,
 				FA5B34171B008B7E009F2F95 /* Response Fixtures */,
 				FA5B33E61AFF4FF6009F2F95 /* Supporting Files */,
 			);
@@ -149,9 +226,10 @@
 			isa = PBXGroup;
 			children = (
 				FA5B33F71AFF540F009F2F95 /* Blog.swift */,
-				FA5B33F91AFF5414009F2F95 /* Friend.swift */,
-				FA5B33FB1AFF5419009F2F95 /* Genre.swift */,
 				FA5B340A1AFF5447009F2F95 /* Track.swift */,
+				FA5B342F1B00F934009F2F95 /* Artist.swift */,
+				FA5B33FB1AFF5419009F2F95 /* Tag.swift */,
+				FA5B33F91AFF5414009F2F95 /* User.swift */,
 				FA5B33FD1AFF541D009F2F95 /* Playlist.swift */,
 				FA5B33FF1AFF5429009F2F95 /* Playlists */,
 			);
@@ -191,7 +269,13 @@
 			isa = PBXGroup;
 			children = (
 				FA5B34111B002013009F2F95 /* Router.swift */,
+				FA5B341E1B00F23B009F2F95 /* BlogsRouter.swift */,
 				FA5B34131B002061009F2F95 /* TracksRouter.swift */,
+				FA5B342C1B00F869009F2F95 /* ArtistsRouter.swift */,
+				FA4D18F21B0114730043A040 /* TagsRouter.swift */,
+				FA5B343D1B010075009F2F95 /* UsersRouter.swift */,
+				FA5B343F1B01024C009F2F95 /* MeRouter.swift */,
+				FA21C3C21B01078900C1EAA8 /* MiscRouter.swift */,
 			);
 			name = Routers;
 			sourceTree = "<group>";
@@ -199,10 +283,26 @@
 		FA5B34171B008B7E009F2F95 /* Response Fixtures */ = {
 			isa = PBXGroup;
 			children = (
+				FA5B342A1B00F6C8009F2F95 /* Blog.json */,
+				FA5B34281B00F699009F2F95 /* Blogs.json */,
 				FA5B34181B008BA2009F2F95 /* Track.json */,
 				FA5B341B1B008F6A009F2F95 /* Tracks.json */,
+				FA5B34331B00FB25009F2F95 /* Artist.json */,
+				FA5B34351B00FB30009F2F95 /* Artists.json */,
+				FA4D18F01B01132E0043A040 /* Tag.json */,
+				FA4D18EB1B0112BA0043A040 /* Tags.json */,
+				FA5B34371B00FF11009F2F95 /* User.json */,
+				FA5B34391B00FF2B009F2F95 /* Users.json */,
 			);
 			name = "Response Fixtures";
+			sourceTree = "<group>";
+		};
+		FA5B34241B00F404009F2F95 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				FA5B34251B00F42C009F2F95 /* Fixtures.swift */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,6 +344,7 @@
 				FA5B33DD1AFF4FF6009F2F95 /* Sources */,
 				FA5B33DE1AFF4FF6009F2F95 /* Frameworks */,
 				FA5B33DF1AFF4FF6009F2F95 /* Resources */,
+				FA4D19021B012B440043A040 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -302,7 +403,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA5B34341B00FB25009F2F95 /* Artist.json in Resources */,
 				FA5B341A1B008DC4009F2F95 /* Track.json in Resources */,
+				FA5B342B1B00F6C8009F2F95 /* Blog.json in Resources */,
+				FA5B34381B00FF11009F2F95 /* User.json in Resources */,
+				FA4D18F11B01132E0043A040 /* Tag.json in Resources */,
+				FA5B343A1B00FF2B009F2F95 /* Users.json in Resources */,
+				FA5B34291B00F699009F2F95 /* Blogs.json in Resources */,
+				FA4D18ED1B0112C10043A040 /* Tags.json in Resources */,
+				FA5B34361B00FB30009F2F95 /* Artists.json in Resources */,
 				FA5B341D1B009052009F2F95 /* Tracks.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -314,19 +423,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA5B33FA1AFF5414009F2F95 /* Friend.swift in Sources */,
+				FA5B33FA1AFF5414009F2F95 /* User.swift in Sources */,
 				FA5B340B1AFF5447009F2F95 /* Track.swift in Sources */,
 				FA5B34081AFF543B009F2F95 /* FeedPlaylist.swift in Sources */,
+				FA5B34411B010251009F2F95 /* UsersRouter.swift in Sources */,
 				FA5B34061AFF543B009F2F95 /* FavoritesPlaylist.swift in Sources */,
+				FA5B341F1B00F23B009F2F95 /* BlogsRouter.swift in Sources */,
 				FA5B33F51AFF5286009F2F95 /* HypeMachineAPI.swift in Sources */,
+				FA5B342E1B00F86D009F2F95 /* ArtistsRouter.swift in Sources */,
 				FA5B33F81AFF540F009F2F95 /* Blog.swift in Sources */,
-				FA5B33FC1AFF5419009F2F95 /* Genre.swift in Sources */,
+				FA5B33FC1AFF5419009F2F95 /* Tag.swift in Sources */,
 				FA5B33FE1AFF541D009F2F95 /* Playlist.swift in Sources */,
 				FA5B340F1AFF54D5009F2F95 /* ResponseObjectSerializable.swift in Sources */,
+				FA21C3C31B01078900C1EAA8 /* MiscRouter.swift in Sources */,
+				FA5B34401B01024C009F2F95 /* MeRouter.swift in Sources */,
 				FA5B34071AFF543B009F2F95 /* LatestPlaylist.swift in Sources */,
+				FA5B34301B00F934009F2F95 /* Artist.swift in Sources */,
 				FA5B34011AFF5433009F2F95 /* PopularPlaylist.swift in Sources */,
 				FA5B34091AFF543B009F2F95 /* SearchPlaylist.swift in Sources */,
 				FA5B34161B0045E8009F2F95 /* ResponseCollectionSerializable.swift in Sources */,
+				FA4D18F31B0114730043A040 /* TagsRouter.swift in Sources */,
 				FA5B34121B002013009F2F95 /* Router.swift in Sources */,
 				FA5B34141B002061009F2F95 /* TracksRouter.swift in Sources */,
 			);
@@ -336,7 +452,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA5B33E91AFF4FF6009F2F95 /* HypeMachineAPITests.swift in Sources */,
+				FA5B34211B00F345009F2F95 /* TrackTests.swift in Sources */,
+				FA5B34231B00F3AA009F2F95 /* BlogTests.swift in Sources */,
+				FA4D18EF1B0112F80043A040 /* TagTests.swift in Sources */,
+				FA5B343C1B00FFAB009F2F95 /* UserTests.swift in Sources */,
+				FA5B34321B00FAC4009F2F95 /* ArtistTests.swift in Sources */,
+				FA5B34271B00F558009F2F95 /* Fixtures.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,6 +608,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -494,6 +616,7 @@
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -505,6 +628,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(DEVELOPER_FRAMEWORKS_DIR)",
 					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = Tests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";

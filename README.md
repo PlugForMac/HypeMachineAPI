@@ -18,7 +18,7 @@ $ brew install carthage
 To integrate HypeMachineAPI into your Xcode project using Carthage, specify it in your `Cartfile`:
 
 ```ogdl
-github "PlugForMac/HypeMachineAPI" ~> 0.9.0
+github "PlugForMac/HypeMachineAPI" ~> 0.1.0
 ```
 
 ### CocoaPods

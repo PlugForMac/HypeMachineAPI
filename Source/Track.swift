@@ -26,11 +26,15 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
     public let postedByDescription: String
     public let datePosted: NSDate
     public let audioUnavailable: Bool
-    public let tags: [Genre]
+    public let tags: [Tag]
 
     public var postURL: NSURL! = nil
     public var iTunesURL: NSURL! = nil
     public var playlist: Playlist? = nil
+    
+    override public var description: String {
+        return "<Track - artist: \(artist), title: \(title)>"
+    }
     
     public required init?(response: NSHTTPURLResponse, representation: AnyObject) {
         self.id = representation.valueForKeyPath("itemid") as! String
@@ -91,14 +95,14 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
         
         let response = NSHTTPURLResponse()
         self.tags = [
-            Genre(response: response, representation: ["tag_name": "electronic"])!,
-            Genre(response: response, representation: ["tag_name": "indie"])!,
-            Genre(response: response, representation: ["tag_name": "new rave"])!,
-            Genre(response: response, representation: ["tag_name": "experimental"])!,
-            Genre(response: response, representation: ["tag_name": "pop"])!,
-            Genre(response: response, representation: ["tag_name": "british"])!,
-            Genre(response: response, representation: ["tag_name": "2k11 mix"])!,
-            Genre(response: response, representation: ["tag_name": "2011"])!,
+            Tag(response: response, representation: ["tag_name": "electronic"])!,
+            Tag(response: response, representation: ["tag_name": "indie"])!,
+            Tag(response: response, representation: ["tag_name": "new rave"])!,
+            Tag(response: response, representation: ["tag_name": "experimental"])!,
+            Tag(response: response, representation: ["tag_name": "pop"])!,
+            Tag(response: response, representation: ["tag_name": "british"])!,
+            Tag(response: response, representation: ["tag_name": "2k11 mix"])!,
+            Tag(response: response, representation: ["tag_name": "2011"])!,
         ]
         
         super.init()
@@ -111,8 +115,8 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
         var tracks = [Track]()
         
         if let collectionJSON = representation as? [NSDictionary] {
-            for trackJSON in collectionJSON {
-                if let track = Track(response: response, representation: trackJSON) {
+            for recordJSON in collectionJSON {
+                if let track = Track(response: response, representation: recordJSON) {
                     tracks.append(track)
                 }
             }
