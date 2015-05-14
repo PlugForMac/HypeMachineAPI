@@ -11,24 +11,24 @@ import Alamofire
 
 extension Requests {
     public struct Artists {
-        public static func Index(optionalParams: [String: AnyObject]?, response: (artists: [Artist]?, error: NSError?)->Void) {
+        public static func Index(optionalParams: [String: AnyObject]?, callback: (artists: [Artist]?, error: NSError?)->Void) {
             Alamofire.request(Router.Artists.Index(optionalParams)).validate().responseCollection {
-                (_, _, artists: [Artist]?, error) in
-                response(artists: artists, error: error)
+                (request, response, artists: [Artist]?, error) in
+                callback(artists: artists, error: error)
             }
         }
         
-        public static func Show(#id: String, response: (artist: Artist?, error: NSError?)->Void) {
+        public static func Show(#id: String, callback: (artist: Artist?, error: NSError?)->Void) {
             Alamofire.request(Router.Artists.Show(id)).validate().responseObject {
-                (_, _, artist: Artist?, error) in
-                response(artist: artist, error: error)
+                (request, response, artist: Artist?, error) in
+                callback(artist: artist, error: error)
             }
         }
         
-        public static func ShowTracks(#id: String, optionalParams: [String: AnyObject]?, response: (tracks: [Track]?, error: NSError?)->Void) {
+        public static func ShowTracks(#id: String, optionalParams: [String: AnyObject]?, callback: (tracks: [Track]?, error: NSError?)->Void) {
             Alamofire.request(Router.Artists.ShowTracks(id, optionalParams)).validate().responseCollection {
-                (_, _, tracks: [Track]?, error) in
-                response(tracks: tracks, error: error)
+                (request, response, tracks: [Track]?, error) in
+                callback(tracks: tracks, error: error)
             }
         }
     }

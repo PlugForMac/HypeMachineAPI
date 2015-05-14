@@ -11,17 +11,17 @@ import Alamofire
 
 extension Requests {
     public struct Tags {
-        public static func Index(response: (tags: [Tag]?, error: NSError?)->Void) {
+        public static func Index(callback: (tags: [Tag]?, error: NSError?)->Void) {
             Alamofire.request(Router.Tags.Index).validate().responseCollection {
-                (_, _, tags: [Tag]?, error) in
-                response(tags: tags, error: error)
+                (request, response, tags: [Tag]?, error) in
+                callback(tags: tags, error: error)
             }
         }
         
-        public static func ShowTracks(#name: String, optionalParams: [String: AnyObject]?, response: (tracks: [Track]?, error: NSError?)->Void) {
+        public static func ShowTracks(#name: String, optionalParams: [String: AnyObject]?, callback: (tracks: [Track]?, error: NSError?)->Void) {
             Alamofire.request(Router.Tags.ShowTracks(name, optionalParams)).validate().responseCollection {
-                (_, _, tracks: [Track]?, error) in
-                response(tracks: tracks, error: error)
+                (request, response, tracks: [Track]?, error) in
+                callback(tracks: tracks, error: error)
             }
         }
     }
