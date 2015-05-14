@@ -11,21 +11,21 @@ import Alamofire
 
 extension Requests {
     public struct Users {
-        public static func Show(#id: String, callback: (user: User?, error: NSError?)->Void) {
+        public static func show(#id: String, callback: (user: User?, error: NSError?)->Void) {
             Alamofire.request(Router.Users.Show(id)).validate().responseObject {
                 (request, response, user: User?, error) in
                 callback(user: user, error: error)
             }
         }
         
-        public static func ShowFavorites(#id: String, optionalParams: [String: AnyObject]?, callback: (tracks: [Track]?, error: NSError?)->Void) {
+        public static func showFavorites(#id: String, optionalParams: [String: AnyObject]?, callback: (tracks: [Track]?, error: NSError?)->Void) {
             Alamofire.request(Router.Users.ShowFavorites(id, optionalParams)).validate().responseCollection {
                 (request, response, tracks: [Track]?, error) in
                 callback(tracks: tracks, error: error)
             }
         }
         
-        public static func ShowFriends(#id: String, optionalParams: [String: AnyObject]?, callback: (users: [User]?, error: NSError?)->Void) {
+        public static func showFriends(#id: String, optionalParams: [String: AnyObject]?, callback: (users: [User]?, error: NSError?)->Void) {
             Alamofire.request(Router.Users.ShowFriends(id, optionalParams)).validate().responseCollection {
                 (request, response, users: [User]?, error) in
                 callback(users: users, error: error)

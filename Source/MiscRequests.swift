@@ -11,7 +11,7 @@ import Alamofire
 
 extension Requests {
     public struct Misc {
-        public static func GetToken(#usernameOrEmail: String, password: String, callback: (username: String?, token: String?, error: NSError?)->Void) {
+        public static func getToken(#usernameOrEmail: String, password: String, callback: (username: String?, token: String?, error: NSError?)->Void) {
             Alamofire.request(Router.Misc.GetToken(usernameOrEmail, password)).validate().responseJSON {
                 (req, resp, JSON, error) in
                 let username: String? = JSON?.valueForKeyPath("username") as? String

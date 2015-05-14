@@ -8,5 +8,5 @@
 
 import Foundation
 
-public var ApiKey: String = ""
-public var HMToken: String = ""
+public var apiKey: String?
+public var hmToken: String?
