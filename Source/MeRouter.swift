@@ -13,7 +13,7 @@ extension Router {
     public enum Me: URLRequestConvertible {
         
         case Favorites([String: AnyObject]?)
-        case AddFavorite([String: AnyObject]?)
+        case AddFavorite(String, [String: AnyObject]?)
         case Friends([String: AnyObject]?)
         case Feed([String: AnyObject]?)
         
@@ -43,21 +43,21 @@ extension Router {
             }
         }
         
-        public var URLRequest: NSURLRequest {
-            let URL = NSURL(string: Router.baseURLString)!
-            let mutableURLRequest = NSMutableURLRequest(URL: URL.URLByAppendingPathComponent(path))
-            mutableURLRequest.HTTPMethod = method.rawValue
-            
+        var params: [String: AnyObject]? {
             switch self {
-            case .Favorites(let params):
-                return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: params).0
-            case .AddFavorite(let params):
-                return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: params).0
-            case .Friends(let params):
-                return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: params).0
-            case .Feed(let params):
-                return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: params).0
+            case .Favorites(let optionalParams):
+                return optionalParams
+            case .AddFavorite(let id, let optionalParams):
+                return ["val": id].merge(optionalParams)
+            case .Friends(let optionalParams):
+                return optionalParams
+            case .Feed(let optionalParams):
+                return optionalParams
             }
+        }
+        
+        public var URLRequest: NSURLRequest {
+            return Router.URLRequest(method: method, path: path, params: params)
         }
     }
 }

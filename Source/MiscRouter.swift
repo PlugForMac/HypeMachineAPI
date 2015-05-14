@@ -12,7 +12,7 @@ import Alamofire
 extension Router {
     public enum Misc: URLRequestConvertible {
         
-        case GetToken([String: AnyObject])
+        case GetToken(String, String)
         
         var method: Alamofire.Method {
             switch self {
@@ -28,15 +28,49 @@ extension Router {
             }
         }
         
-        public var URLRequest: NSURLRequest {
-            let URL = NSURL(string: Router.baseURLString)!
-            let mutableURLRequest = NSMutableURLRequest(URL: URL.URLByAppendingPathComponent(path))
-            mutableURLRequest.HTTPMethod = method.rawValue
-            
+        var params: [String: AnyObject]? {
             switch self {
-            case .GetToken(let params):
-                return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: params).0
+            case .GetToken(let usernameOrEmail, let password):
+                return [
+                    "username": usernameOrEmail,
+                    "password": password,
+                    "device_id": DeviceID(),
+                ]
             }
+        }
+        
+        public var URLRequest: NSURLRequest {
+            return Router.URLRequest(method: method, path: path, params: params)
+        }
+        
+        
+        func DeviceID() -> String {
+            // Maybe should hash the serial number instead of just adding 0's
+            var deviceID: String
+            let deviceIDLength = 16
+            
+            deviceID = GetSerialNumber()!
+            let pad = deviceIDLength - count(deviceID)
+            
+            for _ in 1...pad {
+                deviceID = deviceID + "0"
+            }
+            
+            return deviceID
+        }
+        
+        func GetSerialNumber() -> String? {
+            var serial: String? = nil
+            var platformExpert: io_service_t?
+            
+            platformExpert = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IOPlatformExpertDevice").takeUnretainedValue())
+            
+            if platformExpert != nil {
+                serial = IORegistryEntryCreateCFProperty(platformExpert!, kIOPlatformSerialNumberKey, kCFAllocatorDefault, 0).takeRetainedValue() as? String
+                IOObjectRelease(platformExpert!)
+            }
+            
+            return serial
         }
     }
 }

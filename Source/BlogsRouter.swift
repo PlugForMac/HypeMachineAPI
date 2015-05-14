@@ -38,19 +38,19 @@ extension Router {
             }
         }
         
-        public var URLRequest: NSURLRequest {
-            let URL = NSURL(string: Router.baseURLString)!
-            let mutableURLRequest = NSMutableURLRequest(URL: URL.URLByAppendingPathComponent(path))
-            mutableURLRequest.HTTPMethod = method.rawValue
-            
+        var params: [String: AnyObject]? {
             switch self {
-            case .Index(let params):
-                return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: params).0
+            case .Index(let optionalParams):
+                return optionalParams
             case .Show:
-                return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: nil).0
-            case .ShowTracks(_, let params):
-                return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: params).0
+                return nil
+            case .ShowTracks(_, let optionalParams):
+                return optionalParams
             }
+        }
+        
+        public var URLRequest: NSURLRequest {
+            return Router.URLRequest(method: method, path: path, params: params)
         }
     }
 }

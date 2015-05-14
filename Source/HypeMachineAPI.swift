@@ -10,4 +10,3 @@ import Foundation
 
 public var ApiKey: String = ""
 public var HMToken: String = ""
-public var DeviceID: String = ""

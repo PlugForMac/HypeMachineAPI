@@ -14,7 +14,7 @@ extension Router {
         
         case Show(String)
         case ShowFavorites(String, [String: AnyObject]?)
-        case ShowFriends(String)
+        case ShowFriends(String, [String: AnyObject]?)
         
         var method: Alamofire.Method {
             switch self {
@@ -33,24 +33,24 @@ extension Router {
                 return "/users/\(username)"
             case .ShowFavorites(let username, _):
                 return "/users/\(username)/favorites"
-            case .ShowFriends(let username):
+            case .ShowFriends(let username, _):
                 return "/users/\(username)/friends"
             }
         }
         
-        public var URLRequest: NSURLRequest {
-            let URL = NSURL(string: Router.baseURLString)!
-            let mutableURLRequest = NSMutableURLRequest(URL: URL.URLByAppendingPathComponent(path))
-            mutableURLRequest.HTTPMethod = method.rawValue
-            
+        var params: [String: AnyObject]? {
             switch self {
             case .Show:
-                return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: nil).0
-            case .ShowFavorites(_, let params):
-                return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: params).0
-            case .ShowFriends:
-                return Alamofire.ParameterEncoding.JSON.encode(mutableURLRequest, parameters: nil).0
+                return nil
+            case .ShowFavorites(_, let optionalParams):
+                return optionalParams
+            case .ShowFriends(_, let optionalParams):
+                return optionalParams
             }
+        }
+        
+        public var URLRequest: NSURLRequest {
+            return Router.URLRequest(method: method, path: path, params: params)
         }
     }
 }

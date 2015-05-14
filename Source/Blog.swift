@@ -37,8 +37,8 @@ public final class Blog: NSObject, ResponseObjectSerializable, ResponseCollectio
         self.trackCountNum = NSNumber(integer: trackCount)
         self.imageURL = NSURL(string: representation.valueForKeyPath("blog_image") as! String)!
         self.imageURLSmall = NSURL(string: representation.valueForKeyPath("blog_image_small") as! String)!
-        self.featured = representation.valueForKeyPath("ts_featured") is String
-        self.following = representation.valueForKeyPath("ts_featured") is String
+        self.featured = representation.valueForKeyPath("ts_featured") != nil
+        self.following = representation.valueForKeyPath("ts_loved_me") != nil
     }
     
     public class func collection(#response: NSHTTPURLResponse, representation: AnyObject) -> [Blog]? {
