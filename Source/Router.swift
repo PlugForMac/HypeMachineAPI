@@ -16,6 +16,21 @@ public struct Router {
         let URL = NSURL(string: baseURLString)!
         let mutableURLRequest = NSMutableURLRequest(URL: URL.URLByAppendingPathComponent(path))
         mutableURLRequest.HTTPMethod = method.rawValue
-        return Alamofire.ParameterEncoding.URL.encode(mutableURLRequest, parameters: params).0
+        
+        var mergedParams: [String: AnyObject]?
+        mergedParams = addApiKeyParam(params)
+        mergedParams = addHMTokenParam(mergedParams)
+        
+        return Alamofire.ParameterEncoding.URL.encode(mutableURLRequest, parameters: mergedParams).0
+    }
+    
+    static func addApiKeyParam(params: [String: AnyObject]?) -> [String: AnyObject]? {
+        if apiKey == nil { return params }
+        return ["key": apiKey!].merge(params)
+    }
+    
+    static func addHMTokenParam(params: [String: AnyObject]?) -> [String: AnyObject]? {
+        if hmToken == nil { return params }
+        return ["hm_token": hmToken!].merge(params)
     }
 }

@@ -12,7 +12,6 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
     public let id: String
     public let artist: String
     public let title: String
-    public let loved: Bool
     public let lovedCount: Int
     public let lovedCountNum: NSNumber
     public let thumbURLSmall: NSURL?
@@ -28,6 +27,8 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
     public let audioUnavailable: Bool
     public let tags: [Tag]
 
+    public var loved: Bool
+    
     public var postURL: NSURL! = nil
     public var iTunesURL: NSURL! = nil
     public var playlist: Playlist? = nil
@@ -128,7 +129,7 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
     }
     
     public func mediaURL() -> NSURL {
-        var mediaLinkString = "https://hypem.com/serve/public/\(id)?key=\(ApiKey)"
+        var mediaLinkString = "https://hypem.com/serve/public/\(id)?key=\(apiKey)"
         return NSURL(string: mediaLinkString)!
     }
     
