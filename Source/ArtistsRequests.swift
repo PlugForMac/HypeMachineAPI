@@ -12,21 +12,21 @@ import Alamofire
 extension Requests {
     public struct Artists {
         public static func Index(optionalParams: [String: AnyObject]?, response: (artists: [Artist]?, error: NSError?)->Void) {
-            Alamofire.request(Router.Artists.Index(optionalParams)).responseCollection {
+            Alamofire.request(Router.Artists.Index(optionalParams)).validate().responseCollection {
                 (_, _, artists: [Artist]?, error) in
                 response(artists: artists, error: error)
             }
         }
         
         public static func Show(#id: String, response: (artist: Artist?, error: NSError?)->Void) {
-            Alamofire.request(Router.Artists.Show(id)).responseObject {
+            Alamofire.request(Router.Artists.Show(id)).validate().responseObject {
                 (_, _, artist: Artist?, error) in
                 response(artist: artist, error: error)
             }
         }
         
         public static func ShowTracks(#id: String, optionalParams: [String: AnyObject]?, response: (tracks: [Track]?, error: NSError?)->Void) {
-            Alamofire.request(Router.Artists.ShowTracks(id, optionalParams)).responseCollection {
+            Alamofire.request(Router.Artists.ShowTracks(id, optionalParams)).validate().responseCollection {
                 (_, _, tracks: [Track]?, error) in
                 response(tracks: tracks, error: error)
             }

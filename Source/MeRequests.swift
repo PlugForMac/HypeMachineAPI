@@ -12,14 +12,14 @@ import Alamofire
 extension Requests {
     public struct Me {
         public static func Favorites(optionalParams: [String: AnyObject]?, response: (tracks: [Track]?, error: NSError?)->Void) {
-            Alamofire.request(Router.Me.Favorites(optionalParams)).responseCollection {
+            Alamofire.request(Router.Me.Favorites(optionalParams)).validate().responseCollection {
                 (_, _, tracks: [Track]?, error) in
                 response(tracks: tracks, error: error)
             }
         }
         
         public static func AddFavorite(#id: String, optionalParams: [String: AnyObject]?, response: (favorited: Bool?, error: NSError?)->Void) {
-            Alamofire.request(Router.Me.AddFavorite(id, optionalParams)).responseString {
+            Alamofire.request(Router.Me.AddFavorite(id, optionalParams)).validate().responseString {
                 (_, _, string, error) in
                 var favorited: Bool? = string == "1"
                 response(favorited: favorited, error: error)
@@ -27,14 +27,14 @@ extension Requests {
         }
         
         public static func Friends(optionalParams: [String: AnyObject]?, response: (users: [User]?, error: NSError?)->Void) {
-            Alamofire.request(Router.Me.Friends(optionalParams)).responseCollection {
+            Alamofire.request(Router.Me.Friends(optionalParams)).validate().responseCollection {
                 (_, _, users: [User]?, error) in
                 response(users: users, error: error)
             }
         }
         
         public static func Feed(optionalParams: [String: AnyObject]?, response: (tracks: [Track]?, error: NSError?)->Void) {
-            Alamofire.request(Router.Me.Feed(optionalParams)).responseCollection {
+            Alamofire.request(Router.Me.Feed(optionalParams)).validate().responseCollection {
                 (_, _, tracks: [Track]?, error) in
                 response(tracks: tracks, error: error)
             }
