@@ -7,7 +7,7 @@ This is a partial implementation of the Hype Machine API. It is currently target
 ### Carthage
 
 ```ogdl
-github "PlugForMac/HypeMachineAPI" ~> 0.1.0
+github "PlugForMac/HypeMachineAPI" ~> VERSION_NUMBER
 ```
 
 ### CocoaPods
