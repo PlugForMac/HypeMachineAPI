@@ -129,7 +129,10 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
     }
     
     public func mediaURL() -> NSURL {
-        var mediaLinkString = "https://hypem.com/serve/public/\(id)?key=\(apiKey)"
+        var mediaLinkString = "https://hypem.com/serve/public/\(id)"
+        if apiKey != nil {
+            mediaLinkString += "?key=\(apiKey!)"
+        }
         return NSURL(string: mediaLinkString)!
     }
     

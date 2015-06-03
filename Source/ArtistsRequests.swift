@@ -18,15 +18,15 @@ extension Requests {
             }
         }
         
-        public static func show(#id: String, callback: (artist: Artist?, error: NSError?)->Void) {
-            Alamofire.request(Router.Artists.Show(id)).validate().responseObject {
+        public static func show(#name: String, callback: (artist: Artist?, error: NSError?)->Void) {
+            Alamofire.request(Router.Artists.Show(name)).validate().responseObject {
                 (request, response, artist: Artist?, error) in
                 callback(artist: artist, error: error)
             }
         }
         
-        public static func showTracks(#id: String, optionalParams: [String: AnyObject]?, callback: (tracks: [Track]?, error: NSError?)->Void) {
-            Alamofire.request(Router.Artists.ShowTracks(id, optionalParams)).validate().responseCollection {
+        public static func showTracks(#name: String, optionalParams: [String: AnyObject]?, callback: (tracks: [Track]?, error: NSError?)->Void) {
+            Alamofire.request(Router.Artists.ShowTracks(name, optionalParams)).validate().responseCollection {
                 (request, response, tracks: [Track]?, error) in
                 callback(tracks: tracks, error: error)
             }
