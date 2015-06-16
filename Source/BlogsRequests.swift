@@ -11,7 +11,7 @@ import Alamofire
 
 extension Requests {
     public struct Blogs {
-        public static func index(optionalParams: [String: AnyObject]?, callback: (blogs: [Blog]?, error: NSError?)->Void) {
+        public static func index(#optionalParams: [String: AnyObject]?, callback: (blogs: [Blog]?, error: NSError?)->Void) {
             Alamofire.request(Router.Blogs.Index(optionalParams)).validate().responseCollection {
                 (request, response, blogs: [Blog]?, error) in
                 callback(blogs: blogs, error: error)

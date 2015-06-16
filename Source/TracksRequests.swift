@@ -11,7 +11,7 @@ import Alamofire
 
 extension Requests {
     public struct Tracks {
-        public static func index(optionalParams: [String: AnyObject]?, callback: (tracks: [Track]?, error: NSError?)->Void) {
+        public static func index(#optionalParams: [String: AnyObject]?, callback: (tracks: [Track]?, error: NSError?)->Void) {
             Alamofire.request(Router.Tracks.Index(optionalParams)).validate().responseCollection {
                 (request, response, tracks: [Track]?, error) in
                 callback(tracks: tracks, error: error)
@@ -25,7 +25,7 @@ extension Requests {
             }
         }
         
-        public static func popular(optionalParams: [String: AnyObject]?, callback: (tracks: [Track]?, error: NSError?)->Void) {
+        public static func popular(#optionalParams: [String: AnyObject]?, callback: (tracks: [Track]?, error: NSError?)->Void) {
             Alamofire.request(Router.Tracks.Popular(optionalParams)).validate().responseCollection {
                 (request, response, tracks: [Track]?, error) in
                 callback(tracks: tracks, error: error)

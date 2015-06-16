@@ -10,7 +10,7 @@ import Cocoa
 
 public final class User: NSObject, ResponseObjectSerializable, ResponseCollectionSerializable {
     public let username: String
-    public let fullName: String
+    public let fullName: String?
     public let avatarURL: NSURL?
     public let favoritesCount: Int
     public let favoritesCountNum: NSNumber
@@ -25,10 +25,11 @@ public final class User: NSObject, ResponseObjectSerializable, ResponseCollectio
     
     public required init?(response: NSHTTPURLResponse, representation: AnyObject) {
         self.username = representation.valueForKeyPath("username") as! String
-        if let fullname = representation.valueForKeyPath("fullname") as? String {
-            self.fullName = fullname
+        let fullNameJSON = representation.valueForKeyPath("fullname") as? String
+        if fullNameJSON != nil && fullNameJSON != "" {
+            self.fullName = fullNameJSON
         } else {
-            self.fullName = username
+            self.fullName = nil
         }
         if let userpic = representation.valueForKeyPath("userpic") as? String {
             self.avatarURL = NSURL(string: userpic)

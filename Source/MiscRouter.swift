@@ -45,7 +45,7 @@ extension Router {
         
         
         func DeviceID() -> String {
-            // Maybe should hash the serial number instead of just adding 0's
+            // Should probably hash the serial number instead of just adding 0's
             var deviceID: String
             let deviceIDLength = 16
             

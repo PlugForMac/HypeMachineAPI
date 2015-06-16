@@ -11,7 +11,7 @@ import Alamofire
 
 extension Requests {
     public struct Artists {
-        public static func index(optionalParams: [String: AnyObject]?, callback: (artists: [Artist]?, error: NSError?)->Void) {
+        public static func index(#optionalParams: [String: AnyObject]?, callback: (artists: [Artist]?, error: NSError?)->Void) {
             Alamofire.request(Router.Artists.Index(optionalParams)).validate().responseCollection {
                 (request, response, artists: [Artist]?, error) in
                 callback(artists: artists, error: error)

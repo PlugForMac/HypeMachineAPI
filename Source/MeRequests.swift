@@ -11,7 +11,7 @@ import Alamofire
 
 extension Requests {
     public struct Me {
-        public static func favorites(optionalParams: [String: AnyObject]?, callback: (tracks: [Track]?, error: NSError?)->Void) {
+        public static func favorites(#optionalParams: [String: AnyObject]?, callback: (tracks: [Track]?, error: NSError?)->Void) {
             Alamofire.request(Router.Me.Favorites(optionalParams)).validate().responseCollection {
                 (request, response, tracks: [Track]?, error) in
                 callback(tracks: tracks, error: error)
@@ -26,14 +26,14 @@ extension Requests {
             }
         }
         
-        public static func friends(optionalParams: [String: AnyObject]?, callback: (users: [User]?, error: NSError?)->Void) {
+        public static func friends(#optionalParams: [String: AnyObject]?, callback: (users: [User]?, error: NSError?)->Void) {
             Alamofire.request(Router.Me.Friends(optionalParams)).validate().responseCollection {
                 (request, response, users: [User]?, error) in
                 callback(users: users, error: error)
             }
         }
         
-        public static func feed(optionalParams: [String: AnyObject]?, callback: (tracks: [Track]?, error: NSError?)->Void) {
+        public static func feed(#optionalParams: [String: AnyObject]?, callback: (tracks: [Track]?, error: NSError?)->Void) {
             Alamofire.request(Router.Me.Feed(optionalParams)).validate().responseCollection {
                 (request, response, tracks: [Track]?, error) in
                 callback(tracks: tracks, error: error)
