@@ -12,7 +12,12 @@ github "PlugForMac/HypeMachineAPI" ~> VERSION_NUMBER
 
 ### CocoaPods
 
-Please create an issue if you'd like CocoaPods support.
+```ruby
+platform :osx, '10.10'
+use_frameworks!
+
+pod 'HypeMachineAPI', '~> VERSION_NUMBER'
+```
 
 ## Versioning
 
