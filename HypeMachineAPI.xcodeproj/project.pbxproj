@@ -17,6 +17,10 @@
 		FA107A9A1B044ED9006FA015 /* MiscRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA107A991B044ED9006FA015 /* MiscRequests.swift */; };
 		FA107AA31B0459D2006FA015 /* Dictionary+merge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA107AA21B0459D2006FA015 /* Dictionary+merge.swift */; };
 		FA21C3C31B01078900C1EAA8 /* MiscRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21C3C21B01078900C1EAA8 /* MiscRouter.swift */; };
+		FA277E461B31C937009254A0 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = FA277E451B31C937009254A0 /* README.md */; };
+		FA277E481B31C941009254A0 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = FA277E471B31C941009254A0 /* Cartfile */; };
+		FA277E4A1B31C966009254A0 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FA277E491B31C966009254A0 /* LICENSE */; };
+		FA277E4C1B31CE84009254A0 /* HypeMachineAPI.podspec in Resources */ = {isa = PBXBuildFile; fileRef = FA277E4B1B31CE84009254A0 /* HypeMachineAPI.podspec */; };
 		FA4D18ED1B0112C10043A040 /* Tags.json in Resources */ = {isa = PBXBuildFile; fileRef = FA4D18EB1B0112BA0043A040 /* Tags.json */; };
 		FA4D18EF1B0112F80043A040 /* TagTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4D18EE1B0112F80043A040 /* TagTests.swift */; };
 		FA4D18F11B01132E0043A040 /* Tag.json in Resources */ = {isa = PBXBuildFile; fileRef = FA4D18F01B01132E0043A040 /* Tag.json */; };
@@ -95,6 +99,10 @@
 		FA107A991B044ED9006FA015 /* MiscRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MiscRequests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		FA107AA21B0459D2006FA015 /* Dictionary+merge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+merge.swift"; sourceTree = "<group>"; };
 		FA21C3C21B01078900C1EAA8 /* MiscRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiscRouter.swift; sourceTree = "<group>"; };
+		FA277E451B31C937009254A0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		FA277E471B31C941009254A0 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
+		FA277E491B31C966009254A0 /* LICENSE */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
+		FA277E4B1B31CE84009254A0 /* HypeMachineAPI.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = HypeMachineAPI.podspec; sourceTree = "<group>"; };
 		FA4D18EB1B0112BA0043A040 /* Tags.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Tags.json; sourceTree = "<group>"; };
 		FA4D18EE1B0112F80043A040 /* TagTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = TagTests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		FA4D18F01B01132E0043A040 /* Tag.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Tag.json; sourceTree = "<group>"; };
@@ -203,6 +211,10 @@
 				FA5B33E51AFF4FF6009F2F95 /* Tests */,
 				FA5B33D71AFF4FF6009F2F95 /* Products */,
 				FA4D18FF1B0129C20043A040 /* Frameworks */,
+				FA277E451B31C937009254A0 /* README.md */,
+				FA277E491B31C966009254A0 /* LICENSE */,
+				FA277E471B31C941009254A0 /* Cartfile */,
+				FA277E4B1B31CE84009254A0 /* HypeMachineAPI.podspec */,
 			);
 			sourceTree = "<group>";
 		};
@@ -432,6 +444,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA277E4C1B31CE84009254A0 /* HypeMachineAPI.podspec in Resources */,
+				FA277E4A1B31C966009254A0 /* LICENSE in Resources */,
+				FA277E481B31C941009254A0 /* Cartfile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +496,7 @@
 				FA5B34401B01024C009F2F95 /* MeRouter.swift in Sources */,
 				FA5B34071AFF543B009F2F95 /* LatestPlaylist.swift in Sources */,
 				FA5B34301B00F934009F2F95 /* Artist.swift in Sources */,
+				FA277E461B31C937009254A0 /* README.md in Sources */,
 				FA5B34011AFF5433009F2F95 /* PopularPlaylist.swift in Sources */,
 				FA5B34091AFF543B009F2F95 /* SearchPlaylist.swift in Sources */,
 				FA107A901B042811006FA015 /* TracksRequests.swift in Sources */,
