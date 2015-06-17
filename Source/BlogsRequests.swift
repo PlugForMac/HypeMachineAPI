@@ -18,14 +18,14 @@ extension Requests {
             }
         }
         
-        public static func show(#id: String, callback: (blog: Blog?, error: NSError?)->Void) {
+        public static func show(#id: Int, callback: (blog: Blog?, error: NSError?)->Void) {
             Alamofire.request(Router.Blogs.Show(id)).validate().responseObject {
                 (request, response, blog: Blog?, error) in
                 callback(blog: blog, error: error)
             }
         }
         
-        public static func showTracks(#id: String, optionalParams: [String: AnyObject]?, callback: (tracks: [Track]?, error: NSError?)->Void) {
+        public static func showTracks(#id: Int, optionalParams: [String: AnyObject]?, callback: (tracks: [Track]?, error: NSError?)->Void) {
             Alamofire.request(Router.Blogs.ShowTracks(id, optionalParams)).validate().responseCollection {
                 (request, response, tracks: [Track]?, error) in
                 callback(tracks: tracks, error: error)

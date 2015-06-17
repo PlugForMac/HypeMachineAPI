@@ -23,7 +23,7 @@ class BlogTests: XCTestCase {
         let blog = HypeMachineAPI.Blog(response: NSHTTPURLResponse(), representation: json)
         
         XCTAssertNotNil(blog)
-        XCTAssert(blog!.id == "16684")
+        XCTAssert(blog!.id == 16684)
     }
     
     func testBuildBlogCollection() {

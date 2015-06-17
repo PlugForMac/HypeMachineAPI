@@ -18,8 +18,30 @@ extension Requests {
             }
         }
         
-        public static func addFavorite(#id: String, optionalParams: [String: AnyObject]?, callback: (favorited: Bool?, error: NSError?)->Void) {
-            Alamofire.request(Router.Me.AddFavorite(id, optionalParams)).validate().responseString {
+        public static func toggleTrackFavorite(#id: String, optionalParams: [String: AnyObject]?, callback: (favorited: Bool?, error: NSError?)->Void) {
+            Alamofire.request(Router.Me.ToggleTrackFavorite(id, optionalParams)).validate().responseString {
+                (request, response, string, error) in
+                var favorited: Bool?
+                if string != nil {
+                    favorited = (string! == "1")
+                }
+                callback(favorited: favorited, error: error)
+            }
+        }
+        
+        public static func toggleBlogFavorite(#id: Int, optionalParams: [String: AnyObject]?, callback: (favorited: Bool?, error: NSError?)->Void) {
+            Alamofire.request(Router.Me.ToggleBlogFavorite(id, optionalParams)).validate().responseString {
+                (request, response, string, error) in
+                var favorited: Bool?
+                if string != nil {
+                    favorited = (string! == "1")
+                }
+                callback(favorited: favorited, error: error)
+            }
+        }
+        
+        public static func toggleUserFavorite(#id: String, optionalParams: [String: AnyObject]?, callback: (favorited: Bool?, error: NSError?)->Void) {
+            Alamofire.request(Router.Me.ToggleUserFavorite(id, optionalParams)).validate().responseString {
                 (request, response, string, error) in
                 var favorited: Bool?
                 if string != nil {

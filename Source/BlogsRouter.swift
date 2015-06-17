@@ -13,8 +13,8 @@ extension Router {
     public enum Blogs: URLRequestConvertible {
         
         case Index([String: AnyObject]?)
-        case Show(String)
-        case ShowTracks(String, [String: AnyObject]?)
+        case Show(Int)
+        case ShowTracks(Int, [String: AnyObject]?)
         
         var method: Alamofire.Method {
             switch self {

@@ -13,7 +13,9 @@ extension Router {
     public enum Me: URLRequestConvertible {
         
         case Favorites([String: AnyObject]?)
-        case AddFavorite(String, [String: AnyObject]?)
+        case ToggleTrackFavorite(String, [String: AnyObject]?)
+        case ToggleBlogFavorite(Int, [String: AnyObject]?)
+        case ToggleUserFavorite(String, [String: AnyObject]?)
         case Friends([String: AnyObject]?)
         case Feed([String: AnyObject]?)
         
@@ -21,7 +23,11 @@ extension Router {
             switch self {
             case .Favorites:
                 return .GET
-            case .AddFavorite:
+            case .ToggleTrackFavorite:
+                return .POST
+            case .ToggleBlogFavorite:
+                return .POST
+            case .ToggleUserFavorite:
                 return .POST
             case .Friends:
                 return .GET
@@ -34,7 +40,11 @@ extension Router {
             switch self {
             case .Favorites:
                 return "/me/favorites"
-            case .AddFavorite:
+            case .ToggleTrackFavorite:
+                return "/me/favorites"
+            case .ToggleBlogFavorite:
+                return "/me/favorites"
+            case .ToggleUserFavorite:
                 return "/me/favorites"
             case .Friends:
                 return "/me/friends"
@@ -47,8 +57,12 @@ extension Router {
             switch self {
             case .Favorites(let optionalParams):
                 return optionalParams
-            case .AddFavorite(let id, let optionalParams):
+            case .ToggleTrackFavorite(let id, let optionalParams):
                 return ["val": id, "type": "item"].merge(optionalParams)
+            case .ToggleBlogFavorite(let id, let optionalParams):
+                return ["val": id, "type": "site"].merge(optionalParams)
+            case .ToggleUserFavorite(let id, let optionalParams):
+                return ["val": id, "type": "user"].merge(optionalParams)
             case .Friends(let optionalParams):
                 return optionalParams
             case .Feed(let optionalParams):

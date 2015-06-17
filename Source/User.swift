@@ -18,6 +18,8 @@ public final class User: NSObject, ResponseObjectSerializable, ResponseCollectio
     public let followersCountNum: NSNumber
     public let followingCount: Int
     public let followingCountNum: NSNumber
+    public var friend: Bool?
+    public var follower: Bool?
     
     override public var description: String {
         return "<User - username: \(username), fullName: \(fullName)>"
@@ -46,6 +48,9 @@ public final class User: NSObject, ResponseObjectSerializable, ResponseCollectio
 
         self.followingCount = favoritesCountInfo.valueForKeyPath("user") as? Int ?? 0
         self.followingCountNum = NSNumber(integer: followingCount)
+
+        self.friend = representation.valueForKeyPath("is_friend") as? Bool
+        self.follower = representation.valueForKeyPath("is_follower") as? Bool
     }
     
     public class func collection(#response: NSHTTPURLResponse, representation: AnyObject) -> [User]? {

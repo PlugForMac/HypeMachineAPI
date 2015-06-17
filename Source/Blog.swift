@@ -9,7 +9,7 @@
 import Cocoa
 
 public final class Blog: NSObject, ResponseObjectSerializable, ResponseCollectionSerializable {
-    public let id: String
+    public let id: Int
     public let name: String
     public let url: NSURL
     public let followerCount: Int
@@ -26,7 +26,7 @@ public final class Blog: NSObject, ResponseObjectSerializable, ResponseCollectio
     }
     
     public required init?(response: NSHTTPURLResponse, representation: AnyObject) {
-        self.id = String(representation.valueForKeyPath("siteid") as! Int)
+        self.id = representation.valueForKeyPath("siteid") as! Int
         self.name = representation.valueForKeyPath("sitename") as! String
         var urlString = (representation.valueForKeyPath("siteurl") as! String)
             .stringByReplacingOccurrencesOfString(" ", withString: "")
