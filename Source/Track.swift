@@ -18,7 +18,8 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
     public let thumbURLMedium: NSURL?
     public let thumbURLLarge: NSURL?
     public let rank: Int?
-    public let lovedBy: String?
+    public let viaUser: String?
+    public let viaQuery: String?
     public let postedBy: String
     public let postedById: Int
     public let postedCount: Int
@@ -82,7 +83,8 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
         }
         
         self.rank = representation.valueForKeyPath("rank") as? Int
-        self.lovedBy = representation.valueForKeyPath("via_user") as? String
+        self.viaUser = representation.valueForKeyPath("via_user") as? String
+        self.viaQuery = representation.valueForKeyPath("via_query") as? String
         self.postedBy = representation.valueForKeyPath("sitename") as! String
         self.postedById = representation.valueForKeyPath("siteid") as! Int
         self.postedCount = representation.valueForKeyPath("posted_count") as! Int
