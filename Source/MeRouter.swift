@@ -48,7 +48,7 @@ extension Router {
             case .Favorites(let optionalParams):
                 return optionalParams
             case .AddFavorite(let id, let optionalParams):
-                return ["val": id].merge(optionalParams)
+                return ["val": id, "type": "item"].merge(optionalParams)
             case .Friends(let optionalParams):
                 return optionalParams
             case .Feed(let optionalParams):

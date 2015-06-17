@@ -21,7 +21,10 @@ extension Requests {
         public static func addFavorite(#id: String, optionalParams: [String: AnyObject]?, callback: (favorited: Bool?, error: NSError?)->Void) {
             Alamofire.request(Router.Me.AddFavorite(id, optionalParams)).validate().responseString {
                 (request, response, string, error) in
-                var favorited: Bool? = string == "1"
+                var favorited: Bool?
+                if string != nil {
+                    favorited = (string! == "1")
+                }
                 callback(favorited: favorited, error: error)
             }
         }

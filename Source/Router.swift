@@ -13,13 +13,18 @@ public struct Router {
     static let baseURLString = "https://api.hypem.com/v2"
     
     static func URLRequest(#method: Alamofire.Method, path: String, params: [String: AnyObject]?) -> NSURLRequest {
-        let URL = NSURL(string: baseURLString)!
-        let mutableURLRequest = NSMutableURLRequest(URL: URL.URLByAppendingPathComponent(path))
+        
+        // Probably a bug in the hype machine API, but hm_token must be part of the path, can't be form encoded
+        var urlString = baseURLString + path
+        if hmToken != nil {
+            urlString += "?hm_token=\(hmToken!)"
+        }
+        let URL = NSURL(string: urlString)!
+        let mutableURLRequest = NSMutableURLRequest(URL: URL)
         mutableURLRequest.HTTPMethod = method.rawValue
         
         var mergedParams: [String: AnyObject]?
         mergedParams = addApiKeyParam(params)
-        mergedParams = addHMTokenParam(mergedParams)
         
         return Alamofire.ParameterEncoding.URL.encode(mutableURLRequest, parameters: mergedParams).0
     }
@@ -27,10 +32,5 @@ public struct Router {
     static func addApiKeyParam(params: [String: AnyObject]?) -> [String: AnyObject]? {
         if apiKey == nil { return params }
         return ["key": apiKey!].merge(params)
-    }
-    
-    static func addHMTokenParam(params: [String: AnyObject]?) -> [String: AnyObject]? {
-        if hmToken == nil { return params }
-        return ["hm_token": hmToken!].merge(params)
     }
 }
