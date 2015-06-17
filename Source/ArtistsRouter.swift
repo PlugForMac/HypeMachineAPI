@@ -32,9 +32,11 @@ extension Router {
             case .Index:
                 return "/artists"
             case .Show(let name):
-                return "/artists/\(name)"
+                let escapedName = name.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())!
+                return "/artists/\(escapedName)"
             case .ShowTracks(let name, _):
-                return "/artists/\(name)/tracks"
+                let escapedName = name.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())!
+                return "/artists/\(escapedName)/tracks"
             }
         }
         
