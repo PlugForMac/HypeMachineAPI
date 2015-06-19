@@ -16,6 +16,8 @@ extension Router {
         case ToggleTrackFavorite(String, [String: AnyObject]?)
         case ToggleBlogFavorite(Int, [String: AnyObject]?)
         case ToggleUserFavorite(String, [String: AnyObject]?)
+        case PlaylistNames
+        case ShowPlaylist(Int, [String: AnyObject]?)
         case Friends([String: AnyObject]?)
         case Feed([String: AnyObject]?)
         
@@ -29,6 +31,10 @@ extension Router {
                 return .POST
             case .ToggleUserFavorite:
                 return .POST
+            case PlaylistNames:
+                return .GET
+            case ShowPlaylist:
+                return .GET
             case .Friends:
                 return .GET
             case .Feed:
@@ -46,6 +52,10 @@ extension Router {
                 return "/me/favorites"
             case .ToggleUserFavorite:
                 return "/me/favorites"
+            case PlaylistNames:
+                return "/me/playlist_names"
+            case ShowPlaylist(let id, _):
+                return "/me/playlists/\(id)"
             case .Friends:
                 return "/me/friends"
             case .Feed:
@@ -63,6 +73,10 @@ extension Router {
                 return ["val": id, "type": "site"].merge(optionalParams)
             case .ToggleUserFavorite(let id, let optionalParams):
                 return ["val": id, "type": "user"].merge(optionalParams)
+            case PlaylistNames:
+                return nil
+            case ShowPlaylist(_, let optionalParams):
+                return optionalParams
             case .Friends(let optionalParams):
                 return optionalParams
             case .Feed(let optionalParams):

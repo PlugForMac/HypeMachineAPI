@@ -32,7 +32,6 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
     
     public var postURL: NSURL! = nil
     public var iTunesURL: NSURL! = nil
-    public var playlist: Playlist? = nil
     
     override public var description: String {
         return "<Track - artist: \(artist), title: \(title)>"

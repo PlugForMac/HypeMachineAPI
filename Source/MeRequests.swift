@@ -51,6 +51,22 @@ extension Requests {
             }
         }
         
+        public static func playlistNames(callback: (names: [String]?, error: NSError?)->Void) {
+            Alamofire.request(Router.Me.PlaylistNames).validate().responseJSON {
+                (request, response, JSON, error) in
+                let names = JSON as? [String]
+                callback(names: names, error: error)
+            }
+        }
+        
+        // Playlist id's are 1...3
+        public static func showPlaylist(#id: Int, optionalParams: [String: AnyObject]?, callback: (tracks: [Track]?, error: NSError?)->Void) {
+            Alamofire.request(Router.Me.ShowPlaylist(id, optionalParams)).validate().responseCollection {
+                (request, response, tracks: [Track]?, error) in
+                callback(tracks: tracks, error: error)
+            }
+        }
+        
         public static func friends(#optionalParams: [String: AnyObject]?, callback: (users: [User]?, error: NSError?)->Void) {
             Alamofire.request(Router.Me.Friends(optionalParams)).validate().responseCollection {
                 (request, response, users: [User]?, error) in
