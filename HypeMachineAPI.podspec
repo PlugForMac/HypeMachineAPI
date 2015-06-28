@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name         = "HypeMachineAPI"
-  s.version      = "0.3.1"
+  s.version      = "0.4.1"
   s.summary      = "This is a partial implementation of the Hype Machine API in Swift."
   s.homepage     = "https://github.com/PlugForMac/HypeMachineAPI"
   s.license      = { :type => "MIT", :file => "LICENSE" }
