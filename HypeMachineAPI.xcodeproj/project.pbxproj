@@ -15,7 +15,7 @@
 		FA107A961B042BAD006FA015 /* UsersRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA107A951B042BAD006FA015 /* UsersRequests.swift */; };
 		FA107A981B04494A006FA015 /* MeRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA107A971B04494A006FA015 /* MeRequests.swift */; };
 		FA107A9A1B044ED9006FA015 /* MiscRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA107A991B044ED9006FA015 /* MiscRequests.swift */; };
-		FA107AA31B0459D2006FA015 /* Dictionary+merge.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA107AA21B0459D2006FA015 /* Dictionary+merge.swift */; };
+		FA107AA31B0459D2006FA015 /* Dictionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA107AA21B0459D2006FA015 /* Dictionary.swift */; };
 		FA21C3C31B01078900C1EAA8 /* MiscRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA21C3C21B01078900C1EAA8 /* MiscRouter.swift */; };
 		FA277E481B31C941009254A0 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = FA277E471B31C941009254A0 /* Cartfile */; };
 		FA277E4A1B31C966009254A0 /* LICENSE in Resources */ = {isa = PBXBuildFile; fileRef = FA277E491B31C966009254A0 /* LICENSE */; };
@@ -56,6 +56,8 @@
 		FA5B343C1B00FFAB009F2F95 /* UserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B343B1B00FFAB009F2F95 /* UserTests.swift */; };
 		FA5B34401B01024C009F2F95 /* MeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B343F1B01024C009F2F95 /* MeRouter.swift */; };
 		FA5B34411B010251009F2F95 /* UsersRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B343D1B010075009F2F95 /* UsersRouter.swift */; };
+		FA75E8231B563C180070FB1D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75E8221B563C180070FB1D /* String.swift */; };
+		FACC9C661B557254005151F8 /* ErrorCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACC9C651B557254005151F8 /* ErrorCodes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,7 +92,7 @@
 		FA107A951B042BAD006FA015 /* UsersRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersRequests.swift; sourceTree = "<group>"; };
 		FA107A971B04494A006FA015 /* MeRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MeRequests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		FA107A991B044ED9006FA015 /* MiscRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = MiscRequests.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		FA107AA21B0459D2006FA015 /* Dictionary+merge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Dictionary+merge.swift"; sourceTree = "<group>"; };
+		FA107AA21B0459D2006FA015 /* Dictionary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dictionary.swift; sourceTree = "<group>"; };
 		FA21C3C21B01078900C1EAA8 /* MiscRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiscRouter.swift; sourceTree = "<group>"; };
 		FA277E451B31C937009254A0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		FA277E471B31C941009254A0 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
@@ -133,6 +135,8 @@
 		FA5B343B1B00FFAB009F2F95 /* UserTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTests.swift; sourceTree = "<group>"; };
 		FA5B343D1B010075009F2F95 /* UsersRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersRouter.swift; sourceTree = "<group>"; };
 		FA5B343F1B01024C009F2F95 /* MeRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeRouter.swift; sourceTree = "<group>"; };
+		FA75E8221B563C180070FB1D /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
+		FACC9C651B557254005151F8 /* ErrorCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorCodes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +223,7 @@
 			children = (
 				FA5B33DB1AFF4FF6009F2F95 /* HypeMachineAPI.h */,
 				FA5B33F41AFF5286009F2F95 /* HypeMachineAPI.swift */,
+				FACC9C651B557254005151F8 /* ErrorCodes.swift */,
 				FA5B33F61AFF53E2009F2F95 /* Models */,
 				FA5B34101B001FBD009F2F95 /* Routers */,
 				FA107A7D1B03E5EA006FA015 /* Requests */,
@@ -271,7 +276,8 @@
 			isa = PBXGroup;
 			children = (
 				FA5B340D1AFF54C0009F2F95 /* Alamofire */,
-				FA107AA21B0459D2006FA015 /* Dictionary+merge.swift */,
+				FA107AA21B0459D2006FA015 /* Dictionary.swift */,
+				FA75E8221B563C180070FB1D /* String.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -449,7 +455,8 @@
 			files = (
 				FA5B33FA1AFF5414009F2F95 /* User.swift in Sources */,
 				FA5B340B1AFF5447009F2F95 /* Track.swift in Sources */,
-				FA107AA31B0459D2006FA015 /* Dictionary+merge.swift in Sources */,
+				FA107AA31B0459D2006FA015 /* Dictionary.swift in Sources */,
+				FA75E8231B563C180070FB1D /* String.swift in Sources */,
 				FA107A9A1B044ED9006FA015 /* MiscRequests.swift in Sources */,
 				FA107A941B042A5D006FA015 /* TagsRequests.swift in Sources */,
 				FA107A961B042BAD006FA015 /* UsersRequests.swift in Sources */,
@@ -467,6 +474,7 @@
 				FA5B34301B00F934009F2F95 /* Artist.swift in Sources */,
 				FA107A901B042811006FA015 /* TracksRequests.swift in Sources */,
 				FA5B34161B0045E8009F2F95 /* ResponseCollectionSerializable.swift in Sources */,
+				FACC9C661B557254005151F8 /* ErrorCodes.swift in Sources */,
 				FA4D18F31B0114730043A040 /* TagsRouter.swift in Sources */,
 				FA107A981B04494A006FA015 /* MeRequests.swift in Sources */,
 				FA5B34121B002013009F2F95 /* Router.swift in Sources */,

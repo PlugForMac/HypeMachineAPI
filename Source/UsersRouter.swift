@@ -30,11 +30,14 @@ extension Router {
         var path: String {
             switch self {
             case .Show(let username):
-                return "/users/\(username)"
+                let escapedUsername = username.stringByAddingPercentEncodingForURLQueryValue()!
+                return "/users/\(escapedUsername)"
             case .ShowFavorites(let username, _):
-                return "/users/\(username)/favorites"
+                let escapedUsername = username.stringByAddingPercentEncodingForURLQueryValue()!
+                return "/users/\(escapedUsername)/favorites"
             case .ShowFriends(let username, _):
-                return "/users/\(username)/friends"
+                let escapedUsername = username.stringByAddingPercentEncodingForURLQueryValue()!
+                return "/users/\(escapedUsername)/friends"
             }
         }
         

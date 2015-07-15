@@ -29,7 +29,7 @@ extension Router {
             case .Index:
                 return "/tags"
             case .ShowTracks(let name, _):
-                let escapedName = name.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLPathAllowedCharacterSet())!
+                let escapedName = name.stringByAddingPercentEncodingForURLQueryValue()!
                 return "/tags/\(escapedName)/tracks"
             }
         }
