@@ -26,17 +26,19 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
     public let postedByDescription: String
     public let datePosted: NSDate
     public let audioUnavailable: Bool
+    public let postURL: NSURL
+    public let iTunesURL: NSURL
 
     public var loved: Bool
     
-    public var postURL: NSURL! = nil
-    public var iTunesURL: NSURL! = nil
+
     
     override public var description: String {
         return "<Track - artist: \(artist), title: \(title)>"
     }
     
     public required init?(response: NSHTTPURLResponse, representation: AnyObject) {
+        
         self.id = representation.valueForKeyPath("itemid") as! String
         
         let artistJSON = representation.valueForKeyPath("artist") as? String
@@ -94,12 +96,12 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
             self.audioUnavailable = false
         }
         
-        let response = NSHTTPURLResponse()
+        let postURLString = (representation.valueForKeyPath("posturl") as! String).stringByAddingPercentEncodingForURLQueryValue()!
+        self.postURL = NSURL(string: postURLString)!
+        let iTunesURLString = (representation.valueForKeyPath("itunes_link") as! String).stringByAddingPercentEncodingForURLQueryValue()!
+        self.iTunesURL = NSURL(string: iTunesURLString)!
         
         super.init()
-        
-        self.postURL = NSURL(string: cleanURLString(representation.valueForKeyPath("posturl") as! String))
-        self.iTunesURL = NSURL(string: cleanURLString(representation.valueForKeyPath("itunes_link") as! String))
     }
     
     public class func collection(#response: NSHTTPURLResponse, representation: AnyObject) -> [Track]? {
@@ -157,10 +159,6 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
     
     public func hypeMachineURL() -> NSURL {
         return NSURL(string: "http://hypem.com/track/\(id)")!
-    }
-    
-    private func cleanURLString(URLString: String) -> String {
-        return URLString.stringByAddingPercentEncodingForURLQueryValue()!
     }
     
     public enum ImageSize {
