@@ -171,15 +171,7 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
     }
     
     private func cleanURLString(URLString: String) -> String {
-        // This rarely turns up nil if the URLString has a % in it that is not percent encoded
-        // e.g. if the artist's name is '100%'
-        let unescapedString = URLString.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
-        
-        if unescapedString == nil {
-            return URLString.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLFragmentAllowedCharacterSet())!
-        } else {
-            return unescapedString!.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLFragmentAllowedCharacterSet())!
-        }
+        return URLString.stringByAddingPercentEncodingForURLQueryValue()!
     }
     
     public enum ImageSize {
