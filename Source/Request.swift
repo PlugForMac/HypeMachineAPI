@@ -56,3 +56,20 @@ extension Alamofire.Request {
         })
     }
 }
+
+// Custom errors from validations
+
+extension Alamofire.Request {
+    public func validateAPI() -> Self {
+        delegate.queue.addOperationWithBlock {
+            if let response = self.response where self.delegate.error == nil {
+                let JSONSerializer = Alamofire.Request.JSONResponseSerializer(options: .AllowFragments)
+                let (JSON: AnyObject?, serializationError) = JSONSerializer(NSURLRequest(), nil, self.delegate.data)
+                let APIError = Errors.parseAPIErrorFromJSON(JSON)
+                self.delegate.error = APIError
+            }
+        }
+        
+        return self
+    }
+}

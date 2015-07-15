@@ -17,7 +17,7 @@ public struct Router {
         // Probably a bug in the hype machine API, but hm_token must be part of the path, can't be form encoded
         var urlString = baseURLString + path
         if hmToken != nil {
-            urlString += "?hm_token=\(hmToken!)" + "1"
+            urlString += "?hm_token=\(hmToken!)"
         }
         let URL = NSURL(string: urlString)!
         let mutableURLRequest = NSMutableURLRequest(URL: URL)

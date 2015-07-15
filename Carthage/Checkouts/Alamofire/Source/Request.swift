@@ -200,14 +200,14 @@ public class Request {
     // MARK: - TaskDelegate
 
     public class TaskDelegate: NSObject, NSURLSessionTaskDelegate {
-        let task: NSURLSessionTask
-        let queue: NSOperationQueue
-        let progress: NSProgress
+        public let task: NSURLSessionTask
+        public let queue: NSOperationQueue
+        public let progress: NSProgress
 
-        var data: NSData? { return nil }
-        var error: NSError?
+        public var data: NSData? { return nil }
+        public var error: NSError?
 
-        var credential: NSURLCredential?
+        public var credential: NSURLCredential?
 
         init(task: NSURLSessionTask) {
             self.task = task
