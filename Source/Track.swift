@@ -26,7 +26,6 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
     public let postedByDescription: String
     public let datePosted: NSDate
     public let audioUnavailable: Bool
-    public let tags: [Tag]
 
     public var loved: Bool
     
@@ -96,16 +95,6 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
         }
         
         let response = NSHTTPURLResponse()
-        self.tags = [
-            Tag(response: response, representation: ["tag_name": "electronic"])!,
-            Tag(response: response, representation: ["tag_name": "indie"])!,
-            Tag(response: response, representation: ["tag_name": "new rave"])!,
-            Tag(response: response, representation: ["tag_name": "experimental"])!,
-            Tag(response: response, representation: ["tag_name": "pop"])!,
-            Tag(response: response, representation: ["tag_name": "british"])!,
-            Tag(response: response, representation: ["tag_name": "2k11 mix"])!,
-            Tag(response: response, representation: ["tag_name": "2011"])!,
-        ]
         
         super.init()
         
