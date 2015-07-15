@@ -20,7 +20,7 @@ extension Requests {
                 // TODO: This is rough and should be implemented across all requests
                 if let errorMessage = JSON?.valueForKeyPath("error_msg") as? String {
                     if errorMessage == "Wrong password" {
-                        let hypeError = NSError(domain: ErrorDomain, code: ErrorCodes.WrongPassword.rawValue, userInfo: [NSLocalizedDescriptionKey: errorMessage])
+                        let hypeError = NSError(domain: ErrorDomain, code: Errors.ErrorCodes.WrongPassword.rawValue, userInfo: [NSLocalizedDescriptionKey: errorMessage])
                         callback(username: username, token: token, error: hypeError)
                         return
                     }

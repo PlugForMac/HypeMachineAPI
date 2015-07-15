@@ -34,10 +34,9 @@
 		FA5B33FA1AFF5414009F2F95 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B33F91AFF5414009F2F95 /* User.swift */; };
 		FA5B33FC1AFF5419009F2F95 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B33FB1AFF5419009F2F95 /* Tag.swift */; };
 		FA5B340B1AFF5447009F2F95 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B340A1AFF5447009F2F95 /* Track.swift */; };
-		FA5B340F1AFF54D5009F2F95 /* ResponseObjectSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B340E1AFF54D5009F2F95 /* ResponseObjectSerializable.swift */; };
+		FA5B340F1AFF54D5009F2F95 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B340E1AFF54D5009F2F95 /* Request.swift */; };
 		FA5B34121B002013009F2F95 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B34111B002013009F2F95 /* Router.swift */; };
 		FA5B34141B002061009F2F95 /* TracksRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B34131B002061009F2F95 /* TracksRouter.swift */; };
-		FA5B34161B0045E8009F2F95 /* ResponseCollectionSerializable.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B34151B0045E8009F2F95 /* ResponseCollectionSerializable.swift */; };
 		FA5B341A1B008DC4009F2F95 /* Track.json in Resources */ = {isa = PBXBuildFile; fileRef = FA5B34181B008BA2009F2F95 /* Track.json */; };
 		FA5B341D1B009052009F2F95 /* Tracks.json in Resources */ = {isa = PBXBuildFile; fileRef = FA5B341B1B008F6A009F2F95 /* Tracks.json */; };
 		FA5B341F1B00F23B009F2F95 /* BlogsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B341E1B00F23B009F2F95 /* BlogsRouter.swift */; };
@@ -57,7 +56,7 @@
 		FA5B34401B01024C009F2F95 /* MeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B343F1B01024C009F2F95 /* MeRouter.swift */; };
 		FA5B34411B010251009F2F95 /* UsersRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B343D1B010075009F2F95 /* UsersRouter.swift */; };
 		FA75E8231B563C180070FB1D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75E8221B563C180070FB1D /* String.swift */; };
-		FACC9C661B557254005151F8 /* ErrorCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACC9C651B557254005151F8 /* ErrorCodes.swift */; };
+		FACC9C661B557254005151F8 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACC9C651B557254005151F8 /* Errors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -113,10 +112,9 @@
 		FA5B33F91AFF5414009F2F95 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FA5B33FB1AFF5419009F2F95 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Tag.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		FA5B340A1AFF5447009F2F95 /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Track.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		FA5B340E1AFF54D5009F2F95 /* ResponseObjectSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ResponseObjectSerializable.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		FA5B340E1AFF54D5009F2F95 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Request.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		FA5B34111B002013009F2F95 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		FA5B34131B002061009F2F95 /* TracksRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracksRouter.swift; sourceTree = "<group>"; };
-		FA5B34151B0045E8009F2F95 /* ResponseCollectionSerializable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ResponseCollectionSerializable.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		FA5B34181B008BA2009F2F95 /* Track.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Track.json; sourceTree = "<group>"; };
 		FA5B341B1B008F6A009F2F95 /* Tracks.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Tracks.json; sourceTree = "<group>"; };
 		FA5B341E1B00F23B009F2F95 /* BlogsRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogsRouter.swift; sourceTree = "<group>"; };
@@ -136,7 +134,7 @@
 		FA5B343D1B010075009F2F95 /* UsersRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersRouter.swift; sourceTree = "<group>"; };
 		FA5B343F1B01024C009F2F95 /* MeRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeRouter.swift; sourceTree = "<group>"; };
 		FA75E8221B563C180070FB1D /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
-		FACC9C651B557254005151F8 /* ErrorCodes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorCodes.swift; sourceTree = "<group>"; };
+		FACC9C651B557254005151F8 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -223,7 +221,7 @@
 			children = (
 				FA5B33DB1AFF4FF6009F2F95 /* HypeMachineAPI.h */,
 				FA5B33F41AFF5286009F2F95 /* HypeMachineAPI.swift */,
-				FACC9C651B557254005151F8 /* ErrorCodes.swift */,
+				FACC9C651B557254005151F8 /* Errors.swift */,
 				FA5B33F61AFF53E2009F2F95 /* Models */,
 				FA5B34101B001FBD009F2F95 /* Routers */,
 				FA107A7D1B03E5EA006FA015 /* Requests */,
@@ -285,8 +283,7 @@
 		FA5B340D1AFF54C0009F2F95 /* Alamofire */ = {
 			isa = PBXGroup;
 			children = (
-				FA5B340E1AFF54D5009F2F95 /* ResponseObjectSerializable.swift */,
-				FA5B34151B0045E8009F2F95 /* ResponseCollectionSerializable.swift */,
+				FA5B340E1AFF54D5009F2F95 /* Request.swift */,
 			);
 			name = Alamofire;
 			sourceTree = "<group>";
@@ -467,14 +464,13 @@
 				FA5B342E1B00F86D009F2F95 /* ArtistsRouter.swift in Sources */,
 				FA5B33F81AFF540F009F2F95 /* Blog.swift in Sources */,
 				FA5B33FC1AFF5419009F2F95 /* Tag.swift in Sources */,
-				FA5B340F1AFF54D5009F2F95 /* ResponseObjectSerializable.swift in Sources */,
+				FA5B340F1AFF54D5009F2F95 /* Request.swift in Sources */,
 				FA107A811B03E7C8006FA015 /* BlogsRequests.swift in Sources */,
 				FA21C3C31B01078900C1EAA8 /* MiscRouter.swift in Sources */,
 				FA5B34401B01024C009F2F95 /* MeRouter.swift in Sources */,
 				FA5B34301B00F934009F2F95 /* Artist.swift in Sources */,
 				FA107A901B042811006FA015 /* TracksRequests.swift in Sources */,
-				FA5B34161B0045E8009F2F95 /* ResponseCollectionSerializable.swift in Sources */,
-				FACC9C661B557254005151F8 /* ErrorCodes.swift in Sources */,
+				FACC9C661B557254005151F8 /* Errors.swift in Sources */,
 				FA4D18F31B0114730043A040 /* TagsRouter.swift in Sources */,
 				FA107A981B04494A006FA015 /* MeRequests.swift in Sources */,
 				FA5B34121B002013009F2F95 /* Router.swift in Sources */,
