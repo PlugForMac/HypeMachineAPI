@@ -13,7 +13,7 @@ let ErrorDomain = "HypeMachineAPI.ErrorDomain"
 public struct Errors {
     public static func parseAPIErrorFromJSON(JSON: AnyObject?) -> NSError? {
         if JSON == nil { return nil }
-        if JSON! is NSArray { return nil }
+        if !(JSON! is NSDictionary) { return nil }
         
         if let errorMessage = JSON!.objectForKey("error_msg") as? String {
             let userInfo: [NSObject: AnyObject] = [NSLocalizedDescriptionKey: errorMessage]
