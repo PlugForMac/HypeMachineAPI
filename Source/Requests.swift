@@ -8,5 +8,4 @@
 
 import Foundation
 
-public struct Requests {
-}
+public struct Requests {}

@@ -18,6 +18,7 @@ extension Router {
         case ToggleUserFavorite(String, [String: AnyObject]?)
         case PlaylistNames
         case ShowPlaylist(Int, [String: AnyObject]?)
+        case PostHistory(String, Int, [String: AnyObject]?)
         case Friends([String: AnyObject]?)
         case Feed([String: AnyObject]?)
         
@@ -35,6 +36,8 @@ extension Router {
                 return .GET
             case ShowPlaylist:
                 return .GET
+            case PostHistory:
+                return .POST
             case .Friends:
                 return .GET
             case .Feed:
@@ -56,6 +59,8 @@ extension Router {
                 return "/me/playlist_names"
             case ShowPlaylist(let id, _):
                 return "/me/playlists/\(id)"
+            case PostHistory:
+                return "/me/history"
             case .Friends:
                 return "/me/friends"
             case .Feed:
@@ -77,6 +82,8 @@ extension Router {
                 return nil
             case ShowPlaylist(_, let optionalParams):
                 return optionalParams
+            case PostHistory(let id, let position, let optionalParams):
+                return ["type": "listen", "itemid": id, "pos": position].merge(optionalParams)
             case .Friends(let optionalParams):
                 return optionalParams
             case .Feed(let optionalParams):

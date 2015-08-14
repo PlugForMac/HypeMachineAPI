@@ -67,6 +67,13 @@ extension Requests {
             }
         }
         
+        public static func postHistory(#id: String, position: Int, optionalParams: [String: AnyObject]?, callback: (error: NSError?)->Void) {
+            Alamofire.request(Router.Me.PostHistory(id, position, optionalParams)).validateAPI().validate().responseString {
+                (request, response, string, error) in
+                callback(error: error)
+            }
+        }
+        
         public static func friends(#optionalParams: [String: AnyObject]?, callback: (users: [User]?, error: NSError?)->Void) {
             Alamofire.request(Router.Me.Friends(optionalParams)).validateAPI().validate().responseCollection {
                 (request, response, users: [User]?, error) in

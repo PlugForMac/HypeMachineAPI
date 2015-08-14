@@ -23,6 +23,10 @@ public struct Router {
         let mutableURLRequest = NSMutableURLRequest(URL: URL)
         mutableURLRequest.HTTPMethod = method.rawValue
         
+        if userAgent != nil {
+            mutableURLRequest.addValue(userAgent!, forHTTPHeaderField: "User-Agent")
+        }
+        
         var mergedParams: [String: AnyObject]?
         mergedParams = addApiKeyParam(params)
         
