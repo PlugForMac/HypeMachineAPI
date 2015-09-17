@@ -11,7 +11,7 @@ import Foundation
 class Helpers {
     class func loadJSONFixtureFile(name: String, ofType ext: String) -> AnyObject {
         let path = NSBundle(forClass: Helpers().dynamicType).pathForResource(name, ofType: ext)!
-        let jsonData = NSData(contentsOfFile: path, options: .DataReadingMappedIfSafe, error: nil)!
-        return NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers, error: nil)!
+        let jsonData = try! NSData(contentsOfFile: path, options: .DataReadingMappedIfSafe)
+        return try! NSJSONSerialization.JSONObjectWithData(jsonData, options: NSJSONReadingOptions.MutableContainers)
     }
 }

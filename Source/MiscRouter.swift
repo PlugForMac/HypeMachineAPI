@@ -50,7 +50,7 @@ extension Router {
             let deviceIDLength = 16
             
             deviceID = GetSerialNumber()!
-            let pad = deviceIDLength - count(deviceID)
+            let pad = deviceIDLength - deviceID.characters.count
             
             for _ in 1...pad {
                 deviceID = deviceID + "0"

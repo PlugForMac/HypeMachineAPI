@@ -11,14 +11,14 @@ import Alamofire
 
 extension Requests {
     public struct Me {
-        public static func favorites(#optionalParams: [String: AnyObject]?, callback: (tracks: [Track]?, error: NSError?)->Void) {
+        public static func favorites(optionalParams optionalParams: [String: AnyObject]?, callback: (tracks: [Track]?, error: NSError?)->Void) {
             Alamofire.request(Router.Me.Favorites(optionalParams)).validateAPI().validate().responseCollection {
                 (request, response, tracks: [Track]?, error) in
                 callback(tracks: tracks, error: error)
             }
         }
         
-        public static func toggleTrackFavorite(#id: String, optionalParams: [String: AnyObject]?, callback: (favorited: Bool?, error: NSError?)->Void) {
+        public static func toggleTrackFavorite(id id: String, optionalParams: [String: AnyObject]?, callback: (favorited: Bool?, error: NSError?)->Void) {
             Alamofire.request(Router.Me.ToggleTrackFavorite(id, optionalParams)).validateAPI().validate().responseString {
                 (request, response, string, error) in
                 var favorited: Bool?
@@ -29,7 +29,7 @@ extension Requests {
             }
         }
         
-        public static func toggleBlogFavorite(#id: Int, optionalParams: [String: AnyObject]?, callback: (favorited: Bool?, error: NSError?)->Void) {
+        public static func toggleBlogFavorite(id id: Int, optionalParams: [String: AnyObject]?, callback: (favorited: Bool?, error: NSError?)->Void) {
             Alamofire.request(Router.Me.ToggleBlogFavorite(id, optionalParams)).validateAPI().validate().responseString {
                 (request, response, string, error) in
                 var favorited: Bool?
@@ -40,7 +40,7 @@ extension Requests {
             }
         }
         
-        public static func toggleUserFavorite(#id: String, optionalParams: [String: AnyObject]?, callback: (favorited: Bool?, error: NSError?)->Void) {
+        public static func toggleUserFavorite(id id: String, optionalParams: [String: AnyObject]?, callback: (favorited: Bool?, error: NSError?)->Void) {
             Alamofire.request(Router.Me.ToggleUserFavorite(id, optionalParams)).validateAPI().validate().responseString {
                 (request, response, string, error) in
                 var favorited: Bool?
@@ -60,28 +60,28 @@ extension Requests {
         }
         
         // Playlist id's are 1...3
-        public static func showPlaylist(#id: Int, optionalParams: [String: AnyObject]?, callback: (tracks: [Track]?, error: NSError?)->Void) {
+        public static func showPlaylist(id id: Int, optionalParams: [String: AnyObject]?, callback: (tracks: [Track]?, error: NSError?)->Void) {
             Alamofire.request(Router.Me.ShowPlaylist(id, optionalParams)).validateAPI().validate().responseCollection {
                 (request, response, tracks: [Track]?, error) in
                 callback(tracks: tracks, error: error)
             }
         }
         
-        public static func postHistory(#id: String, position: Int, optionalParams: [String: AnyObject]?, callback: (error: NSError?)->Void) {
+        public static func postHistory(id id: String, position: Int, optionalParams: [String: AnyObject]?, callback: (error: NSError?)->Void) {
             Alamofire.request(Router.Me.PostHistory(id, position, optionalParams)).validateAPI().validate().responseString {
                 (request, response, string, error) in
                 callback(error: error)
             }
         }
         
-        public static func friends(#optionalParams: [String: AnyObject]?, callback: (users: [User]?, error: NSError?)->Void) {
+        public static func friends(optionalParams optionalParams: [String: AnyObject]?, callback: (users: [User]?, error: NSError?)->Void) {
             Alamofire.request(Router.Me.Friends(optionalParams)).validateAPI().validate().responseCollection {
                 (request, response, users: [User]?, error) in
                 callback(users: users, error: error)
             }
         }
         
-        public static func feed(#optionalParams: [String: AnyObject]?, callback: (tracks: [Track]?, error: NSError?)->Void) {
+        public static func feed(optionalParams optionalParams: [String: AnyObject]?, callback: (tracks: [Track]?, error: NSError?)->Void) {
             Alamofire.request(Router.Me.Feed(optionalParams)).validateAPI().validate().responseCollection {
                 (request, response, tracks: [Track]?, error) in
                 callback(tracks: tracks, error: error)

@@ -19,7 +19,7 @@ extension Alamofire.Request {
     public func responseObject<T: ResponseObjectSerializable>(completionHandler: (NSURLRequest, NSHTTPURLResponse?, T?, NSError?) -> Void) -> Self {
         let serializer: Serializer = { (request, response, data) in
             let JSONSerializer = Request.JSONResponseSerializer(options: .AllowFragments)
-            let (JSON: AnyObject?, serializationError) = JSONSerializer(request, response, data)
+            let (JSON, serializationError): (AnyObject?, NSError?) = JSONSerializer(request, response, data)
             if response != nil && JSON != nil {
                 return (T(response: response!, representation: JSON!), nil)
             } else {
@@ -36,14 +36,14 @@ extension Alamofire.Request {
 // MARK: ResponseCollection
 
 @objc public protocol ResponseCollectionSerializable {
-    static func collection(#response: NSHTTPURLResponse, representation: AnyObject) -> [Self]?
+    static func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Self]?
 }
 
 extension Alamofire.Request {
     public func responseCollection<T: ResponseCollectionSerializable>(completionHandler: (NSURLRequest, NSHTTPURLResponse?, [T]?, NSError?) -> Void) -> Self {
         let serializer: Serializer = { (request, response, data) in
             let JSONSerializer = Alamofire.Request.JSONResponseSerializer(options: .AllowFragments)
-            let (JSON: AnyObject?, serializationError) = JSONSerializer(request, response, data)
+            let (JSON, serializationError): (AnyObject?, NSError?) = JSONSerializer(request, response, data)
             if response != nil && JSON != nil {
                 return (T.collection(response: response!, representation: JSON!), nil)
             } else {
@@ -64,7 +64,7 @@ extension Alamofire.Request {
         delegate.queue.addOperationWithBlock {
             if let response = self.response where self.delegate.error == nil {
                 let JSONSerializer = Alamofire.Request.JSONResponseSerializer(options: .AllowFragments)
-                let (JSON: AnyObject?, serializationError) = JSONSerializer(NSURLRequest(), nil, self.delegate.data)
+                let (JSON, serializationError): (AnyObject?, NSError?) = JSONSerializer(NSURLRequest(), nil, self.delegate.data)
                 let APIError = Errors.parseAPIErrorFromJSON(JSON)
                 self.delegate.error = APIError
             }

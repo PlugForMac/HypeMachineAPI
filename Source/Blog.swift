@@ -28,7 +28,7 @@ public final class Blog: NSObject, ResponseObjectSerializable, ResponseCollectio
     public required init?(response: NSHTTPURLResponse, representation: AnyObject) {
         self.id = representation.valueForKeyPath("siteid") as! Int
         self.name = representation.valueForKeyPath("sitename") as! String
-        var urlString = (representation.valueForKeyPath("siteurl") as! String)
+        let urlString = (representation.valueForKeyPath("siteurl") as! String)
             .stringByReplacingOccurrencesOfString(" ", withString: "")
         self.url = NSURL(string: urlString)!
         self.followerCount = representation.valueForKeyPath("followers") as! Int
@@ -41,7 +41,7 @@ public final class Blog: NSObject, ResponseObjectSerializable, ResponseCollectio
         self.following = representation.valueForKeyPath("ts_loved_me") != nil
     }
     
-    public class func collection(#response: NSHTTPURLResponse, representation: AnyObject) -> [Blog]? {
+    public class func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Blog]? {
         var blogs = [Blog]()
         
         if let collectionJSON = representation as? [NSDictionary] {

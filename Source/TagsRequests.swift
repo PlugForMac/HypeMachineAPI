@@ -18,7 +18,7 @@ extension Requests {
             }
         }
         
-        public static func showTracks(#name: String, optionalParams: [String: AnyObject]?, callback: (tracks: [Track]?, error: NSError?)->Void) {
+        public static func showTracks(name name: String, optionalParams: [String: AnyObject]?, callback: (tracks: [Track]?, error: NSError?)->Void) {
             Alamofire.request(Router.Tags.ShowTracks(name, optionalParams)).validateAPI().validate().responseCollection {
                 (request, response, tracks: [Track]?, error) in
                 callback(tracks: tracks, error: error)

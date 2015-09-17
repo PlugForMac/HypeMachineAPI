@@ -12,7 +12,7 @@ import Alamofire
 public struct Router {
     static let baseURLString = "https://api.hypem.com/v2"
     
-    static func URLRequest(#method: Alamofire.Method, path: String, params: [String: AnyObject]?) -> NSURLRequest {
+    static func URLRequest(method method: Alamofire.Method, path: String, params: [String: AnyObject]?) -> NSURLRequest {
         
         // Probably a bug in the hype machine API, but hm_token must be part of the path, can't be form encoded
         var urlString = baseURLString + path
