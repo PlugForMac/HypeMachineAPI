@@ -31,6 +31,6 @@ class BlogTests: XCTestCase {
         let blogs = HypeMachineAPI.Blog.collection(response: NSHTTPURLResponse(), representation: json)
         
         XCTAssertNotNil(blogs)
-        XCTAssert(blogs!.count == 3)
+        XCTAssert(blogs.count == 3)
     }
 }

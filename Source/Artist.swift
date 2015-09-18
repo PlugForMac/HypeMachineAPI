@@ -31,7 +31,7 @@ public final class Artist: NSObject, ResponseObjectSerializable, ResponseCollect
         self.rank = representation.valueForKeyPath("rank") as? Int
     }
     
-    public class func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Artist]? {
+    public class func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Artist] {
         var artists = [Artist]()
         
         if let collectionJSON = representation as? [NSDictionary] {
@@ -40,8 +40,6 @@ public final class Artist: NSObject, ResponseObjectSerializable, ResponseCollect
                     artists.append(artist)
                 }
             }
-        } else {
-            return nil
         }
         
         return artists

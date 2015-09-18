@@ -25,7 +25,7 @@ public final class Tag: NSObject, ResponseObjectSerializable, ResponseCollection
         }
     }
     
-    public class func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Tag]? {
+    public class func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Tag] {
         var tags = [Tag]()
         
         if let collectionJSON = representation as? [NSDictionary] {
@@ -34,8 +34,6 @@ public final class Tag: NSObject, ResponseObjectSerializable, ResponseCollection
                     tags.append(tag)
                 }
             }
-        } else {
-            return nil
         }
         
         return tags

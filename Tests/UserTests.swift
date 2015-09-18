@@ -31,6 +31,6 @@ class UserTests: XCTestCase {
         let users = HypeMachineAPI.User.collection(response: NSHTTPURLResponse(), representation: json)
         
         XCTAssertNotNil(users)
-        XCTAssert(users!.count == 3)
+        XCTAssert(users.count == 3)
     }
 }

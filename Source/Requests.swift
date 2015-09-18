@@ -9,3 +9,9 @@
 import Foundation
 
 public struct Requests {}
+
+extension Requests {
+    enum Errors: ErrorType {
+        case CantParseResponse
+    }
+}

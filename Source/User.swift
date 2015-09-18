@@ -53,7 +53,7 @@ public final class User: NSObject, ResponseObjectSerializable, ResponseCollectio
         self.follower = representation.valueForKeyPath("is_follower") as? Bool
     }
     
-    public class func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [User]? {
+    public class func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [User] {
         var users = [User]()
         
         if let collectionJSON = representation as? [NSDictionary] {
@@ -62,8 +62,6 @@ public final class User: NSObject, ResponseObjectSerializable, ResponseCollectio
                     users.append(user)
                 }
             }
-        } else {
-            return nil
         }
         
         return users

@@ -49,7 +49,7 @@ extension Router {
             }
         }
         
-        public var URLRequest: NSURLRequest {
+        public var URLRequest: NSMutableURLRequest {
             return Router.URLRequest(method: method, path: path, params: params)
         }
     }

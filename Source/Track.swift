@@ -104,7 +104,7 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
         super.init()
     }
     
-    public class func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Track]? {
+    public class func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Track] {
         var tracks = [Track]()
         
         if let collectionJSON = representation as? [NSDictionary] {
@@ -113,8 +113,6 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
                     tracks.append(track)
                 }
             }
-        } else {
-            return nil
         }
         
         return tracks

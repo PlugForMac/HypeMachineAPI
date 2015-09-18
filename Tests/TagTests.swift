@@ -31,6 +31,6 @@ class TagTests: XCTestCase {
         let tags = HypeMachineAPI.Tag.collection(response: NSHTTPURLResponse(), representation: json)
         
         XCTAssertNotNil(tags)
-        XCTAssert(tags!.count == 3)
+        XCTAssert(tags.count == 3)
     }
 }

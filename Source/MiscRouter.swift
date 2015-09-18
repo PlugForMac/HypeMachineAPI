@@ -39,7 +39,7 @@ extension Router {
             }
         }
         
-        public var URLRequest: NSURLRequest {
+        public var URLRequest: NSMutableURLRequest {
             return Router.URLRequest(method: method, path: path, params: params)
         }
         
@@ -63,7 +63,7 @@ extension Router {
             var serial: String? = nil
             var platformExpert: io_service_t?
             
-            platformExpert = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IOPlatformExpertDevice").takeUnretainedValue())
+            platformExpert = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IOPlatformExpertDevice"))
             
             if platformExpert != nil {
                 serial = IORegistryEntryCreateCFProperty(platformExpert!, kIOPlatformSerialNumberKey, kCFAllocatorDefault, 0).takeRetainedValue() as? String

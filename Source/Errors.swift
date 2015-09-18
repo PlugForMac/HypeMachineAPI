@@ -12,23 +12,24 @@ let ErrorDomain = "HypeMachineAPI.ErrorDomain"
 
 public struct Errors {
     public static func parseAPIErrorFromJSON(JSON: AnyObject?) -> NSError? {
-        if JSON == nil { return nil }
-        if !(JSON! is NSDictionary) { return nil }
-        
-        if let errorMessage = JSON!.objectForKey("error_msg") as? String {
-            let userInfo: [NSObject: AnyObject] = [NSLocalizedDescriptionKey: errorMessage]
-            
-            switch errorMessage {
-            case "Must provide valid hm_token":
-                return NSError(domain: ErrorDomain, code: ErrorCodes.InvalidHMToken.rawValue, userInfo: userInfo)
-            case "Wrong password":
-                return NSError(domain: ErrorDomain, code: ErrorCodes.WrongPassword.rawValue, userInfo: userInfo)
-            default:
-                return NSError(domain: ErrorDomain, code: ErrorCodes.UnknownError.rawValue, userInfo: userInfo)
-            }
+        guard
+            let JSON = JSON,
+            let JSONDictionary = JSON as? NSDictionary,
+            let errorMessage = JSONDictionary["error_msg"] as? String
+            else {
+                return nil
         }
         
-        return nil
+        let userInfo: [NSObject: AnyObject] = [NSLocalizedDescriptionKey: errorMessage]
+        
+        switch errorMessage {
+        case "Must provide valid hm_token":
+            return NSError(domain: ErrorDomain, code: ErrorCodes.InvalidHMToken.rawValue, userInfo: userInfo)
+        case "Wrong password":
+            return NSError(domain: ErrorDomain, code: ErrorCodes.WrongPassword.rawValue, userInfo: userInfo)
+        default:
+            return NSError(domain: ErrorDomain, code: ErrorCodes.UnknownError.rawValue, userInfo: userInfo)
+        }
     }
 }
 

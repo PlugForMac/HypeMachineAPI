@@ -41,7 +41,7 @@ public final class Blog: NSObject, ResponseObjectSerializable, ResponseCollectio
         self.following = representation.valueForKeyPath("ts_loved_me") != nil
     }
     
-    public class func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Blog]? {
+    public class func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Blog] {
         var blogs = [Blog]()
         
         if let collectionJSON = representation as? [NSDictionary] {
@@ -50,8 +50,6 @@ public final class Blog: NSObject, ResponseObjectSerializable, ResponseCollectio
                     blogs.append(blog)
                 }
             }
-        } else {
-            return nil
         }
         
         return blogs

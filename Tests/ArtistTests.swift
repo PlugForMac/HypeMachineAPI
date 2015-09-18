@@ -31,6 +31,6 @@ class ArtistTests: XCTestCase {
         let artists = HypeMachineAPI.Artist.collection(response: NSHTTPURLResponse(), representation: json)
         
         XCTAssertNotNil(artists)
-        XCTAssert(artists!.count == 3)
+        XCTAssert(artists.count == 3)
     }
 }

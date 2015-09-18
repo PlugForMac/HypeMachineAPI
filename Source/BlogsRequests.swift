@@ -11,24 +11,24 @@ import Alamofire
 
 extension Requests {
     public struct Blogs {
-        public static func index(optionalParams optionalParams: [String: AnyObject]?, callback: (blogs: [Blog]?, error: NSError?)->Void) {
+        public static func index(optionalParams optionalParams: [String: AnyObject]?, callback: (Result<[Blog]>)->Void) {
             Alamofire.request(Router.Blogs.Index(optionalParams)).validateAPI().validate().responseCollection {
-                (request, response, blogs: [Blog]?, error) in
-                callback(blogs: blogs, error: error)
+                (request, response, result: Result<[Blog]>) in
+                callback(result)
             }
         }
         
-        public static func show(id id: Int, callback: (blog: Blog?, error: NSError?)->Void) {
+        public static func show(id id: Int, callback: (Result<Blog>)->Void) {
             Alamofire.request(Router.Blogs.Show(id)).validateAPI().validate().responseObject {
-                (request, response, blog: Blog?, error) in
-                callback(blog: blog, error: error)
+                (request, response, result: Result<Blog>) in
+                callback(result)
             }
         }
         
-        public static func showTracks(id id: Int, optionalParams: [String: AnyObject]?, callback: (tracks: [Track]?, error: NSError?)->Void) {
+        public static func showTracks(id id: Int, optionalParams: [String: AnyObject]?, callback: (Result<[Track]>)->Void) {
             Alamofire.request(Router.Blogs.ShowTracks(id, optionalParams)).validateAPI().validate().responseCollection {
-                (request, response, tracks: [Track]?, error) in
-                callback(tracks: tracks, error: error)
+                (request, response, result: Result<[Track]>) in
+                callback(result)
             }
         }
     }

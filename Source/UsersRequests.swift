@@ -11,24 +11,24 @@ import Alamofire
 
 extension Requests {
     public struct Users {
-        public static func show(username username: String, callback: (user: User?, error: NSError?)->Void) {
+        public static func show(username username: String, callback: (Result<User>)->Void) {
             Alamofire.request(Router.Users.Show(username)).validateAPI().validate().responseObject {
-                (request, response, user: User?, error) in
-                callback(user: user, error: error)
+                (request, response, result: Result<User>) in
+                callback(result)
             }
         }
         
-        public static func showFavorites(username username: String, optionalParams: [String: AnyObject]?, callback: (tracks: [Track]?, error: NSError?)->Void) {
+        public static func showFavorites(username username: String, optionalParams: [String: AnyObject]?, callback: (Result<[Track]>)->Void) {
             Alamofire.request(Router.Users.ShowFavorites(username, optionalParams)).validateAPI().validate().responseCollection {
-                (request, response, tracks: [Track]?, error) in
-                callback(tracks: tracks, error: error)
+                (request, response, result: Result<[Track]>) in
+                callback(result)
             }
         }
         
-        public static func showFriends(username username: String, optionalParams: [String: AnyObject]?, callback: (users: [User]?, error: NSError?)->Void) {
+        public static func showFriends(username username: String, optionalParams: [String: AnyObject]?, callback: (Result<[User]>)->Void) {
             Alamofire.request(Router.Users.ShowFriends(username, optionalParams)).validateAPI().validate().responseCollection {
-                (request, response, users: [User]?, error) in
-                callback(users: users, error: error)
+                (request, response, result: Result<[User]>) in
+                callback(result)
             }
         }
     }
