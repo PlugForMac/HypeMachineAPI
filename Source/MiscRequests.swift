@@ -12,8 +12,7 @@ import Alamofire
 extension Requests {
     public struct Misc {
         public static func getToken(usernameOrEmail usernameOrEmail: String, password: String, callback: (Result<UsernameAndToken>)->Void) {
-            Alamofire.request(Router.Misc.GetToken(usernameOrEmail, password)).validateAPI().validate().responseJSON {
-                (req, resp, result) in
+            Alamofire.request(Router.Misc.GetToken(usernameOrEmail, password)).validate().responseJSON { (req, resp, result) in
                 switch result {
                 case .Success(let JSON):
                     guard
@@ -31,8 +30,8 @@ extension Requests {
         }
         
         public struct UsernameAndToken {
-            let username: String
-            let token: String
+            public let username: String
+            public let token: String
             
             init(username: String, token: String) {
                 self.username = username

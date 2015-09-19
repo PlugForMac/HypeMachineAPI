@@ -12,14 +12,14 @@ import Alamofire
 extension Requests {
     public struct Tags {
         public static func index(callback: (Result<[Tag]>)->Void) {
-            Alamofire.request(Router.Tags.Index).validateAPI().validate().responseCollection {
+            Alamofire.request(Router.Tags.Index).validate().responseCollection {
                 (request, response, result: Result<[Tag]>) in
                 callback(result)
             }
         }
         
         public static func showTracks(name name: String, optionalParams: [String: AnyObject]?, callback: (Result<[Track]>)->Void) {
-            Alamofire.request(Router.Tags.ShowTracks(name, optionalParams)).validateAPI().validate().responseCollection {
+            Alamofire.request(Router.Tags.ShowTracks(name, optionalParams)).validate().responseCollection {
                 (request, response, result: Result<[Track]>) in
                 callback(result)
             }

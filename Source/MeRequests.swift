@@ -12,66 +12,66 @@ import Alamofire
 extension Requests {
     public struct Me {
         public static func favorites(optionalParams optionalParams: [String: AnyObject]?, callback: (Result<[Track]>)->Void) {
-            Alamofire.request(Router.Me.Favorites(optionalParams)).validateAPI().validate().responseCollection {
+            Alamofire.request(Router.Me.Favorites(optionalParams)).validate().responseCollection {
                 (request, response, result: Result<[Track]>) in
-                callback(result)
+                callback(parseHypeMachineErrorFromResult(result))
             }
         }
         
         public static func toggleTrackFavorite(id id: String, optionalParams: [String: AnyObject]?, callback: (Result<Bool>)->Void) {
-            Alamofire.request(Router.Me.ToggleTrackFavorite(id, optionalParams)).validateAPI().validate().responseString {
+            Alamofire.request(Router.Me.ToggleTrackFavorite(id, optionalParams)).validate().responseString {
                 (request, response, result) in
-                callback(convertStringResultToBoolResult(result))
+                callback(convertStringResultToBoolResult(parseHypeMachineErrorFromResult(result)))
             }
         }
         
         public static func toggleBlogFavorite(id id: Int, optionalParams: [String: AnyObject]?, callback: (Result<Bool>)->Void) {
-            Alamofire.request(Router.Me.ToggleBlogFavorite(id, optionalParams)).validateAPI().validate().responseString {
+            Alamofire.request(Router.Me.ToggleBlogFavorite(id, optionalParams)).validate().responseString {
                 (request, response, result) in
-                callback(convertStringResultToBoolResult(result))
+                callback(convertStringResultToBoolResult(parseHypeMachineErrorFromResult(result)))
             }
         }
         
         public static func toggleUserFavorite(id id: String, optionalParams: [String: AnyObject]?, callback: (Result<Bool>)->Void) {
-            Alamofire.request(Router.Me.ToggleUserFavorite(id, optionalParams)).validateAPI().validate().responseString {
+            Alamofire.request(Router.Me.ToggleUserFavorite(id, optionalParams)).validate().responseString {
                 (request, response, result) in
-                callback(convertStringResultToBoolResult(result))
+                callback(convertStringResultToBoolResult(parseHypeMachineErrorFromResult(result)))
             }
         }
         
         public static func playlistNames(callback: (Result<[String]>)->Void) {
-            Alamofire.request(Router.Me.PlaylistNames).validateAPI().validate().responseJSON {
+            Alamofire.request(Router.Me.PlaylistNames).validate().responseJSON {
                 (request, response, result) in
-                callback(convertJSONResultToStringArrayResult(result))
+                callback(convertJSONResultToStringArrayResult(parseHypeMachineErrorFromResult(result)))
             }
         }
         
         // Playlist id's are 1...3
         public static func showPlaylist(id id: Int, optionalParams: [String: AnyObject]?, callback: (Result<[Track]>)->Void) {
-            Alamofire.request(Router.Me.ShowPlaylist(id, optionalParams)).validateAPI().validate().responseCollection {
+            Alamofire.request(Router.Me.ShowPlaylist(id, optionalParams)).validate().responseCollection {
                 (request, response, result: Result<[Track]>) in
-                callback(result)
+                callback(parseHypeMachineErrorFromResult(result))
             }
         }
         
         public static func postHistory(id id: String, position: Int, optionalParams: [String: AnyObject]?, callback: (Result<String>)->Void) {
-            Alamofire.request(Router.Me.PostHistory(id, position, optionalParams)).validateAPI().validate().responseString {
+            Alamofire.request(Router.Me.PostHistory(id, position, optionalParams)).validate().responseString {
                 (request, response, result) in
-                callback(result)
+                callback(parseHypeMachineErrorFromResult(result))
             }
         }
         
         public static func friends(optionalParams optionalParams: [String: AnyObject]?, callback: (Result<[User]>)->Void) {
-            Alamofire.request(Router.Me.Friends(optionalParams)).validateAPI().validate().responseCollection {
+            Alamofire.request(Router.Me.Friends(optionalParams)).validate().responseCollection {
                 (request, response, result: Result<[User]>) in
-                callback(result)
+                callback(parseHypeMachineErrorFromResult(result))
             }
         }
         
         public static func feed(optionalParams optionalParams: [String: AnyObject]?, callback: (Result<[Track]>)->Void) {
-            Alamofire.request(Router.Me.Feed(optionalParams)).validateAPI().validate().responseCollection {
+            Alamofire.request(Router.Me.Feed(optionalParams)).validate().responseCollection {
                 (request, response, result: Result<[Track]>) in
-                callback(result)
+                callback(parseHypeMachineErrorFromResult(result))
             }
         }
         

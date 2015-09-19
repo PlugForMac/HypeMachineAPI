@@ -71,30 +71,3 @@ extension Alamofire.Request {
         return response(responseSerializer: responseSerializer, completionHandler: completionHandler)
     }
 }
-
-// Custom errors from validations
-
-extension Alamofire.Request {
-    public func validateAPI() -> Self {
-        return validate { idk, response in
-            
-            
-            return .Success
-            
-//            if acceptableStatusCode.contains(response.statusCode) {
-//                return .Success
-//            } else {
-//                let failureReason = "Response status code was unacceptable: \(response.statusCode)"
-//                return .Failure(Error.errorWithCode(.StatusCodeValidationFailed, failureReason: failureReason))
-//            }
-        }
-//        delegate.queue.addOperationWithBlock {
-//            if let response = self.response where self.delegate.error == nil {
-//                let JSONSerializer = Alamofire.Request.JSONResponseSerializer(options: .AllowFragments)
-//                let (JSON, serializationError): (AnyObject?, NSError?) = JSONSerializer(NSURLRequest(), nil, self.delegate.data)
-//                let APIError = Errors.parseAPIErrorFromJSON(JSON)
-//                self.delegate.error = APIError
-//            }
-//        }
-    }
-}

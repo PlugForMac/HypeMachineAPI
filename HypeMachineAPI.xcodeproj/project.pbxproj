@@ -56,7 +56,6 @@
 		FA849A471BABA776004EACD8 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA849A461BABA776004EACD8 /* Alamofire.framework */; };
 		FA849A481BABC646004EACD8 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA849A461BABA776004EACD8 /* Alamofire.framework */; };
 		FABB1EBF1BABC7680068C03F /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA849A461BABA776004EACD8 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		FACC9C661B557254005151F8 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FACC9C651B557254005151F8 /* Errors.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,7 +133,6 @@
 		FA5B343F1B01024C009F2F95 /* MeRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeRouter.swift; sourceTree = "<group>"; };
 		FA75E8221B563C180070FB1D /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		FA849A461BABA776004EACD8 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/Mac/Alamofire.framework; sourceTree = "<group>"; };
-		FACC9C651B557254005151F8 /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -221,7 +219,6 @@
 			children = (
 				FA5B33DB1AFF4FF6009F2F95 /* HypeMachineAPI.h */,
 				FA5B33F41AFF5286009F2F95 /* HypeMachineAPI.swift */,
-				FACC9C651B557254005151F8 /* Errors.swift */,
 				FA5B33F61AFF53E2009F2F95 /* Models */,
 				FA5B34101B001FBD009F2F95 /* Routers */,
 				FA107A7D1B03E5EA006FA015 /* Requests */,
@@ -472,7 +469,6 @@
 				FA5B34401B01024C009F2F95 /* MeRouter.swift in Sources */,
 				FA5B34301B00F934009F2F95 /* Artist.swift in Sources */,
 				FA107A901B042811006FA015 /* TracksRequests.swift in Sources */,
-				FACC9C661B557254005151F8 /* Errors.swift in Sources */,
 				FA4D18F31B0114730043A040 /* TagsRouter.swift in Sources */,
 				FA107A981B04494A006FA015 /* MeRequests.swift in Sources */,
 				FA5B34121B002013009F2F95 /* Router.swift in Sources */,
