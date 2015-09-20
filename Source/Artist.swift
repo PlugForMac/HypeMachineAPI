@@ -32,15 +32,15 @@ public final class Artist: NSObject, ResponseObjectSerializable, ResponseCollect
             return nil
         }
         
-        self.name = name
-        
-        if let thumbURLString = representation["thumb_url_artist"] as? String,
-            let thumbURL = NSURL(string: thumbURLString) {
-            self.thumbURL = thumbURL
-        } else {
-            self.thumbURL = nil
+        func urlForJSONKey(key: String) -> NSURL? {
+            guard let urlString = representation[key] as? String else {
+                return nil
+            }
+            return NSURL(string: urlString)
         }
         
+        self.name = name
+        self.thumbURL = urlForJSONKey("thumb_url_artist")
         self.cnt = representation["cnt"] as? Int
         self.rank = representation["rank"] as? Int
         

@@ -47,30 +47,29 @@ public final class User: NSObject, ResponseObjectSerializable, ResponseCollectio
             return nil
         }
         
+        func nonEmptyStringForJSONKey(key: String) -> String? {
+            guard let string = representation["key"] as? String else {
+                return nil
+            }
+            return string == "" ? nil : string
+        }
+        
+        func urlForJSONKey(key: String) -> NSURL? {
+            guard let urlString = representation[key] as? String else {
+                return nil
+            }
+            return NSURL(string: urlString)
+        }
+        
         self.username = username
-        
-        if let fullName = representation["fullname"] as? String {
-            self.fullName = fullName == "" ? nil : fullName
-        } else {
-            self.fullName = nil
-        }
-        
-        if let avatarURLString = representation["userpic"] as? String,
-            let avatarURL = NSURL(string: avatarURLString) {
-            self.avatarURL = avatarURL
-        } else {
-            self.avatarURL = nil
-        }
-        
+        self.fullName = nonEmptyStringForJSONKey("fullname")
+        self.avatarURL = urlForJSONKey("userpic")
         self.favoritesCount = favoritesCountInfo["item"] as? Int ?? 0
         self.favoritesCountNum = NSNumber(integer: favoritesCount)
-        
         self.followersCount = favoritesCountInfo["followers"] as? Int ?? 0
         self.followersCountNum = NSNumber(integer: followersCount)
-
         self.followingCount = favoritesCountInfo["user"] as? Int ?? 0
         self.followingCountNum = NSNumber(integer: followingCount)
-
         self.friend = representation["is_friend"] as? Bool
         self.follower = representation["is_follower"] as? Bool
         

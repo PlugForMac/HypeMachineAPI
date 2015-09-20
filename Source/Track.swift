@@ -78,34 +78,22 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
             return nil
         }
         
+        func urlForJSONKey(key: String) -> NSURL? {
+            guard let urlString = representation[key] as? String else {
+                return nil
+            }
+            return NSURL(string: urlString)
+        }
+        
         self.id = id
         self.artist = artist == "" ? "Unknown artist" : artist
         self.title = title == "" ? "Unknown track" : title
         self.loved = representation["ts_loved_me"] is Int
         self.lovedCount = lovedCount
         self.lovedCountNum = NSNumber(integer: lovedCount)
-        
-        if let thumbURLSmallString = representation["thumb_url"] as? String,
-            let thumbURLSmall = NSURL(string: thumbURLSmallString) {
-            self.thumbURLSmall = thumbURLSmall
-        } else {
-            self.thumbURLSmall = nil
-        }
-        
-        if let thumbURLMediumString = representation["thumb_url_medium"] as? String,
-            let thumbURLMedium = NSURL(string: thumbURLMediumString) {
-                self.thumbURLMedium = thumbURLMedium
-        } else {
-            self.thumbURLMedium = nil
-        }
-        
-        if let thumbURLLargeString = representation["thumb_url_large"] as? String,
-            let thumbURLLarge = NSURL(string: thumbURLLargeString) {
-                self.thumbURLLarge = thumbURLLarge
-        } else {
-            self.thumbURLLarge = nil
-        }
-        
+        self.thumbURLSmall = urlForJSONKey("thumb_url")
+        self.thumbURLMedium = urlForJSONKey("thumb_url_medium")
+        self.thumbURLLarge = urlForJSONKey("thumb_url_large")
         self.rank = representation["rank"] as? Int
         self.viaUser = representation["via_user"] as? String
         self.viaQuery = representation["via_query"] as? String
