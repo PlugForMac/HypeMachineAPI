@@ -26,19 +26,48 @@ public final class Blog: NSObject, ResponseObjectSerializable, ResponseCollectio
     }
     
     public required init?(response: NSHTTPURLResponse, representation: AnyObject) {
-        self.id = representation.valueForKeyPath("siteid") as! Int
-        self.name = representation.valueForKeyPath("sitename") as! String
-        let urlString = (representation.valueForKeyPath("siteurl") as! String)
-            .stringByReplacingOccurrencesOfString(" ", withString: "")
-        self.url = NSURL(string: urlString)!
-        self.followerCount = representation.valueForKeyPath("followers") as! Int
-        self.followerCountNum = NSNumber(integer: self.followerCount)
-        self.trackCount = representation.valueForKeyPath("total_tracks") as! Int
+        guard
+            let id = representation["siteid"] as? Int,
+            let name = representation["sitename"] as? String,
+            let urlString = representation["siteurl"] as? String,
+            let url = NSURL(string: urlString.stringByReplacingOccurrencesOfString(" ", withString: "")),
+            let followerCount = representation["followers"] as? Int,
+            let trackCount = representation["total_tracks"] as? Int,
+            let imageURLString = representation["blog_image"] as? String,
+            let imageURL = NSURL(string: imageURLString),
+            let imageURLSmallString = representation["blog_image_small"] as? String,
+            let imageURLSmall = NSURL(string: imageURLSmallString)
+        else {
+            // Shouldn't need this, probably a bug, delete later
+            self.id = 0
+            self.name = ""
+            self.url = NSURL()
+            self.followerCount = 0
+            self.followerCountNum = NSNumber()
+            self.trackCount = 0
+            self.trackCountNum = NSNumber()
+            self.imageURL = NSURL()
+            self.imageURLSmall = NSURL()
+            self.featured = false
+            self.following = false
+            super.init()
+            // Shouldn't need this, probably a bug, delete later
+            return nil
+        }
+        
+        self.id = id
+        self.name = name
+        self.url = url
+        self.followerCount = followerCount
+        self.followerCountNum = NSNumber(integer: followerCount)
+        self.trackCount = trackCount
         self.trackCountNum = NSNumber(integer: trackCount)
-        self.imageURL = NSURL(string: representation.valueForKeyPath("blog_image") as! String)!
-        self.imageURLSmall = NSURL(string: representation.valueForKeyPath("blog_image_small") as! String)!
-        self.featured = representation.valueForKeyPath("ts_featured") != nil
-        self.following = representation.valueForKeyPath("ts_loved_me") != nil
+        self.imageURL = imageURL
+        self.imageURLSmall = imageURLSmall
+        self.featured = representation["ts_featured"] != nil
+        self.following = representation["ts_loved_me"] != nil
+        
+        super.init()
     }
     
     public class func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Blog] {

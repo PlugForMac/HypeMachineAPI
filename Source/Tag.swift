@@ -17,12 +17,21 @@ public final class Tag: NSObject, ResponseObjectSerializable, ResponseCollection
     }
     
     public required init?(response: NSHTTPURLResponse, representation: AnyObject) {
-        self.name = representation.valueForKeyPath("tag_name") as! String
-        if let priorityJSON = representation.valueForKeyPath("priority") as? Bool {
-            self.priority = priorityJSON
-        } else {
+        guard
+            let name = representation["tag_name"] as? String
+        else {
+            // Shouldn't need this, probably a bug, delete later
+            self.name = ""
             self.priority = false
+            super.init()
+            // Shouldn't need this, probably a bug, delete later
+            return nil
         }
+        
+        self.name = name
+        self.priority = representation["priority"] as? Bool ?? false
+        
+        super.init()
     }
     
     public class func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Tag] {

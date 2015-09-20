@@ -19,16 +19,32 @@ public final class Artist: NSObject, ResponseObjectSerializable, ResponseCollect
     }
     
     public required init?(response: NSHTTPURLResponse, representation: AnyObject) {
-        self.name = representation.valueForKeyPath("artist") as! String
+        guard
+            let name = representation["artist"] as? String
+        else {
+            // Shouldn't need this, probably a bug, delete later
+            self.name = ""
+            self.thumbURL = nil
+            self.cnt = nil
+            self.rank = nil
+            super.init()
+            // Shouldn't need this, probably a bug, delete later
+            return nil
+        }
         
-        if let thumbURLString = representation.valueForKeyPath("thumb_url_artist") as? String {
-            self.thumbURL = NSURL(string: thumbURLString)
+        self.name = name
+        
+        if let thumbURLString = representation["thumb_url_artist"] as? String,
+            let thumbURL = NSURL(string: thumbURLString) {
+            self.thumbURL = thumbURL
         } else {
             self.thumbURL = nil
         }
         
-        self.cnt = representation.valueForKeyPath("cnt") as? Int
-        self.rank = representation.valueForKeyPath("rank") as? Int
+        self.cnt = representation["cnt"] as? Int
+        self.rank = representation["rank"] as? Int
+        
+        super.init()
     }
     
     public class func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Artist] {

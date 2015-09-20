@@ -31,75 +31,92 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
 
     public var loved: Bool
     
-
-    
     override public var description: String {
         return "<Track - artist: \(artist), title: \(title)>"
     }
     
     public required init?(response: NSHTTPURLResponse, representation: AnyObject) {
-        
-        self.id = representation.valueForKeyPath("itemid") as! String
-        
-        let artistJSON = representation.valueForKeyPath("artist") as? String
-        if artistJSON == nil || artistJSON == "" {
-            self.artist = "Unknown artist"
-        } else {
-            self.artist = artistJSON!
-        }
-        
-        let titleJSON = representation.valueForKeyPath("title") as? String
-        if titleJSON == nil || titleJSON == "" {
-            self.title = "Unknown track"
-        } else {
-            self.title = titleJSON!
-        }
-
-        if representation.valueForKeyPath("ts_loved_me") is Int {
-            self.loved = true
-        } else {
+        guard
+            let id = representation["itemid"] as? String,
+            let artist = representation["artist"] as? String,
+            let title = representation["title"] as? String,
+            let lovedCount = representation["loved_count"] as? Int,
+            let postedBy = representation["sitename"] as? String,
+            let postedById = representation["siteid"] as? Int,
+            let postedCount = representation["posted_count"] as? Int,
+            let datePostedInterval = representation["dateposted"] as? NSTimeInterval,
+            let postURLString = representation["posturl"] as? String,
+            let postURLStringEscaped = postURLString.stringByAddingPercentEncodingForURLQueryValue(),
+            let postURL = NSURL(string: postURLStringEscaped),
+            let iTunesURLString = representation["itunes_link"] as? String,
+            let iTunesURLStringEscaped = iTunesURLString.stringByAddingPercentEncodingForURLQueryValue(),
+            let iTunesURL = NSURL(string: iTunesURLStringEscaped)
+        else {
+            // Shouldn't need this, probably a bug, delete later
+            self.id = ""
+            self.artist = ""
+            self.title = ""
             self.loved = false
+            self.lovedCount = 0
+            self.lovedCountNum = NSNumber()
+            self.thumbURLSmall = nil
+            self.thumbURLMedium = nil
+            self.thumbURLLarge = nil
+            self.rank = 0
+            self.viaUser = ""
+            self.viaQuery = ""
+            self.postedBy = ""
+            self.postedById = 0
+            self.postedCount = 0
+            self.postedByDescription = ""
+            self.datePosted = NSDate()
+            self.audioUnavailable = false
+            self.postURL = NSURL()
+            self.iTunesURL = NSURL()
+            super.init()
+            // Shouldn't need this, probably a bug, delete later
+            return nil
         }
         
-        self.lovedCount = representation.valueForKeyPath("loved_count") as! Int
+        self.id = id
+        self.artist = artist == "" ? "Unknown artist" : artist
+        self.title = title == "" ? "Unknown track" : title
+        self.loved = representation["ts_loved_me"] is Int
+        self.lovedCount = lovedCount
         self.lovedCountNum = NSNumber(integer: lovedCount)
         
-        if let thumb_url = representation.valueForKeyPath("thumb_url") as? String {
-            self.thumbURLSmall = NSURL(string: thumb_url)
+        if let thumbURLSmallString = representation["thumb_url"] as? String,
+            let thumbURLSmall = NSURL(string: thumbURLSmallString) {
+            self.thumbURLSmall = thumbURLSmall
         } else {
             self.thumbURLSmall = nil
         }
         
-        if let thumb_url_medium = representation.valueForKeyPath("thumb_url_medium") as? String {
-            self.thumbURLMedium = NSURL(string: thumb_url_medium)
+        if let thumbURLMediumString = representation["thumb_url_medium"] as? String,
+            let thumbURLMedium = NSURL(string: thumbURLMediumString) {
+                self.thumbURLMedium = thumbURLMedium
         } else {
             self.thumbURLMedium = nil
         }
         
-        if let thumb_url_large = representation.valueForKeyPath("thumb_url_large") as? String {
-            self.thumbURLLarge = NSURL(string: thumb_url_large)
+        if let thumbURLLargeString = representation["thumb_url_large"] as? String,
+            let thumbURLLarge = NSURL(string: thumbURLLargeString) {
+                self.thumbURLLarge = thumbURLLarge
         } else {
             self.thumbURLLarge = nil
         }
         
-        self.rank = representation.valueForKeyPath("rank") as? Int
-        self.viaUser = representation.valueForKeyPath("via_user") as? String
-        self.viaQuery = representation.valueForKeyPath("via_query") as? String
-        self.postedBy = representation.valueForKeyPath("sitename") as! String
-        self.postedById = representation.valueForKeyPath("siteid") as! Int
-        self.postedCount = representation.valueForKeyPath("posted_count") as! Int
-        self.postedByDescription = (representation.valueForKeyPath("description") as? String) ?? "No description available"
-        self.datePosted = NSDate(timeIntervalSince1970: representation.valueForKeyPath("dateposted") as! NSTimeInterval)
-        if let pub_audio_unavail = representation.valueForKeyPath("pub_audio_unavail") as? Bool {
-            self.audioUnavailable = pub_audio_unavail
-        } else {
-            self.audioUnavailable = false
-        }
-        
-        let postURLString = (representation.valueForKeyPath("posturl") as! String).stringByAddingPercentEncodingForURLQueryValue()!
-        self.postURL = NSURL(string: postURLString)!
-        let iTunesURLString = (representation.valueForKeyPath("itunes_link") as! String).stringByAddingPercentEncodingForURLQueryValue()!
-        self.iTunesURL = NSURL(string: iTunesURLString)!
+        self.rank = representation["rank"] as? Int
+        self.viaUser = representation["via_user"] as? String
+        self.viaQuery = representation["via_query"] as? String
+        self.postedBy = postedBy
+        self.postedById = postedById
+        self.postedCount = postedCount
+        self.postedByDescription = (representation["description"] as? String) ?? "No description available"
+        self.datePosted = NSDate(timeIntervalSince1970: datePostedInterval)
+        self.audioUnavailable = representation["pub_audio_unavail"] as? Bool == true
+        self.postURL = postURL
+        self.iTunesURL = iTunesURL
         
         super.init()
     }

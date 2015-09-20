@@ -26,31 +26,55 @@ public final class User: NSObject, ResponseObjectSerializable, ResponseCollectio
     }
     
     public required init?(response: NSHTTPURLResponse, representation: AnyObject) {
-        self.username = representation.valueForKeyPath("username") as! String
-        let fullNameJSON = representation.valueForKeyPath("fullname") as? String
-        if fullNameJSON != nil && fullNameJSON != "" {
-            self.fullName = fullNameJSON
+        guard
+            let username = representation["username"] as? String,
+            let favoritesCountInfo = representation["favorites_count"] as? NSDictionary
+        else {
+            // Shouldn't need this, probably a bug, delete later
+            self.username = ""
+            self.fullName = nil
+            self.avatarURL = nil
+            self.favoritesCount = 0
+            self.favoritesCountNum = NSNumber()
+            self.followersCount = 0
+            self.followersCountNum = NSNumber()
+            self.followingCount = 0
+            self.followingCountNum = NSNumber()
+            self.friend = false
+            self.follower = false
+            super.init()
+            // Shouldn't need this, probably a bug, delete later
+            return nil
+        }
+        
+        self.username = username
+        
+        if let fullName = representation["fullname"] as? String {
+            self.fullName = fullName == "" ? nil : fullName
         } else {
             self.fullName = nil
         }
-        if let userpic = representation.valueForKeyPath("userpic") as? String {
-            self.avatarURL = NSURL(string: userpic)
+        
+        if let avatarURLString = representation["userpic"] as? String,
+            let avatarURL = NSURL(string: avatarURLString) {
+            self.avatarURL = avatarURL
         } else {
             self.avatarURL = nil
         }
-        let favoritesCountInfo = (representation.valueForKeyPath("favorites_count") as! NSDictionary)
         
-        self.favoritesCount = favoritesCountInfo.valueForKeyPath("item") as? Int ?? 0
+        self.favoritesCount = favoritesCountInfo["item"] as? Int ?? 0
         self.favoritesCountNum = NSNumber(integer: favoritesCount)
         
-        self.followersCount = favoritesCountInfo.valueForKeyPath("followers") as? Int ?? 0
+        self.followersCount = favoritesCountInfo["followers"] as? Int ?? 0
         self.followersCountNum = NSNumber(integer: followersCount)
 
-        self.followingCount = favoritesCountInfo.valueForKeyPath("user") as? Int ?? 0
+        self.followingCount = favoritesCountInfo["user"] as? Int ?? 0
         self.followingCountNum = NSNumber(integer: followingCount)
 
-        self.friend = representation.valueForKeyPath("is_friend") as? Bool
-        self.follower = representation.valueForKeyPath("is_follower") as? Bool
+        self.friend = representation["is_friend"] as? Bool
+        self.follower = representation["is_follower"] as? Bool
+        
+        super.init()
     }
     
     public class func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [User] {
