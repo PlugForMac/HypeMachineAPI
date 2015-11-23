@@ -24,7 +24,7 @@ extension Requests {
                     }
                     callback(Result.Success(UsernameAndToken(username: username, token: token)))
                 case .Failure(let data, let error):
-                    callback(Result.Failure(data, error))
+                    callback(parseHypeMachineErrorFromResult(Result.Failure(data, error)))
                 }
             }
         }

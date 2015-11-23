@@ -43,6 +43,8 @@ public func parseAPIErrorFromData(data: NSData?) -> NSError? {
         return NSError(domain: ErrorDomain, code: ErrorCodes.InvalidHMToken.rawValue, userInfo: userInfo)
     case "Wrong password":
         return NSError(domain: ErrorDomain, code: ErrorCodes.WrongPassword.rawValue, userInfo: userInfo)
+    case "Wrong username":
+        return NSError(domain: ErrorDomain, code: ErrorCodes.WrongUsername.rawValue, userInfo: userInfo)
     default:
         return NSError(domain: ErrorDomain, code: ErrorCodes.UnknownError.rawValue, userInfo: userInfo)
     }
@@ -53,5 +55,6 @@ let ErrorDomain = "HypeMachineAPI.ErrorDomain"
 public enum ErrorCodes: Int {
     case UnknownError
     case WrongPassword
+    case WrongUsername
     case InvalidHMToken
 }
