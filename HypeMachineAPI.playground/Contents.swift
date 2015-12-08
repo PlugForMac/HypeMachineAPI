@@ -1,13 +1,12 @@
 import XCPlayground
 import Foundation
-import Alamofire
 import HypeMachineAPI
 
 // Allow network requests to complete
-XCPSetExecutionShouldContinueIndefinitely()
+XCPlaygroundPage.currentPage.needsIndefiniteExecution = true
 
-Alamofire.request(Router.Tracks.Index(nil))
-    .responseCollection({(_,_, tracks: [Track]?, error) in
-        println(tracks)
-        println(error)
-    })
+func callback(result: Result<[Blog]>) {
+    print(result)
+}
+
+HypeMachineAPI.Requests.Blogs.index(optionalParams: nil, callback: callback)
