@@ -16,12 +16,15 @@ public final class Tag: NSObject, ResponseObjectSerializable, ResponseCollection
         return "<Tag - name: \(name), priority: \(priority)>"
     }
     
+    public required init(name: String, priority: Bool) {
+        self.name = name;
+        self.priority = priority;
+        super.init()
+    }
+    
     public required init?(response: NSHTTPURLResponse, representation: AnyObject) {
-        guard
-            let name = representation["tag_name"] as? String
-        else {
-            return nil
-        }
+        guard let name = representation["tag_name"] as? String
+        else { return nil }
         
         self.name = name
         self.priority = representation["priority"] as? Bool ?? false

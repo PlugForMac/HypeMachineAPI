@@ -53,7 +53,7 @@
 		FA5B34401B01024C009F2F95 /* MeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B343F1B01024C009F2F95 /* MeRouter.swift */; };
 		FA5B34411B010251009F2F95 /* UsersRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B343D1B010075009F2F95 /* UsersRouter.swift */; };
 		FA75E8231B563C180070FB1D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75E8221B563C180070FB1D /* String.swift */; };
-		FA849A471BABA776004EACD8 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA849A461BABA776004EACD8 /* Alamofire.framework */; };
+		FA848AAC1D3E7D6C00AC1262 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA849A461BABA776004EACD8 /* Alamofire.framework */; };
 		FA849A481BABC646004EACD8 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA849A461BABA776004EACD8 /* Alamofire.framework */; };
 		FABB1EBF1BABC7680068C03F /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA849A461BABA776004EACD8 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -140,7 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA849A471BABA776004EACD8 /* Alamofire.framework in Frameworks */,
+				FA848AAC1D3E7D6C00AC1262 /* Alamofire.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
