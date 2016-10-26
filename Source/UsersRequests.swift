@@ -11,22 +11,36 @@ import Alamofire
 
 extension Requests {
     public struct Users {
-        public static func show(username username: String, callback: (Result<User>)->Void) {
-            Alamofire.request(Router.Users.Show(username)).validate().responseObject { (request, response, result: Result<User>) in
-                callback(parseHypeMachineErrorFromResult(result))
-            }
+        public static func show(
+            username: String,
+            completionHandler: @escaping (DataResponse<User>)->Void
+            ) -> DataRequest
+        {
+            return Requests
+                .defaultRequest(Router.Users.show(username: username))
+                .responseObject(completionHandler: completionHandler)
         }
         
-        public static func showFavorites(username username: String, optionalParams: [String: AnyObject]?, callback: (Result<[Track]>)->Void) {
-            Alamofire.request(Router.Users.ShowFavorites(username, optionalParams)).validate().responseCollection { (request, response, result: Result<[Track]>) in
-                callback(parseHypeMachineErrorFromResult(result))
-            }
+        public static func showFavorites(
+            username: String,
+            params: Parameters? = nil,
+            completionHandler: @escaping (DataResponse<[Track]>)->Void
+            ) -> DataRequest
+        {
+            return Requests
+                .defaultRequest(Router.Users.showFavorites(username: username, params: params))
+                .responseCollection(completionHandler: completionHandler)
         }
         
-        public static func showFriends(username username: String, optionalParams: [String: AnyObject]?, callback: (Result<[User]>)->Void) {
-            Alamofire.request(Router.Users.ShowFriends(username, optionalParams)).validate().responseCollection { (request, response, result: Result<[User]>) in
-                callback(parseHypeMachineErrorFromResult(result))
-            }
+        public static func showFriends(
+            username: String,
+            params: Parameters? = nil,
+            completionHandler: @escaping (DataResponse<[User]>)->Void
+            ) -> DataRequest
+        {
+            return Requests
+                .defaultRequest(Router.Users.showFriends(username: username, params: params))
+                .responseCollection(completionHandler: completionHandler)
         }
     }
 }

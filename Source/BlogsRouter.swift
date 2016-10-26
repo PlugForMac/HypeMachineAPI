@@ -12,45 +12,45 @@ import Alamofire
 extension Router {
     public enum Blogs: URLRequestConvertible {
         
-        case Index([String: AnyObject]?)
-        case Show(Int)
-        case ShowTracks(Int, [String: AnyObject]?)
+        case index(params: Parameters?)
+        case show(id: Int)
+        case showTracks(id: Int, params: Parameters?)
         
-        var method: Alamofire.Method {
+        var method: HTTPMethod {
             switch self {
-            case .Index:
-                return .GET
-            case .Show:
-                return .GET
-            case .ShowTracks:
-                return .GET
+            case .index:
+                return .get
+            case .show:
+                return .get
+            case .showTracks:
+                return .get
             }
         }
         
         var path: String {
             switch self {
-            case .Index:
+            case .index:
                 return "/blogs"
-            case .Show(let id):
+            case .show(let id):
                 return "/blogs/\(id)"
-            case .ShowTracks(let id, _):
+            case .showTracks(let id, _):
                 return "/blogs/\(id)/tracks"
             }
         }
         
-        var params: [String: AnyObject]? {
+        var params: Parameters? {
             switch self {
-            case .Index(let optionalParams):
+            case .index(let optionalParams):
                 return optionalParams
-            case .Show:
+            case .show:
                 return nil
-            case .ShowTracks(_, let optionalParams):
+            case .showTracks(_, let optionalParams):
                 return optionalParams
             }
         }
         
-        public var URLRequest: NSMutableURLRequest {
-            return Router.URLRequest(method: method, path: path, params: params)
+        public func asURLRequest() throws -> URLRequest {
+            return try Router.GenerateURLRequest(method: method, path: path, params: params)
         }
     }
 }

@@ -12,48 +12,48 @@ import Alamofire
 extension Router {
     public enum Users: URLRequestConvertible {
         
-        case Show(String)
-        case ShowFavorites(String, [String: AnyObject]?)
-        case ShowFriends(String, [String: AnyObject]?)
+        case show(username: String)
+        case showFavorites(username: String, params: Parameters?)
+        case showFriends(username: String, params: Parameters?)
         
-        var method: Alamofire.Method {
+        var method: HTTPMethod {
             switch self {
-            case .Show:
-                return .GET
-            case .ShowFavorites:
-                return .GET
-            case .ShowFriends:
-                return .GET
+            case .show:
+                return .get
+            case .showFavorites:
+                return .get
+            case .showFriends:
+                return .get
             }
         }
         
         var path: String {
             switch self {
-            case .Show(let username):
+            case .show(let username):
                 let escapedUsername = username.stringByAddingPercentEncodingForURLQueryValue()!
                 return "/users/\(escapedUsername)"
-            case .ShowFavorites(let username, _):
+            case .showFavorites(let username, _):
                 let escapedUsername = username.stringByAddingPercentEncodingForURLQueryValue()!
                 return "/users/\(escapedUsername)/favorites"
-            case .ShowFriends(let username, _):
+            case .showFriends(let username, _):
                 let escapedUsername = username.stringByAddingPercentEncodingForURLQueryValue()!
                 return "/users/\(escapedUsername)/friends"
             }
         }
         
-        var params: [String: AnyObject]? {
+        var params: Parameters? {
             switch self {
-            case .Show:
+            case .show:
                 return nil
-            case .ShowFavorites(_, let optionalParams):
+            case .showFavorites(_, let optionalParams):
                 return optionalParams
-            case .ShowFriends(_, let optionalParams):
+            case .showFriends(_, let optionalParams):
                 return optionalParams
             }
         }
         
-        public var URLRequest: NSMutableURLRequest {
-            return Router.URLRequest(method: method, path: path, params: params)
+        public func asURLRequest() throws -> URLRequest {
+            return try Router.GenerateURLRequest(method: method, path: path, params: params)
         }
     }
 }

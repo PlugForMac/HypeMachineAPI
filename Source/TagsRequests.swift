@@ -11,18 +11,24 @@ import Alamofire
 
 extension Requests {
     public struct Tags {
-        public static func index(callback: (Result<[Tag]>)->Void) {
-            Alamofire.request(Router.Tags.Index).validate().responseCollection {
-                (request, response, result: Result<[Tag]>) in
-                callback(result)
-            }
+        public static func index(
+            _ completionHandler: @escaping (DataResponse<[Tag]>)->Void
+            ) -> DataRequest
+        {
+            return Requests
+                .defaultRequest(Router.Tags.index)
+                .responseCollection(completionHandler: completionHandler)
         }
         
-        public static func showTracks(name name: String, optionalParams: [String: AnyObject]?, callback: (Result<[Track]>)->Void) {
-            Alamofire.request(Router.Tags.ShowTracks(name, optionalParams)).validate().responseCollection {
-                (request, response, result: Result<[Track]>) in
-                callback(result)
-            }
+        public static func showTracks(
+            name: String,
+            params: Parameters? = nil,
+            completionHandler: @escaping (DataResponse<[Track]>)->Void
+            ) -> DataRequest
+        {
+            return Requests
+                .defaultRequest(Router.Tags.showTracks(name: name, params: params))
+                .responseCollection(completionHandler: completionHandler)
         }
     }
 }

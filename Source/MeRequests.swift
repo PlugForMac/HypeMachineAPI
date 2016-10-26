@@ -11,93 +11,100 @@ import Alamofire
 
 extension Requests {
     public struct Me {
-        public static func favorites(optionalParams optionalParams: [String: AnyObject]?, callback: (Result<[Track]>)->Void) {
-            Alamofire.request(Router.Me.Favorites(optionalParams)).validate().responseCollection {
-                (request, response, result: Result<[Track]>) in
-                callback(parseHypeMachineErrorFromResult(result))
-            }
+        public static func favorites(
+            params: Parameters? = nil,
+            completionHandler: @escaping (DataResponse<[Track]>)->Void
+            ) -> DataRequest
+        {
+            return Requests
+                .defaultRequest(Router.Me.favorites(params: params))
+                .responseCollection(completionHandler: completionHandler)
         }
         
-        public static func toggleTrackFavorite(id id: String, optionalParams: [String: AnyObject]?, callback: (Result<Bool>)->Void) {
-            Alamofire.request(Router.Me.ToggleTrackFavorite(id, optionalParams)).validate().responseString {
-                (request, response, result) in
-                callback(convertStringResultToBoolResult(parseHypeMachineErrorFromResult(result)))
-            }
+        public static func toggleTrackFavorite(
+            id: String,
+            params: Parameters? = nil,
+            completionHandler: @escaping (DataResponse<Bool>)->Void
+            ) -> DataRequest
+        {
+            return Requests
+                .defaultRequest(Router.Me.toggleTrackFavorite(id: id, params: params))
+                .responseBool(completionHandler: completionHandler)
         }
         
-        public static func toggleBlogFavorite(id id: Int, optionalParams: [String: AnyObject]?, callback: (Result<Bool>)->Void) {
-            Alamofire.request(Router.Me.ToggleBlogFavorite(id, optionalParams)).validate().responseString {
-                (request, response, result) in
-                callback(convertStringResultToBoolResult(parseHypeMachineErrorFromResult(result)))
-            }
+        public static func toggleBlogFavorite(
+            id: Int,
+            params: Parameters? = nil,
+            completionHandler: @escaping (DataResponse<Bool>)->Void
+            ) -> DataRequest
+        {
+            return Requests
+                .defaultRequest(Router.Me.toggleBlogFavorite(id: id, params: params))
+                .responseBool(completionHandler: completionHandler)
         }
         
-        public static func toggleUserFavorite(id id: String, optionalParams: [String: AnyObject]?, callback: (Result<Bool>)->Void) {
-            Alamofire.request(Router.Me.ToggleUserFavorite(id, optionalParams)).validate().responseString {
-                (request, response, result) in
-                callback(convertStringResultToBoolResult(parseHypeMachineErrorFromResult(result)))
-            }
+        public static func toggleUserFavorite(
+            id: String,
+            params: Parameters? = nil,
+            completionHandler: @escaping (DataResponse<Bool>)->Void
+            ) -> DataRequest
+        {
+            return Requests
+                .defaultRequest(Router.Me.toggleUserFavorite(id: id, params: params))
+                .responseBool(completionHandler: completionHandler)
         }
         
-        public static func playlistNames(callback: (Result<[String]>)->Void) {
-            Alamofire.request(Router.Me.PlaylistNames).validate().responseJSON {
-                (request, response, result) in
-                callback(convertJSONResultToStringArrayResult(parseHypeMachineErrorFromResult(result)))
-            }
+        public static func playlistNames(
+            _ completionHandler: @escaping (DataResponse<[String]>)->Void
+            ) -> DataRequest
+        {
+            return Requests
+                .defaultRequest(Router.Me.playlistNames)
+                .responseStringArray(completionHandler: completionHandler)
         }
         
         // Playlist id's are 1...3
-        public static func showPlaylist(id id: Int, optionalParams: [String: AnyObject]?, callback: (Result<[Track]>)->Void) {
-            Alamofire.request(Router.Me.ShowPlaylist(id, optionalParams)).validate().responseCollection {
-                (request, response, result: Result<[Track]>) in
-                callback(parseHypeMachineErrorFromResult(result))
-            }
+        public static func showPlaylist(
+            id: Int,
+            params: Parameters? = nil,
+            completionHandler: @escaping (DataResponse<[Track]>)->Void
+            ) -> DataRequest
+        {
+            return Requests
+                .defaultRequest(Router.Me.showPlaylist(id: id, params: params))
+                .responseCollection(completionHandler: completionHandler)
         }
         
-        public static func postHistory(id id: String, position: Int, optionalParams: [String: AnyObject]?, callback: (Result<String>)->Void) {
-            Alamofire.request(Router.Me.PostHistory(id, position, optionalParams)).validate().responseString {
-                (request, response, result) in
-                callback(parseHypeMachineErrorFromResult(result))
-            }
+        public static func postHistory(
+            id: String,
+            position: Int,
+            params: Parameters? = nil,
+            completionHandler: @escaping (DataResponse<String>)->Void
+            ) -> DataRequest
+        {
+            return Requests
+                .defaultRequest(Router.Me.postHistory(id: id, position: position, params: params))
+                .responseString(completionHandler: completionHandler)
         }
         
-        public static func friends(optionalParams optionalParams: [String: AnyObject]?, callback: (Result<[User]>)->Void) {
-            Alamofire.request(Router.Me.Friends(optionalParams)).validate().responseCollection {
-                (request, response, result: Result<[User]>) in
-                callback(parseHypeMachineErrorFromResult(result))
-            }
+        public static func friends(
+            params: Parameters? = nil,
+            completionHandler: @escaping (DataResponse<[User]>)->Void
+            ) -> DataRequest
+        {
+            return Requests
+                .defaultRequest(Router.Me.friends(params: params))
+                .responseCollection(completionHandler: completionHandler)
         }
         
-        public static func feed(optionalParams optionalParams: [String: AnyObject]?, callback: (Result<[Track]>)->Void) {
-            Alamofire.request(Router.Me.Feed(optionalParams)).validate().responseCollection {
-                (request, response, result: Result<[Track]>) in
-                callback(parseHypeMachineErrorFromResult(result))
-            }
-        }
-        
-        private static func convertStringResultToBoolResult(result: Result<String>) -> Result<Bool> {
-            switch result {
-            case .Success(let string):
-                guard string == "0" || string == "1" else {
-                    return Result.Failure(nil, Requests.Errors.CantParseResponse)
-                }
-                let favorited = string == "1"
-                return Result.Success(favorited)
-            case .Failure(let data, let error):
-                return Result.Failure(data, error)
-            }
-        }
-        
-        private static func convertJSONResultToStringArrayResult(result: Result<AnyObject>) -> Result<[String]> {
-            switch result {
-            case .Success(let JSON):
-                guard let stringArray = JSON as? [String] else {
-                    return Result.Failure(nil, Requests.Errors.CantParseResponse)
-                }
-                return Result.Success(stringArray)
-            case .Failure(let data, let error):
-                return Result.Failure(data, error)
-            }
+        public static func feed(
+            params: Parameters? = nil,
+            completionHandler: @escaping (DataResponse<[Track]>)->Void
+            ) -> DataRequest
+        {
+            return Requests
+                .defaultRequest(Router.Me.feed(params: params))
+                .responseCollection(completionHandler: completionHandler)
         }
     }
 }

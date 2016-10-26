@@ -11,25 +11,34 @@ import Alamofire
 
 extension Requests {
     public struct Tracks {
-        public static func index(optionalParams optionalParams: [String: AnyObject]?, callback: (Result<[Track]>)->Void) {
-            Alamofire.request(Router.Tracks.Index(optionalParams)).validate().responseCollection {
-                (request, response, result: Result<[Track]>) in
-                callback(result)
-            }
+        public static func index(
+            params: Parameters? = nil,
+            completionHandler: @escaping (DataResponse<[Track]>)->Void
+            ) -> DataRequest
+        {
+            return Requests
+                .defaultRequest(Router.Tracks.index(params: params))
+                .responseCollection(completionHandler: completionHandler)
         }
         
-        public static func show(id id: String, callback: (Result<Track>)->Void) {
-            Alamofire.request(Router.Tracks.Show(id)).validate().responseObject {
-                (request, response, result: Result<Track>) in
-                callback(result)
-            }
+        public static func show(
+            id: String,
+            completionHandler: @escaping (DataResponse<Track>)->Void
+            ) -> DataRequest
+        {
+            return Requests
+                .defaultRequest(Router.Tracks.show(id: id))
+                .responseObject(completionHandler: completionHandler)
         }
         
-        public static func popular(optionalParams optionalParams: [String: AnyObject]?, callback: (Result<[Track]>)->Void) {
-            Alamofire.request(Router.Tracks.Popular(optionalParams)).validate().responseCollection {
-                (request, response, result: Result<[Track]>) in
-                callback(result)
-            }
+        public static func popular(
+            params: Parameters? = nil,
+            completionHandler: @escaping (DataResponse<[Track]>)->Void
+            ) -> DataRequest
+        {
+            return Requests
+                .defaultRequest(Router.Tracks.popular(params: params))
+                .responseCollection(completionHandler: completionHandler)
         }
     }
 }

@@ -8,41 +8,26 @@
 
 import Cocoa
 
-public final class Tag: NSObject, ResponseObjectSerializable, ResponseCollectionSerializable {
+public struct Tag: ResponseObjectSerializable, ResponseCollectionSerializable, CustomStringConvertible {
     public let name: String
     public let priority: Bool
     
-    override public var description: String {
-        return "<Tag - name: \(name), priority: \(priority)>"
+    public var description: String {
+        return "Tag: { name: \(name), priority: \(priority) }"
     }
     
-    public required init(name: String, priority: Bool) {
+    public init(name: String, priority: Bool) {
         self.name = name;
         self.priority = priority;
-        super.init()
     }
     
-    public required init?(response: NSHTTPURLResponse, representation: AnyObject) {
-        guard let name = representation["tag_name"] as? String
+    public init?(response: HTTPURLResponse, representation: Any) {
+        guard
+            let representation = representation as? [String: Any],
+            let name = representation["tag_name"] as? String
         else { return nil }
         
         self.name = name
         self.priority = representation["priority"] as? Bool ?? false
-        
-        super.init()
-    }
-    
-    public class func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Tag] {
-        var tags = [Tag]()
-        
-        if let collectionJSON = representation as? [NSDictionary] {
-            for recordJSON in collectionJSON {
-                if let tag = Tag(response: response, representation: recordJSON) {
-                    tags.append(tag)
-                }
-            }
-        }
-        
-        return tags
     }
 }

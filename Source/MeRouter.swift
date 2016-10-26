@@ -12,87 +12,87 @@ import Alamofire
 extension Router {
     public enum Me: URLRequestConvertible {
         
-        case Favorites([String: AnyObject]?)
-        case ToggleTrackFavorite(String, [String: AnyObject]?)
-        case ToggleBlogFavorite(Int, [String: AnyObject]?)
-        case ToggleUserFavorite(String, [String: AnyObject]?)
-        case PlaylistNames
-        case ShowPlaylist(Int, [String: AnyObject]?)
-        case PostHistory(String, Int, [String: AnyObject]?)
-        case Friends([String: AnyObject]?)
-        case Feed([String: AnyObject]?)
+        case favorites(params: Parameters?)
+        case toggleTrackFavorite(id: String, params: Parameters?)
+        case toggleBlogFavorite(id: Int, params: Parameters?)
+        case toggleUserFavorite(id: String, params: Parameters?)
+        case playlistNames
+        case showPlaylist(id: Int, params: Parameters?)
+        case postHistory(id: String, position: Int, params: Parameters?)
+        case friends(params: Parameters?)
+        case feed(params: Parameters?)
         
-        var method: Alamofire.Method {
+        var method: HTTPMethod {
             switch self {
-            case .Favorites:
-                return .GET
-            case .ToggleTrackFavorite:
-                return .POST
-            case .ToggleBlogFavorite:
-                return .POST
-            case .ToggleUserFavorite:
-                return .POST
-            case PlaylistNames:
-                return .GET
-            case ShowPlaylist:
-                return .GET
-            case PostHistory:
-                return .POST
-            case .Friends:
-                return .GET
-            case .Feed:
-                return .GET
+            case .favorites:
+                return .get
+            case .toggleTrackFavorite:
+                return .post
+            case .toggleBlogFavorite:
+                return .post
+            case .toggleUserFavorite:
+                return .post
+            case .playlistNames:
+                return .get
+            case .showPlaylist:
+                return .get
+            case .postHistory:
+                return .post
+            case .friends:
+                return .get
+            case .feed:
+                return .get
             }
         }
         
         var path: String {
             switch self {
-            case .Favorites:
+            case .favorites:
                 return "/me/favorites"
-            case .ToggleTrackFavorite:
+            case .toggleTrackFavorite:
                 return "/me/favorites"
-            case .ToggleBlogFavorite:
+            case .toggleBlogFavorite:
                 return "/me/favorites"
-            case .ToggleUserFavorite:
+            case .toggleUserFavorite:
                 return "/me/favorites"
-            case PlaylistNames:
+            case .playlistNames:
                 return "/me/playlist_names"
-            case ShowPlaylist(let id, _):
+            case .showPlaylist(let id, _):
                 return "/me/playlists/\(id)"
-            case PostHistory:
+            case .postHistory:
                 return "/me/history"
-            case .Friends:
+            case .friends:
                 return "/me/friends"
-            case .Feed:
+            case .feed:
                 return "/me/feed"
             }
         }
         
-        var params: [String: AnyObject]? {
+        var params: Parameters? {
             switch self {
-            case .Favorites(let optionalParams):
+            case .favorites(let optionalParams):
                 return optionalParams
-            case .ToggleTrackFavorite(let id, let optionalParams):
+            case .toggleTrackFavorite(let id, let optionalParams):
                 return ["val": id, "type": "item"].merge(optionalParams)
-            case .ToggleBlogFavorite(let id, let optionalParams):
+            case .toggleBlogFavorite(let id, let optionalParams):
                 return ["val": id, "type": "site"].merge(optionalParams)
-            case .ToggleUserFavorite(let id, let optionalParams):
+            case .toggleUserFavorite(let id, let optionalParams):
                 return ["val": id, "type": "user"].merge(optionalParams)
-            case PlaylistNames:
+            case .playlistNames:
                 return nil
-            case ShowPlaylist(_, let optionalParams):
+            case .showPlaylist(_, let optionalParams):
                 return optionalParams
-            case PostHistory(let id, let position, let optionalParams):
+            case .postHistory(let id, let position, let optionalParams):
                 return ["type": "listen", "itemid": id, "pos": position].merge(optionalParams)
-            case .Friends(let optionalParams):
+            case .friends(let optionalParams):
                 return optionalParams
-            case .Feed(let optionalParams):
+            case .feed(let optionalParams):
                 return optionalParams
             }
         }
         
-        public var URLRequest: NSMutableURLRequest {
-            return Router.URLRequest(method: method, path: path, params: params)
+        public func asURLRequest() throws -> URLRequest {
+            return try Router.GenerateURLRequest(method: method, path: path, params: params)
         }
     }
 }

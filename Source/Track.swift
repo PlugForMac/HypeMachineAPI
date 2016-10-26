@@ -8,15 +8,15 @@
 
 import Cocoa
 
-public final class Track: NSObject, ResponseObjectSerializable, ResponseCollectionSerializable {
+public struct Track: ResponseObjectSerializable, ResponseCollectionSerializable, CustomStringConvertible {
     public let id: String
     public let artist: String
     public let title: String
     public let lovedCount: Int
     public let lovedCountNum: NSNumber
-    public let thumbURLSmall: NSURL?
-    public let thumbURLMedium: NSURL?
-    public let thumbURLLarge: NSURL?
+    public let thumbURLSmall: URL?
+    public let thumbURLMedium: URL?
+    public let thumbURLLarge: URL?
     public let rank: Int?
     public let viaUser: String?
     public let viaQuery: String?
@@ -24,20 +24,21 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
     public let postedById: Int
     public let postedCount: Int
     public let postedByDescription: String
-    public let datePosted: NSDate
+    public let datePosted: Date
     public let audioUnavailable: Bool
-    public let postURL: NSURL
-    public let iTunesURL: NSURL
+    public let postURL: URL
+    public let iTunesURL: URL
     public let mediaType: String?
 
     public var loved: Bool
     
-    override public var description: String {
-        return "<Track - artist: \(artist), title: \(title)>"
+    public var description: String {
+        return "Track: { artist: \(artist), title: \(title) }"
     }
     
-    public required init?(response: NSHTTPURLResponse, representation: AnyObject) {
+    public init?(response: HTTPURLResponse, representation: Any) {
         guard
+            let representation = representation as? [String: Any],
             let id = representation["itemid"] as? String,
             let artist = representation["artist"] as? String,
             let title = representation["title"] as? String,
@@ -45,22 +46,20 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
             let postedBy = representation["sitename"] as? String,
             let postedById = representation["siteid"] as? Int,
             let postedCount = representation["posted_count"] as? Int,
-            let datePostedInterval = representation["dateposted"] as? NSTimeInterval,
+            let datePostedInterval = representation["dateposted"] as? TimeInterval,
             let postURLString = representation["posturl"] as? String,
             let postURLStringEscaped = postURLString.stringByAddingPercentEncodingForURLQueryValue(),
-            let postURL = NSURL(string: postURLStringEscaped),
+            let postURL = URL(string: postURLStringEscaped),
             let iTunesURLString = representation["itunes_link"] as? String,
             let iTunesURLStringEscaped = iTunesURLString.stringByAddingPercentEncodingForURLQueryValue(),
-            let iTunesURL = NSURL(string: iTunesURLStringEscaped)
-        else {
-            return nil
-        }
+            let iTunesURL = URL(string: iTunesURLStringEscaped)
+        else { return nil }
         
-        func urlForJSONKey(key: String) -> NSURL? {
+        func urlForJSONKey(_ key: String) -> URL? {
             guard let urlString = representation[key] as? String else {
                 return nil
             }
-            return NSURL(string: urlString)
+            return URL(string: urlString)
         }
         
         self.id = id
@@ -68,7 +67,7 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
         self.title = title == "" ? "Unknown track" : title
         self.loved = representation["ts_loved_me"] is Int
         self.lovedCount = lovedCount
-        self.lovedCountNum = NSNumber(integer: lovedCount)
+        self.lovedCountNum = NSNumber(value: lovedCount as Int)
         self.thumbURLSmall = urlForJSONKey("thumb_url")
         self.thumbURLMedium = urlForJSONKey("thumb_url_medium")
         self.thumbURLLarge = urlForJSONKey("thumb_url_large")
@@ -79,40 +78,24 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
         self.postedById = postedById
         self.postedCount = postedCount
         self.postedByDescription = (representation["description"] as? String) ?? "No description available"
-        self.datePosted = NSDate(timeIntervalSince1970: datePostedInterval)
+        self.datePosted = Date(timeIntervalSince1970: datePostedInterval)
         self.audioUnavailable = representation["pub_audio_unavail"] as? Bool == true
         self.postURL = postURL
         self.iTunesURL = iTunesURL
         self.mediaType = representation["media_type"] as? String
-        
-        super.init()
     }
     
-    public class func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Track] {
-        var tracks = [Track]()
-        
-        if let collectionJSON = representation as? [NSDictionary] {
-            for recordJSON in collectionJSON {
-                if let track = Track(response: response, representation: recordJSON) {
-                    tracks.append(track)
-                }
-            }
-        }
-        
-        return tracks
-    }
-    
-    public func mediaURL() -> NSURL {
+    public func mediaURL() -> URL {
         var mediaLinkString = "https://hypem.com/serve/public/\(id)"
         if apiKey != nil {
             mediaLinkString += "?key=\(apiKey!)"
         }
-        return NSURL(string: mediaLinkString)!
+        return URL(string: mediaLinkString)!
     }
     
-    public func thumbURLWithPreferedSize(size: Track.ImageSize) -> NSURL {
-        switch size {
-        case .Large:
+    public func thumbURL(preferedSize: ImageSize) -> URL {
+        switch preferedSize {
+        case .large:
             if thumbURLLarge != nil {
                 return thumbURLLarge!
             } else if thumbURLMedium != nil {
@@ -120,7 +103,7 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
             } else {
                 return thumbURLSmall!
             }
-        case .Medium:
+        case .medium:
             if thumbURLMedium != nil {
                 return thumbURLMedium!
             } else if thumbURLLarge != nil {
@@ -128,7 +111,7 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
             } else {
                 return thumbURLSmall!
             }
-        case .Small:
+        case .small:
             if thumbURLSmall != nil {
                 return thumbURLSmall!
             } else if thumbURLMedium != nil {
@@ -139,13 +122,13 @@ public final class Track: NSObject, ResponseObjectSerializable, ResponseCollecti
         }
     }
     
-    public func hypeMachineURL() -> NSURL {
-        return NSURL(string: "http://hypem.com/track/\(id)")!
+    public func hypeMachineURL() -> URL {
+        return URL(string: "http://hypem.com/track/\(id)")!
     }
     
     public enum ImageSize {
-        case Small
-        case Medium
-        case Large
+        case small
+        case medium
+        case large
     }
 }

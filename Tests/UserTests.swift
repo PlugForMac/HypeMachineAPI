@@ -8,7 +8,7 @@
 
 import Cocoa
 import XCTest
-import HypeMachineAPI
+@testable import HypeMachineAPI
 
 class UserTests: XCTestCase {
     override func setUp() {
@@ -20,7 +20,7 @@ class UserTests: XCTestCase {
     
     func testBuildArtist() {
         let json: AnyObject = Helpers.loadJSONFixtureFile("User", ofType: "json")
-        let user = HypeMachineAPI.User(response: NSHTTPURLResponse(), representation: json)
+        let user = HypeMachineAPI.User(response: HTTPURLResponse(), representation: json)
         
         XCTAssertNotNil(user)
         XCTAssert(user!.username == "alex_marchant")
@@ -28,7 +28,7 @@ class UserTests: XCTestCase {
     
     func testBuildArtistCollection() {
         let json: AnyObject = Helpers.loadJSONFixtureFile("Users", ofType: "json")
-        let users = HypeMachineAPI.User.collection(response: NSHTTPURLResponse(), representation: json)
+        let users = HypeMachineAPI.User.collection(from: HTTPURLResponse(), withRepresentation: json)
         
         XCTAssertNotNil(users)
         XCTAssert(users.count == 3)

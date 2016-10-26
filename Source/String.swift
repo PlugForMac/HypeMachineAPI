@@ -10,9 +10,9 @@ import Cocoa
 
 extension String {
     func stringByAddingPercentEncodingForURLQueryValue() -> String? {
-        let characterSet = NSMutableCharacterSet.alphanumericCharacterSet()
-        characterSet.addCharactersInString("-._~:/")
+        let characterSet = NSMutableCharacterSet.alphanumeric()
+        characterSet.addCharacters(in: "-._~:/")
         
-        return stringByAddingPercentEncodingWithAllowedCharacters(characterSet)
+        return addingPercentEncoding(withAllowedCharacters: characterSet as CharacterSet)
     }
 }

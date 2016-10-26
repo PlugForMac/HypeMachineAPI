@@ -8,10 +8,10 @@
 
 import Cocoa
 
-public final class User: NSObject, ResponseObjectSerializable, ResponseCollectionSerializable {
+public struct User: ResponseObjectSerializable, ResponseCollectionSerializable, CustomStringConvertible {
     public let username: String
     public let fullName: String?
-    public let avatarURL: NSURL?
+    public let avatarURL: URL?
     public let favoritesCount: Int
     public let favoritesCountNum: NSNumber
     public let followersCount: Int
@@ -21,58 +21,41 @@ public final class User: NSObject, ResponseObjectSerializable, ResponseCollectio
     public var friend: Bool?
     public var follower: Bool?
     
-    override public var description: String {
-        return "<User - username: \(username), fullName: \(fullName)>"
+    public var description: String {
+        return "User: { username: \(username), fullName: \(fullName) }"
     }
     
-    public required init?(response: NSHTTPURLResponse, representation: AnyObject) {
+    public init?(response: HTTPURLResponse, representation: Any) {
         guard
+            let representation = representation as? [String: Any],
             let username = representation["username"] as? String,
             let favoritesCountInfo = representation["favorites_count"] as? NSDictionary
-        else {
-            return nil
-        }
+        else { return nil }
         
-        func nonEmptyStringForJSONKey(key: String) -> String? {
+        func nonEmptyStringForJSONKey(_ key: String) -> String? {
             guard let string = representation["key"] as? String else {
                 return nil
             }
             return string == "" ? nil : string
         }
         
-        func urlForJSONKey(key: String) -> NSURL? {
+        func urlForJSONKey(_ key: String) -> URL? {
             guard let urlString = representation[key] as? String else {
                 return nil
             }
-            return NSURL(string: urlString)
+            return URL(string: urlString)
         }
         
         self.username = username
         self.fullName = nonEmptyStringForJSONKey("fullname")
         self.avatarURL = urlForJSONKey("userpic")
         self.favoritesCount = favoritesCountInfo["item"] as? Int ?? 0
-        self.favoritesCountNum = NSNumber(integer: favoritesCount)
+        self.favoritesCountNum = NSNumber(value: favoritesCount as Int)
         self.followersCount = favoritesCountInfo["followers"] as? Int ?? 0
-        self.followersCountNum = NSNumber(integer: followersCount)
+        self.followersCountNum = NSNumber(value: followersCount as Int)
         self.followingCount = favoritesCountInfo["user"] as? Int ?? 0
-        self.followingCountNum = NSNumber(integer: followingCount)
+        self.followingCountNum = NSNumber(value: followingCount as Int)
         self.friend = representation["is_friend"] as? Bool
         self.follower = representation["is_follower"] as? Bool
-        
-        super.init()
-    }
-    
-    public class func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [User] {
-        var users = [User]()
-        
-        if let collectionJSON = representation as? [NSDictionary] {
-            for recordJSON in collectionJSON {
-                if let user = User(response: response, representation: recordJSON) {
-                    users.append(user)
-                }
-            }
-        }
-        
-        return users
     }
 }

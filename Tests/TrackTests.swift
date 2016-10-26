@@ -8,7 +8,7 @@
 
 import Cocoa
 import XCTest
-import HypeMachineAPI
+@testable import HypeMachineAPI
 
 class TrackTests: XCTestCase {
     override func setUp() {
@@ -20,7 +20,7 @@ class TrackTests: XCTestCase {
 
     func testBuildTrack() {
         let json: AnyObject = Helpers.loadJSONFixtureFile("Track", ofType: "json")
-        let track = HypeMachineAPI.Track(response: NSHTTPURLResponse(), representation: json)
+        let track = HypeMachineAPI.Track(response: HTTPURLResponse(), representation: json)
         
         XCTAssertNotNil(track)
         XCTAssert(track!.id == "2b8fz")
@@ -28,7 +28,7 @@ class TrackTests: XCTestCase {
     
     func testBuildTrackCollection() {
         let json: AnyObject = Helpers.loadJSONFixtureFile("Tracks", ofType: "json")
-        let tracks = HypeMachineAPI.Track.collection(response: NSHTTPURLResponse(), representation: json)
+        let tracks = HypeMachineAPI.Track.collection(from: HTTPURLResponse(), withRepresentation: json)
         
         XCTAssertNotNil(tracks)
         XCTAssert(tracks.count == 3)

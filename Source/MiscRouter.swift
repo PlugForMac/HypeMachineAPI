@@ -12,35 +12,35 @@ import Alamofire
 extension Router {
     public enum Misc: URLRequestConvertible {
         
-        case GetToken(String, String)
+        case getToken(usernameOrEmail: String, password: String)
         
-        var method: Alamofire.Method {
+        var method: HTTPMethod {
             switch self {
-            case .GetToken:
-                return .POST
+            case .getToken:
+                return .post
             }
         }
         
         var path: String {
             switch self {
-            case .GetToken:
+            case .getToken:
                 return "/get_token"
             }
         }
         
-        var params: [String: AnyObject]? {
+        var params: Parameters? {
             switch self {
-            case .GetToken(let usernameOrEmail, let password):
+            case .getToken(let usernameOrEmail, let password):
                 return [
-                    "username": usernameOrEmail,
-                    "password": password,
-                    "device_id": DeviceID(),
+                    "username": usernameOrEmail as AnyObject,
+                    "password": password as AnyObject,
+                    "device_id": DeviceID() as AnyObject,
                 ]
             }
         }
         
-        public var URLRequest: NSMutableURLRequest {
-            return Router.URLRequest(method: method, path: path, params: params)
+        public func asURLRequest() throws -> URLRequest {
+            return try Router.GenerateURLRequest(method: method, path: path, params: params)
         }
         
         
@@ -66,7 +66,7 @@ extension Router {
             platformExpert = IOServiceGetMatchingService(kIOMasterPortDefault, IOServiceMatching("IOPlatformExpertDevice"))
             
             if platformExpert != nil {
-                serial = IORegistryEntryCreateCFProperty(platformExpert!, kIOPlatformSerialNumberKey, kCFAllocatorDefault, 0).takeRetainedValue() as? String
+                serial = IORegistryEntryCreateCFProperty(platformExpert!, kIOPlatformSerialNumberKey as CFString!, kCFAllocatorDefault, 0).takeRetainedValue() as? String
                 IOObjectRelease(platformExpert!)
             }
             

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA0E22151DC0FE2E00C9515B /* Validations.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA0E22141DC0FE2E00C9515B /* Validations.swift */; };
 		FA107A7F1B03E618006FA015 /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA107A7E1B03E618006FA015 /* Requests.swift */; };
 		FA107A811B03E7C8006FA015 /* BlogsRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA107A801B03E7C8006FA015 /* BlogsRequests.swift */; };
 		FA107A901B042811006FA015 /* TracksRequests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA107A8F1B042811006FA015 /* TracksRequests.swift */; };
@@ -31,7 +32,7 @@
 		FA5B33FA1AFF5414009F2F95 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B33F91AFF5414009F2F95 /* User.swift */; };
 		FA5B33FC1AFF5419009F2F95 /* Tag.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B33FB1AFF5419009F2F95 /* Tag.swift */; };
 		FA5B340B1AFF5447009F2F95 /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B340A1AFF5447009F2F95 /* Track.swift */; };
-		FA5B340F1AFF54D5009F2F95 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B340E1AFF54D5009F2F95 /* Request.swift */; };
+		FA5B340F1AFF54D5009F2F95 /* ResponseSerializers.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B340E1AFF54D5009F2F95 /* ResponseSerializers.swift */; };
 		FA5B34121B002013009F2F95 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B34111B002013009F2F95 /* Router.swift */; };
 		FA5B34141B002061009F2F95 /* TracksRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA5B34131B002061009F2F95 /* TracksRouter.swift */; };
 		FA5B341A1B008DC4009F2F95 /* Track.json in Resources */ = {isa = PBXBuildFile; fileRef = FA5B34181B008BA2009F2F95 /* Track.json */; };
@@ -55,6 +56,7 @@
 		FA75E8231B563C180070FB1D /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA75E8221B563C180070FB1D /* String.swift */; };
 		FA848AAC1D3E7D6C00AC1262 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA849A461BABA776004EACD8 /* Alamofire.framework */; };
 		FA849A481BABC646004EACD8 /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA849A461BABA776004EACD8 /* Alamofire.framework */; };
+		FA8AD7461DC0429800518B0B /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8AD7451DC0429800518B0B /* Errors.swift */; };
 		FABB1EBF1BABC7680068C03F /* Alamofire.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = FA849A461BABA776004EACD8 /* Alamofire.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -82,6 +84,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		FA0E22141DC0FE2E00C9515B /* Validations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validations.swift; sourceTree = "<group>"; };
 		FA107A7E1B03E618006FA015 /* Requests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
 		FA107A801B03E7C8006FA015 /* BlogsRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlogsRequests.swift; sourceTree = "<group>"; };
 		FA107A8F1B042811006FA015 /* TracksRequests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracksRequests.swift; sourceTree = "<group>"; };
@@ -110,7 +113,7 @@
 		FA5B33F91AFF5414009F2F95 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FA5B33FB1AFF5419009F2F95 /* Tag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Tag.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		FA5B340A1AFF5447009F2F95 /* Track.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Track.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
-		FA5B340E1AFF54D5009F2F95 /* Request.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = Request.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		FA5B340E1AFF54D5009F2F95 /* ResponseSerializers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ResponseSerializers.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		FA5B34111B002013009F2F95 /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		FA5B34131B002061009F2F95 /* TracksRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TracksRouter.swift; sourceTree = "<group>"; };
 		FA5B34181B008BA2009F2F95 /* Track.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Track.json; sourceTree = "<group>"; };
@@ -133,6 +136,7 @@
 		FA5B343F1B01024C009F2F95 /* MeRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MeRouter.swift; sourceTree = "<group>"; };
 		FA75E8221B563C180070FB1D /* String.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		FA849A461BABA776004EACD8 /* Alamofire.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Alamofire.framework; path = Carthage/Build/Mac/Alamofire.framework; sourceTree = "<group>"; };
+		FA8AD7451DC0429800518B0B /* Errors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Errors.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,6 +164,9 @@
 			isa = PBXGroup;
 			children = (
 				FA107A7E1B03E618006FA015 /* Requests.swift */,
+				FA0E22141DC0FE2E00C9515B /* Validations.swift */,
+				FA8AD7451DC0429800518B0B /* Errors.swift */,
+				FA5B340E1AFF54D5009F2F95 /* ResponseSerializers.swift */,
 				FA107A801B03E7C8006FA015 /* BlogsRequests.swift */,
 				FA107A8F1B042811006FA015 /* TracksRequests.swift */,
 				FA107A911B042938006FA015 /* ArtistsRequests.swift */,
@@ -270,19 +277,10 @@
 		FA5B340C1AFF54B8009F2F95 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				FA5B340D1AFF54C0009F2F95 /* Alamofire */,
 				FA107AA21B0459D2006FA015 /* Dictionary.swift */,
 				FA75E8221B563C180070FB1D /* String.swift */,
 			);
 			name = Extensions;
-			sourceTree = "<group>";
-		};
-		FA5B340D1AFF54C0009F2F95 /* Alamofire */ = {
-			isa = PBXGroup;
-			children = (
-				FA5B340E1AFF54D5009F2F95 /* Request.swift */,
-			);
-			name = Alamofire;
 			sourceTree = "<group>";
 		};
 		FA5B34101B001FBD009F2F95 /* Routers */ = {
@@ -384,15 +382,17 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = Plug;
 				TargetAttributes = {
 					FA5B33D51AFF4FF6009F2F95 = {
 						CreatedOnToolsVersion = 6.3.1;
 						DevelopmentTeam = XM22JRGFT9;
+						LastSwiftMigration = 0800;
 					};
 					FA5B33E01AFF4FF6009F2F95 = {
 						CreatedOnToolsVersion = 6.3.1;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -462,13 +462,15 @@
 				FA5B33F51AFF5286009F2F95 /* HypeMachineAPI.swift in Sources */,
 				FA5B342E1B00F86D009F2F95 /* ArtistsRouter.swift in Sources */,
 				FA5B33F81AFF540F009F2F95 /* Blog.swift in Sources */,
+				FA0E22151DC0FE2E00C9515B /* Validations.swift in Sources */,
 				FA5B33FC1AFF5419009F2F95 /* Tag.swift in Sources */,
-				FA5B340F1AFF54D5009F2F95 /* Request.swift in Sources */,
+				FA5B340F1AFF54D5009F2F95 /* ResponseSerializers.swift in Sources */,
 				FA107A811B03E7C8006FA015 /* BlogsRequests.swift in Sources */,
 				FA21C3C31B01078900C1EAA8 /* MiscRouter.swift in Sources */,
 				FA5B34401B01024C009F2F95 /* MeRouter.swift in Sources */,
 				FA5B34301B00F934009F2F95 /* Artist.swift in Sources */,
 				FA107A901B042811006FA015 /* TracksRequests.swift in Sources */,
+				FA8AD7461DC0429800518B0B /* Errors.swift in Sources */,
 				FA4D18F31B0114730043A040 /* TagsRouter.swift in Sources */,
 				FA107A981B04494A006FA015 /* MeRequests.swift in Sources */,
 				FA5B34121B002013009F2F95 /* Router.swift in Sources */,
@@ -514,8 +516,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
@@ -538,7 +542,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
@@ -561,8 +565,10 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
@@ -578,9 +584,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
@@ -589,6 +596,7 @@
 		FA5B33ED1AFF4FF6009F2F95 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -596,7 +604,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
@@ -606,16 +613,19 @@
 				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Plug.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		FA5B33EE1AFF4FF6009F2F95 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -623,7 +633,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
@@ -633,9 +642,11 @@
 				INFOPLIST_FILE = Source/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Plug.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -657,6 +668,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Plug.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -673,6 +685,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Plug.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};

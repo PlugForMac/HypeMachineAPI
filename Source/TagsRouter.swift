@@ -12,39 +12,39 @@ import Alamofire
 extension Router {
     public enum Tags: URLRequestConvertible {
         
-        case Index
-        case ShowTracks(String, [String: AnyObject]?)
+        case index
+        case showTracks(name: String, params: Parameters?)
         
-        var method: Alamofire.Method {
+        var method: HTTPMethod {
             switch self {
-            case .Index:
-                return .GET
-            case .ShowTracks:
-                return .GET
+            case .index:
+                return .get
+            case .showTracks:
+                return .get
             }
         }
         
         var path: String {
             switch self {
-            case .Index:
+            case .index:
                 return "/tags"
-            case .ShowTracks(let name, _):
+            case .showTracks(let name, _):
                 let escapedName = name.stringByAddingPercentEncodingForURLQueryValue()!
                 return "/tags/\(escapedName)/tracks"
             }
         }
         
-        var params: [String: AnyObject]? {
+        var params: Parameters? {
             switch self {
-            case .Index:
+            case .index:
                 return nil
-            case .ShowTracks(_, let optionalParams):
+            case .showTracks(_, let optionalParams):
                 return optionalParams
             }
         }
         
-        public var URLRequest: NSMutableURLRequest {
-            return Router.URLRequest(method: method, path: path, params: params)
+        public func asURLRequest() throws -> URLRequest {
+            return try Router.GenerateURLRequest(method: method, path: path, params: params)
         }
     }
 }

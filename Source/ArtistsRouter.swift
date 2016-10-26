@@ -12,47 +12,47 @@ import Alamofire
 extension Router {
     public enum Artists: URLRequestConvertible {
         
-        case Index([String: AnyObject]?)
-        case Show(String)
-        case ShowTracks(String, [String: AnyObject]?)
+        case index(params: Parameters?)
+        case show(id: String)
+        case showTracks(name: String, params: Parameters?)
         
-        var method: Alamofire.Method {
+        var method: HTTPMethod {
             switch self {
-            case .Index:
-                return .GET
-            case .Show:
-                return .GET
-            case .ShowTracks:
-                return .GET
+            case .index:
+                return .get
+            case .show:
+                return .get
+            case .showTracks:
+                return .get
             }
         }
         
         var path: String {
             switch self {
-            case .Index:
+            case .index:
                 return "/artists"
-            case .Show(let name):
+            case .show(let name):
                 let escapedName = name.stringByAddingPercentEncodingForURLQueryValue()!
                 return "/artists/\(escapedName)"
-            case .ShowTracks(let name, _):
+            case .showTracks(let name, _):
                 let escapedName = name.stringByAddingPercentEncodingForURLQueryValue()!
                 return "/artists/\(escapedName)/tracks"
             }
         }
         
-        var params: [String: AnyObject]? {
+        var params: Parameters? {
             switch self {
-            case .Index(let optionalParams):
+            case .index(let optionalParams):
                 return optionalParams
-            case .Show:
+            case .show:
                 return nil
-            case .ShowTracks(_, let optionalParams):
+            case .showTracks(_, let optionalParams):
                 return optionalParams
             }
         }
         
-        public var URLRequest: NSMutableURLRequest {
-            return Router.URLRequest(method: method, path: path, params: params)
+        public func asURLRequest() throws -> URLRequest {
+            return try Router.GenerateURLRequest(method: method, path: path, params: params)
         }
     }
 }

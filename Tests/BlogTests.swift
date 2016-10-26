@@ -8,7 +8,11 @@
 
 import Cocoa
 import XCTest
-import HypeMachineAPI
+@testable import HypeMachineAPI
+
+extension HypeMachineAPI.Blog {
+    
+}
 
 class BlogTests: XCTestCase {
     override func setUp() {
@@ -20,7 +24,7 @@ class BlogTests: XCTestCase {
     
     func testBuildBlog() {
         let json: AnyObject = Helpers.loadJSONFixtureFile("Blog", ofType: "json")
-        let blog = HypeMachineAPI.Blog(response: NSHTTPURLResponse(), representation: json)
+        let blog = HypeMachineAPI.Blog(response: HTTPURLResponse(), representation: json)
         
         XCTAssertNotNil(blog)
         XCTAssert(blog!.id == 16684)
@@ -28,7 +32,7 @@ class BlogTests: XCTestCase {
     
     func testBuildBlogCollection() {
         let json: AnyObject = Helpers.loadJSONFixtureFile("Blogs", ofType: "json")
-        let blogs = HypeMachineAPI.Blog.collection(response: NSHTTPURLResponse(), representation: json)
+        let blogs = HypeMachineAPI.Blog.collection(from: HTTPURLResponse(), withRepresentation: json)
         
         XCTAssertNotNil(blogs)
         XCTAssert(blogs.count == 3)

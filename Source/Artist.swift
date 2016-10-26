@@ -8,49 +8,32 @@
 
 import Cocoa
 
-public final class Artist: NSObject, ResponseObjectSerializable, ResponseCollectionSerializable {
+public struct Artist: ResponseObjectSerializable, ResponseCollectionSerializable, CustomStringConvertible {
     public let name: String
-    public let thumbURL: NSURL?
+    public let thumbURL: URL?
     public let cnt: Int?
     public let rank: Int?
     
-    override public var description: String {
-        return "<Artist - name: \(name)>"
+    public var description: String {
+        return "Artist: { name: \(name) }"
     }
     
-    public required init?(response: NSHTTPURLResponse, representation: AnyObject) {
+    public init?(response: HTTPURLResponse, representation: Any) {
         guard
+            let representation = representation as? [String: Any],
             let name = representation["artist"] as? String
-        else {
-            return nil
-        }
+        else { return nil }
         
-        func urlForJSONKey(key: String) -> NSURL? {
+        func urlForJSONKey(_ key: String) -> URL? {
             guard let urlString = representation[key] as? String else {
                 return nil
             }
-            return NSURL(string: urlString)
+            return URL(string: urlString)
         }
         
         self.name = name
         self.thumbURL = urlForJSONKey("thumb_url_artist")
         self.cnt = representation["cnt"] as? Int
         self.rank = representation["rank"] as? Int
-        
-        super.init()
-    }
-    
-    public class func collection(response response: NSHTTPURLResponse, representation: AnyObject) -> [Artist] {
-        var artists = [Artist]()
-        
-        if let collectionJSON = representation as? [NSDictionary] {
-            for recordJSON in collectionJSON {
-                if let artist = Artist(response: response, representation: recordJSON) {
-                    artists.append(artist)
-                }
-            }
-        }
-        
-        return artists
     }
 }

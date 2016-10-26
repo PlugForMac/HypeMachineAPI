@@ -8,7 +8,7 @@
 
 import Cocoa
 import XCTest
-import HypeMachineAPI
+@testable import HypeMachineAPI
 
 class TagTests: XCTestCase {
     override func setUp() {
@@ -20,7 +20,7 @@ class TagTests: XCTestCase {
     
     func testBuildTag() {
         let json: AnyObject = Helpers.loadJSONFixtureFile("Tag", ofType: "json")
-        let tag = HypeMachineAPI.Tag(response: NSHTTPURLResponse(), representation: json)
+        let tag = HypeMachineAPI.Tag(response: HTTPURLResponse(), representation: json)
         
         XCTAssertNotNil(tag)
         XCTAssert(tag!.name == "electronic")
@@ -28,7 +28,7 @@ class TagTests: XCTestCase {
     
     func testBuildTagCollection() {
         let json: AnyObject = Helpers.loadJSONFixtureFile("Tags", ofType: "json")
-        let tags = HypeMachineAPI.Tag.collection(response: NSHTTPURLResponse(), representation: json)
+        let tags = HypeMachineAPI.Tag.collection(from: HTTPURLResponse(), withRepresentation: json)
         
         XCTAssertNotNil(tags)
         XCTAssert(tags.count == 3)
