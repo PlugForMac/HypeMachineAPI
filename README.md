@@ -32,8 +32,8 @@ HypeMachineAPI.Requests.Blogs.index { response in
 }
 ```
 
-This API is build on top of Alamofire and is very heavily influenced by its data types. We use their DataResponse in the response for all requests and we also use their Result type. Please check out their documentation for more info.
+This API is build on top of Alamofire and uses it's data type extensively. We use their DataResponse as the response for all requests, we also use their Result type to determine success or failure. Please check out their documentation for more info.
 
-All requests also return the an Alamofire DataRequest so that you can chain validations or make other modifications to the request.
+Notes: requests return an instance of Alamofire DataRequest so that you can chain additional validations or make other modifications to the request if you need to.
 
-You can find the source for all requests in the `Requests` folder.
+You can find the source for all requests in the `Source/*Request.swift` files.
