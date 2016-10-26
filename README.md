@@ -2,6 +2,10 @@
 
 This is a partial implementation of the Hype Machine API in Swift. It is currently targetted at OSX but could easily be modified to work for iOS as well. Please create a pull request if you'd like iOS support.
 
+## Swift Compatability
+
+Version 1.0 and beyond have been updated to work with Swift 3. Use the previous version, 0.5.4, for Swift 2.2. 
+
 ## Installation
 
 ### Carthage
