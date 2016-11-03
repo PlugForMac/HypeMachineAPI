@@ -8,23 +8,69 @@
 
 import Cocoa
 
-public struct Blog: ResponseObjectSerializable, ResponseCollectionSerializable, CustomStringConvertible {
+public struct Blog {
     public let id: Int
     public let name: String
     public let url: URL
     public let followerCount: Int
-    public let followerCountNum: NSNumber
     public let trackCount: Int
-    public let trackCountNum: NSNumber
     public let imageURL: URL
     public let imageURLSmall: URL
     public let featured: Bool
     public let following: Bool
     
+    public init(
+        id: Int,
+        name: String,
+        url: URL,
+        followerCount: Int,
+        trackCount: Int,
+        imageURL: URL,
+        imageURLSmall: URL,
+        featured: Bool,
+        following: Bool
+    ) {
+        self.id = id
+        self.name = name
+        self.url = url
+        self.followerCount = followerCount
+        self.trackCount = trackCount
+        self.imageURL = imageURL
+        self.imageURLSmall = imageURLSmall
+        self.featured = featured
+        self.following = following
+    }
+    
+    public var followerCountNum: NSNumber {
+        return NSNumber(value: followerCount)
+    }
+    
+    public var trackCountNum: NSNumber {
+        return NSNumber(value: trackCount)
+    }
+    
+    public func imageURL(size: ImageSize) -> URL {
+        switch size {
+        case .normal:
+            return imageURL
+        case .small:
+            return imageURLSmall
+        }
+    }
+    
+    public enum ImageSize {
+        case normal
+        case small
+    }
+}
+
+extension Blog: CustomStringConvertible {
     public var description: String {
         return "Blog: { name: \(name) }"
     }
-    
+}
+
+extension Blog: ResponseObjectSerializable, ResponseCollectionSerializable {
     public init?(response: HTTPURLResponse, representation: Any) {
         guard
             let representation = representation as? [String: Any],
@@ -44,26 +90,22 @@ public struct Blog: ResponseObjectSerializable, ResponseCollectionSerializable, 
         self.name = name
         self.url = url
         self.followerCount = followerCount
-        self.followerCountNum = NSNumber(value: followerCount as Int)
         self.trackCount = trackCount
-        self.trackCountNum = NSNumber(value: trackCount as Int)
         self.imageURL = imageURL
         self.imageURLSmall = imageURLSmall
         self.featured = representation["ts_featured"] is Int
         self.following = representation["ts_loved_me"] is Int
     }
-    
-    public func imageURL(size: ImageSize) -> URL {
-        switch size {
-        case .normal:
-            return imageURL
-        case .small:
-            return imageURLSmall
-        }
+}
+
+extension Blog: Equatable {
+    public static func == (lhs: Blog, rhs: Blog) -> Bool {
+        return lhs.id == rhs.id
     }
-    
-    public enum ImageSize {
-        case normal
-        case small
+}
+
+extension Blog: Hashable {
+    public var hashValue: Int {
+        return name.hashValue
     }
 }

@@ -8,29 +8,62 @@
 
 import Cocoa
 
-public struct User: ResponseObjectSerializable, ResponseCollectionSerializable, CustomStringConvertible {
+public struct User {
     public let username: String
     public let fullName: String?
     public let avatarURL: URL?
     public let favoritesCount: Int
-    public let favoritesCountNum: NSNumber
     public let followersCount: Int
-    public let followersCountNum: NSNumber
     public let followingCount: Int
-    public let followingCountNum: NSNumber
     public var friend: Bool?
     public var follower: Bool?
     
+    public init(
+        username: String,
+        fullName: String,
+        avatarURL: URL?,
+        favoritesCount: Int,
+        followersCount: Int,
+        followingCount: Int,
+        friend: Bool?,
+        follower: Bool?
+    ) {
+        self.username = username
+        self.fullName = fullName
+        self.avatarURL = avatarURL
+        self.favoritesCount = favoritesCount
+        self.followersCount = followersCount
+        self.followingCount = followingCount
+        self.friend = friend
+        self.follower = follower
+    }
+    
+    public var favoritesCountNum: NSNumber {
+        return NSNumber(value: favoritesCount)
+    }
+    
+    public var followersCountNum: NSNumber {
+        return NSNumber(value: followersCount)
+    }
+    
+    public var followingCountNum: NSNumber {
+        return NSNumber(value: followingCount)
+    }
+}
+
+extension User: CustomStringConvertible {
     public var description: String {
         return "User: { username: \(username), fullName: \(fullName) }"
     }
-    
+}
+
+extension User: ResponseObjectSerializable, ResponseCollectionSerializable {
     public init?(response: HTTPURLResponse, representation: Any) {
         guard
             let representation = representation as? [String: Any],
             let username = representation["username"] as? String,
             let favoritesCountInfo = representation["favorites_count"] as? NSDictionary
-        else { return nil }
+            else { return nil }
         
         func nonEmptyStringForJSONKey(_ key: String) -> String? {
             guard let string = representation["key"] as? String else {
@@ -50,12 +83,22 @@ public struct User: ResponseObjectSerializable, ResponseCollectionSerializable, 
         self.fullName = nonEmptyStringForJSONKey("fullname")
         self.avatarURL = urlForJSONKey("userpic")
         self.favoritesCount = favoritesCountInfo["item"] as? Int ?? 0
-        self.favoritesCountNum = NSNumber(value: favoritesCount as Int)
         self.followersCount = favoritesCountInfo["followers"] as? Int ?? 0
-        self.followersCountNum = NSNumber(value: followersCount as Int)
         self.followingCount = favoritesCountInfo["user"] as? Int ?? 0
-        self.followingCountNum = NSNumber(value: followingCount as Int)
         self.friend = representation["is_friend"] as? Bool
         self.follower = representation["is_follower"] as? Bool
+    }
+}
+
+
+extension User: Equatable {
+    public static func == (lhs: User, rhs: User) -> Bool {
+        return lhs.username == rhs.username
+    }
+}
+
+extension User: Hashable {
+    public var hashValue: Int {
+        return username.hashValue
     }
 }

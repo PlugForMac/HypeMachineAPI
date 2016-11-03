@@ -186,6 +186,4 @@ extension DataRequest {
         
         return response(responseSerializer: responseSerializer, completionHandler: completionHandler)
     }
-    
-    
 }
