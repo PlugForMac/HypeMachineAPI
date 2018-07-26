@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import CryptoSwift
 
 extension Router {
     public enum Misc: URLRequestConvertible {
@@ -45,18 +46,10 @@ extension Router {
         
         
         func DeviceID() -> String {
-            // Should probably hash the serial number instead of just adding 0's
-            var deviceID: String
-            let deviceIDLength = 16
-            
-            deviceID = GetSerialNumber()!
-            let pad = deviceIDLength - deviceID.characters.count
-            
-            for _ in 1...pad {
-                deviceID = deviceID + "0"
-            }
-            
-            return deviceID
+            let serialNumber = GetSerialNumber()!
+            let hashedSerialNumber = serialNumber.md5()
+            print(hashedSerialNumber)
+            return hashedSerialNumber
         }
         
         func GetSerialNumber() -> String? {
